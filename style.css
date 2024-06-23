@@ -1,5 +1,9 @@
-body {
+* {
     box-sizing: border-box;
+
+}
+
+body {
 
     margin: 0;
     background-color: wheat;
@@ -29,20 +33,18 @@ body {
     width: 23%;
 
     order: 2;
+
+    border-radius: 15px;
 }
 
 .selected {
     background-color: black;
+
 }
 
-.tile:hover {
-    background-color: wheat;
-    cursor: pointer;
-}
 
-.solved {}
-
-.unsolved {
-    border-radius: 10%;
-    outline: auto;
+.solved {
+    order: 1;
+    /* flex-grow: 4; */
+    flex-basis: 98%; 
 }
