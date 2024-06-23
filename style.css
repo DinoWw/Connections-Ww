@@ -1,0 +1,49 @@
+body {
+    box-sizing: border-box;
+
+    margin: 0;
+    background-color: green;
+}
+
+
+.container {
+    display: flex;
+
+}
+
+#tiles {
+    height: 80vh;
+    background-color: rgb(20, 65, 20);
+    justify-content: space-around;
+    align-content: space-around;
+    padding: 1%;
+    flex-wrap: wrap;
+}
+
+
+.tile {
+    background-color: rgb(57, 245, 57);
+    flex-basis: auto;
+    height: 23%; /* dobar look ovisi o paddingu contairera */
+    width: 23%;
+
+    order: 2;
+}
+
+.selected {
+    background-color: black;
+}
+
+.tile:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+.solved {
+
+}
+
+.unsolved {
+    border-radius: 10%;
+    outline: auto;
+}
