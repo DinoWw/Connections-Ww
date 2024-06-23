@@ -1,5 +1,9 @@
-body {
+* {
     box-sizing: border-box;
+
+}
+
+body {
 
     margin: 0;
     background-color: wheat;
@@ -12,6 +16,9 @@ body {
 }
 
 #tiles {
+
+    /* position: relative; */
+
     height: 80vh;
     background-color: gray;
     justify-content: space-around;
@@ -32,7 +39,10 @@ body {
     line-height: ; /// ??????????
     */
     order: 2;
+
+    border-radius: 15px;
 }
+
 
 .selected {
     background-color: burlywood;
@@ -43,11 +53,11 @@ body {
     cursor: pointer;
 }
 
-.solved {}
 
-.unsolved {
-    border-radius: 10%;
-    outline: auto;
+.solved {
+    order: 1;
+    /* flex-grow: 4; */
+    flex-basis: 98%;
 }
 
 .buttons {
