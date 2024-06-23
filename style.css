@@ -32,11 +32,11 @@ body {
 }
 
 .selected {
-    background-color: black;
+    background-color: burlywood;
 }
 
 .tile:hover {
-    background-color: wheat;
+    opacity: 0.5;
     cursor: pointer;
 }
 
