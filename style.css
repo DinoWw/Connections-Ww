@@ -38,8 +38,12 @@ body {
 }
 
 .selected {
-    background-color: black;
+    background-color: burlywood;
+}
 
+.tile:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 
