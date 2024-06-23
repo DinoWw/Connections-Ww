@@ -27,7 +27,10 @@ body {
     height: 23%;
     /* dobar look ovisi o paddingu contairera */
     width: 23%;
-
+    text-align: center;
+    /*
+    line-height: ; /// ??????????
+    */
     order: 2;
 }
 
@@ -45,4 +48,14 @@ body {
 .unsolved {
     border-radius: 10%;
     outline: auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+
+}
+
+button {
+    margin: 20px;
 }
