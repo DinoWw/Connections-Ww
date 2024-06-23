@@ -36,7 +36,10 @@ body {
     height: 23%;
     /* dobar look ovisi o paddingu contairera */
     width: 23%;
-
+    text-align: center;
+    /*
+    line-height: ; /// ??????????
+    */
     order: 2;
 
 }
@@ -64,7 +67,7 @@ body {
 .solved {
     order: 1;
     /* flex-grow: 4; */
-    flex-basis: 98%; 
+    flex-basis: 98%;
 }
 
 
@@ -73,4 +76,14 @@ body {
 .invis {
     /* umjesto opacity da se ne transfera na djecu */
     background-color: rgba(0,0,0,0);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+
+}
+
+button {
+    margin: 20px;
 }
