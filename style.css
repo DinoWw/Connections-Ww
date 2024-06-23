@@ -16,6 +16,9 @@ body {
 }
 
 #tiles {
+
+    /* position: relative; */
+
     height: 80vh;
     background-color: gray;
     justify-content: space-around;
@@ -36,6 +39,7 @@ body {
 
     border-radius: 15px;
 }
+
 
 .selected {
     background-color: burlywood;
