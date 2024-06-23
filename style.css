@@ -2,7 +2,7 @@ body {
     box-sizing: border-box;
 
     margin: 0;
-    background-color: green;
+    background-color: wheat;
 }
 
 
@@ -13,7 +13,7 @@ body {
 
 #tiles {
     height: 80vh;
-    background-color: rgb(20, 65, 20);
+    background-color: gray;
     justify-content: space-around;
     align-content: space-around;
     padding: 1%;
@@ -22,9 +22,10 @@ body {
 
 
 .tile {
-    background-color: rgb(57, 245, 57);
+    background-color: white;
     flex-basis: auto;
-    height: 23%; /* dobar look ovisi o paddingu contairera */
+    height: 23%;
+    /* dobar look ovisi o paddingu contairera */
     width: 23%;
 
     order: 2;
@@ -35,13 +36,11 @@ body {
 }
 
 .tile:hover {
-    background-color: green;
+    background-color: wheat;
     cursor: pointer;
 }
 
-.solved {
-
-}
+.solved {}
 
 .unsolved {
     border-radius: 10%;
