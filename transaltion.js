@@ -1,18 +1,45 @@
+
+const animationDuration = 4;
+
 function translationAnimation(x1, y1, x2, y2, name){
 
-
-    return `
-    @keyframes ${name} {
+    const style = document.createElement('style');
+    
+    
+    const kf = `
+    @keyframes ${name}_ {
         0% {
-            position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
         }
         100% {
-            position: absolute;
-            top: ${(x2-x1) * 25}%;
-            left: ${(y2-y1) * 25}%;
+            top: ${(x2-x1) * 100 * 25/23}%;
+            left: ${(y2-y1) * 100 * 25/23}%;
         }
     }
-    `.replace('\n', '');
+
+    .${name} {
+        animation-name: ${name}_;
+        animation-duration: ${animationDuration}s;
+    }
+
+
+    `//.replace('\n', '');
+
+
+    style.innerHTML = kf;
+    document.getElementsByTagName('head')[0].appendChild(style);
 }
+
+
+translationAnimation(2, 2, 0, 0, "tr1")
+const E = document.getElementById('E')
+E.firstElementChild.classList.add("tr1")
+E.classList.add("invis");
+setTimeout(()=>{
+    E.classList.remove("invis");
+    E.style = `order: ${4*y2 + x2};`;
+}, animationDuration*1000);
+
