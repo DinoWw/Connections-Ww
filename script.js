@@ -52,18 +52,24 @@ function init() {
    
    const tileHome = document.getElementById("tiles");
    const tileTemplate = document.getElementById("tile_template");
-   json.forEach((category) => {
-      category.elements.forEach((term) => {
+   json.forEach((category, ic) => {
+      category.elements.forEach((term, it) => {
 
          const tileHome = document.getElementById("tiles");
          const tileTemplate = document.getElementById("tile_template");
 
          const newTile = document.importNode(tileTemplate.content, true);
+
+         newTile.x = it;
+         newTile.y = ic;
+
          newTile.firstElementChild.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
          newTile.firstElementChild.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
+   // TODO: implement, changes element css order property to reflext x and y coords
+   fixElementOrder();
 
 }
 
