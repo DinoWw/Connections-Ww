@@ -29,19 +29,19 @@ async function onLoad() {
 
 
 function clickAction(target) {
-   let text = target.textContent
+   let text = target.firstElementChild.textContent
 
    console.log(target)
    if (selected.has(text)) {
       // unselect
-      selected.delete(target.textContent)
+      selected.delete(text)
 
       target.classList.toggle("selected")
    }
    else {
       if (selected.size < 4) {
          //selects
-         selected.add(target.textContent);
+         selected.add(text);
          target.classList.toggle("selected")
 
       }

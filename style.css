@@ -68,10 +68,13 @@ p {
     flex-direction: column;
     justify-content: center;
     pointer-events: all;
+
+    transition: linear;
 }
 
 .selected {
-    background-color: burlywood;
+    background-color: #5A594E;
+    color: #FFFFFF;
 }
 
 .tile:hover {
