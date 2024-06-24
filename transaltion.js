@@ -33,13 +33,19 @@ function translationAnimation(x1, y1, x2, y2, name){
     document.getElementsByTagName('head')[0].appendChild(style);
 }
 
+setTimeout(() => {
+    
 
-translationAnimation(2, 2, 0, 0, "tr1")
-const E = document.getElementById('E')
-E.firstElementChild.classList.add("tr1")
-E.classList.add("invis");
-setTimeout(()=>{
-    E.classList.remove("invis");
-    E.style = `order: ${4*y2 + x2};`;
-}, animationDuration*1000);
+    const tiles = document.getElementById("tiles");
+    const E =tiles.children.item(11);
 
+    translationAnimation(2, 2, 0, 0, "tr1")
+    E.firstElementChild.classList.add("tr1")
+    E.classList.add("invis");
+    setTimeout(()=>{
+        E.classList.remove("invis");
+        E.style = `order: ${4*0 + 0};`;
+    }, animationDuration*1000);
+
+    
+}, 4000);

@@ -11,7 +11,8 @@ async function onLoad() {
 
       json = (await response.json())
 
-      shuffle()
+      init();
+      //shuffle();
    })
 
    const deselectButton = document.querySelector("#deselect")
@@ -23,10 +24,6 @@ async function onLoad() {
 
    const shuffleButton = document.querySelector("#shuffle")
    shuffleButton.addEventListener("click", shuffle)
-
-
-
-
 
 
 }
@@ -49,6 +46,23 @@ function clickAction(target) {
 
       }
    }
+}
+
+function init() {
+   
+   json.forEach((category) => {
+      category.elements.forEach((term) => {
+
+         const tileHome = document.getElementById("tiles");
+         const tileTemplate = document.getElementById("tile_template");
+         
+         const newTile = document.importNode(tileTemplate.content, true);
+         newTile.firstElementChild.innerHtml = term;
+      
+         tileHome.appendChild(newTile);
+      })
+   })
+
 }
 
 function shuffle() {
