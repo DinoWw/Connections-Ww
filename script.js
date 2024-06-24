@@ -25,14 +25,14 @@ async function onLoad() {
    const shuffleButton = document.querySelector("#shuffle")
    shuffleButton.addEventListener("click", shuffle)
 
-
 }
 
 
 function clickAction(target) {
+   let text = target.textContent
 
-   console.log(selected.size)
-   if (selected.has(target.textContent)) {
+   console.log(target)
+   if (selected.has(text)) {
       // unselect
       selected.delete(target.textContent)
 
@@ -55,16 +55,18 @@ function init() {
    json.forEach((category) => {
       category.elements.forEach((term) => {
 
-         
+         const tileHome = document.getElementById("tiles");
+         const tileTemplate = document.getElementById("tile_template");
+
          const newTile = document.importNode(tileTemplate.content, true);
-         newTile.firstElementChild.firstElementChild.innerText = term;
-         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target));
-      
+         newTile.firstElementChild.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
+         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
 
 }
+
 
 function addEventListeners() {
    json.forEach(obj => obj.elements.forEach(e => {
@@ -82,10 +84,10 @@ function addEventListeners() {
 }
 
 function deselectAll() {
-
+   const tiles = document.querySelectorAll(".tile")
    for (let tile of tiles) {
-      if (selected.has(tile.textContent)) {
-         tile.classList.toggle("selected")
+      if (selected.has(tile.firstElementChild.textContent)) {
+         tile.firstElementChild.classList.toggle("selected")
       }
    }
    selected.clear()

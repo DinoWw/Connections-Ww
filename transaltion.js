@@ -1,11 +1,11 @@
 
 const animationDuration = 4;
 
-function translationAnimation(x1, y1, x2, y2, name){
+function translationAnimation(x1, y1, x2, y2, name) {
 
     const style = document.createElement('style');
-    
-    
+
+
     const kf = `
     @keyframes ${name}_ {
         0% {
@@ -15,8 +15,8 @@ function translationAnimation(x1, y1, x2, y2, name){
             height: 100%;
         }
         100% {
-            top: ${(x2-x1) * 100 * 25/23}%;
-            left: ${(y2-y1) * 100 * 25/23}%;
+            top: ${(x2 - x1) * 100 * 25 / 23}%;
+            left: ${(y2 - y1) * 100 * 25 / 23}%;
         }
     }
 
@@ -44,13 +44,13 @@ let E = tilesH.children.item(11);
 
 console.log(E);
 
-translationAnimation(2, 2, 0, 0, "tr1")
-E.firstElementChild.classList.add("tr1")
-E.classList.add("invis");
-setTimeout(()=>{
-    E.classList.remove("invis");
-    E.style = `order: ${4*0 + 0};`;
-}, animationDuration*1000);
+    translationAnimation(2, 2, 0, 0, "tr1")
+    E.firstElementChild.classList.add("tr1")
+    E.classList.add("invis");
+    setTimeout(() => {
+        E.classList.remove("invis");
+        E.style = `order: ${4 * 0 + 0};`;
+    }, animationDuration * 1000);
 
 
 }, 2000);
