@@ -31,7 +31,6 @@ async function onLoad() {
 function clickAction(target) {
    let text = target.firstElementChild.textContent
 
-   console.log(target)
    if (selected.has(text)) {
       // unselect
       selected.delete(text)
@@ -69,10 +68,9 @@ function init() {
 
 
 function addEventListeners() {
-   json.forEach(obj => obj.elements.forEach(e => {
-      console.log(e)
+   json.forEach(obj => obj.elements.forEach(e =>
       items.push(e)
-   }))
+   ))
 
 
    for (let tile of tiles) {
@@ -96,7 +94,6 @@ function deselectAll() {
 function submit() {
    if (selected.size = 4) {
       let selectedArr = Array.from(selected)
-      console.log('A', selectedArr)
 
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json) {

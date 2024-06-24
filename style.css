@@ -56,6 +56,7 @@ p {
 
     pointer-events: none;
 
+
 }
 
 .tile-innerdiv {
@@ -69,18 +70,30 @@ p {
     justify-content: center;
     pointer-events: all;
 
-    transition: linear;
+    transition: background-color 300ms;
+
 }
 
 .selected {
     background-color: #5A594E;
     color: #FFFFFF;
+
 }
 
-.tile:hover {
-    opacity: 0.5;
+/*
+ TODO: ne znam overruleat boju on hover kad je selected
+*/
+.selected:hover {
+    background-color: #5A594E;
+    color: #FFFFFF;
+}
+
+.tile-innerdiv:hover {
+    background-color: #D8D3AD;
     cursor: pointer;
 }
+
+.tile:hover {}
 
 
 .solved {
