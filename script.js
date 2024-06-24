@@ -29,19 +29,19 @@ async function onLoad() {
 
 
 function clickAction(target) {
-   let text = target.textContent
+   let text = target.firstElementChild.textContent
 
    console.log(target)
    if (selected.has(text)) {
       // unselect
-      selected.delete(target.textContent)
+      selected.delete(text)
 
       target.classList.toggle("selected")
    }
    else {
       if (selected.size < 4) {
          //selects
-         selected.add(target.textContent);
+         selected.add(text);
          target.classList.toggle("selected")
 
       }
@@ -49,7 +49,7 @@ function clickAction(target) {
 }
 
 function init() {
-   
+
    const tileHome = document.getElementById("tiles");
    const tileTemplate = document.getElementById("tile_template");
    json.forEach((category, ic) => {
@@ -92,7 +92,7 @@ function addEventListeners() {
 function deselectAll() {
    const tiles = document.querySelectorAll(".tile")
    for (let tile of tiles) {
-      if (selected.has(tile.firstElementChild.textContent)) {
+      if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
          tile.firstElementChild.classList.toggle("selected")
       }
    }
@@ -100,23 +100,25 @@ function deselectAll() {
 }
 
 function submit() {
-   let selectedArr = Array.from(selected)
-   console.log('A', selectedArr)
+   if (selected.size = 4) {
+      let selectedArr = Array.from(selected)
+      console.log('A', selectedArr)
 
-   //TODO: rework, would be nice if selectedArr contined DOM objects
-   for (let category of json) {
-      if (category.elements.every(e => selectedArr.includes(e))) {
-         console.log(category.title);
-         
-         resolveCategory(category.title);
+      //TODO: rework, would be nice if selectedArr contined DOM objects
+      for (let category of json) {
+         if (category.elements.every(e => selectedArr.includes(e))) {
+            console.log(category.title);
 
+            resolveCategory(category.title);
+
+         }
+      }
+      if (selected.size != 0) {
+         console.log("fail")
+         deselectAll() //? 
+         // locsk elements, animation
       }
    }
-   if (selected.size != 0) {
-      console.log("fail")
-      deselectAll() //? 
-      // locsk elements, animation
-   }  
 }
 
 onLoad()
