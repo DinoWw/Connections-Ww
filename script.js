@@ -25,14 +25,14 @@ async function onLoad() {
    const shuffleButton = document.querySelector("#shuffle")
    shuffleButton.addEventListener("click", shuffle)
 
-
 }
 
 
 function clickAction(target) {
+   let text = target.textContent
 
-   console.log(selected.size)
-   if (selected.has(target.textContent)) {
+   console.log(target)
+   if (selected.has(text)) {
       // unselect
       selected.delete(target.textContent)
 
@@ -49,43 +49,33 @@ function clickAction(target) {
 }
 
 function init() {
-   
+
    json.forEach((category) => {
       category.elements.forEach((term) => {
 
          const tileHome = document.getElementById("tiles");
          const tileTemplate = document.getElementById("tile_template");
-         
+
          const newTile = document.importNode(tileTemplate.content, true);
-         console.log(newTile.firstElementChild.firstElementChild.innerText =term)//.firstElementChild.innerHtml = term);
-      
+         newTile.firstElementChild.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
+         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
 
 }
 
+
 function shuffle() {
    // mozemo i s metodom flex orderinga
-   json.forEach(obj => obj.elements.forEach(e => {
-      items.push(e)
-   }))
 
-
-   for (let tile of tiles) {
-      tile.addEventListener("click", e => clickAction(e.target))
-      let index = Math.floor(Math.random() * items.length)
-      let itemSelected = items[index];
-      tile.textContent = itemSelected
-      items.splice(index, 1)
-   }
 }
 
 function deselectAll() {
-
+   const tiles = document.querySelectorAll(".tile")
    for (let tile of tiles) {
-      if (selected.has(tile.textContent)) {
-         tile.classList.toggle("selected")
+      if (selected.has(tile.firstElementChild.textContent)) {
+         tile.firstElementChild.classList.toggle("selected")
       }
    }
    selected.clear()
