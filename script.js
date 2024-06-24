@@ -12,7 +12,7 @@ async function onLoad() {
       json = (await response.json())
 
       init();
-      //shuffle();
+      addEventListeners();
    })
 
    const deselectButton = document.querySelector("#deselect")
@@ -50,14 +50,15 @@ function clickAction(target) {
 
 function init() {
    
+   const tileHome = document.getElementById("tiles");
+   const tileTemplate = document.getElementById("tile_template");
    json.forEach((category) => {
       category.elements.forEach((term) => {
 
-         const tileHome = document.getElementById("tiles");
-         const tileTemplate = document.getElementById("tile_template");
          
          const newTile = document.importNode(tileTemplate.content, true);
-         console.log(newTile.firstElementChild.firstElementChild.innerText =term)//.firstElementChild.innerHtml = term);
+         newTile.firstElementChild.firstElementChild.innerText = term;
+         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target));
       
          tileHome.appendChild(newTile);
       })
@@ -65,15 +66,14 @@ function init() {
 
 }
 
-function shuffle() {
-   // mozemo i s metodom flex orderinga
+function addEventListeners() {
    json.forEach(obj => obj.elements.forEach(e => {
+      console.log(e)
       items.push(e)
    }))
 
 
    for (let tile of tiles) {
-      tile.addEventListener("click", e => clickAction(e.target))
       let index = Math.floor(Math.random() * items.length)
       let itemSelected = items[index];
       tile.textContent = itemSelected
@@ -93,20 +93,22 @@ function deselectAll() {
 
 function submit() {
    let selectedArr = Array.from(selected)
+   console.log('A', selectedArr)
+
+   //TODO: rework, would be nice if selectedArr contined DOM objects
    for (let category of json) {
       if (category.elements.every(e => selectedArr.includes(e))) {
-         console.log(category.title)
-         selected.clear()
+         console.log(category.title);
+         
+         resolveCategory(category.title);
+
       }
    }
    if (selected.size != 0) {
       console.log("fail")
       deselectAll() //? 
       // locsk elements, animation
-   }
-
-
-
+   }  
 }
 
 onLoad()

@@ -33,21 +33,25 @@ function translationAnimation(x1, y1, x2, y2, name){
     document.getElementsByTagName('head')[0].appendChild(style);
 }
 
+
+
+// ako ne radi setTimeout ovdje mayb
 setTimeout(() => {
     
+const tilesH = document.getElementById("tiles");
 
-    const tiles = document.getElementById("tiles");
-    const E = tiles.children.item(11);
+let E = tilesH.children.item(11);
 
-    console.log(E);
+console.log(E);
 
-    translationAnimation(2, 2, 0, 0, "tr1")
-    E.firstElementChild.classList.add("tr1")
-    E.classList.add("invis");
-    setTimeout(()=>{
-        E.classList.remove("invis");
-        E.style = `order: ${4*0 + 0};`;
-    }, animationDuration*1000);
+translationAnimation(2, 2, 0, 0, "tr1")
+E.firstElementChild.classList.add("tr1")
+E.classList.add("invis");
+setTimeout(()=>{
+    E.classList.remove("invis");
+    E.style = `order: ${4*0 + 0};`;
+}, animationDuration*1000);
 
-    
+
 }, 2000);
+
