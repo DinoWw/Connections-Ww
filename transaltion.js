@@ -37,7 +37,9 @@ setTimeout(() => {
     
 
     const tiles = document.getElementById("tiles");
-    const E =tiles.children.item(11);
+    const E = tiles.children.item(11);
+
+    console.log(E);
 
     translationAnimation(2, 2, 0, 0, "tr1")
     E.firstElementChild.classList.add("tr1")
@@ -48,4 +50,4 @@ setTimeout(() => {
     }, animationDuration*1000);
 
     
-}, 4000);
+}, 2000);

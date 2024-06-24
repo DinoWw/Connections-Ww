@@ -57,7 +57,7 @@ function init() {
          const tileTemplate = document.getElementById("tile_template");
          
          const newTile = document.importNode(tileTemplate.content, true);
-         newTile.firstElementChild.innerHtml = term;
+         console.log(newTile.firstElementChild.firstElementChild.innerText =term)//.firstElementChild.innerHtml = term);
       
          tileHome.appendChild(newTile);
       })
