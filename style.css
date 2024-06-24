@@ -1,26 +1,33 @@
 * {
     box-sizing: border-box;
+    font-family: arial;
+    font-weight: 600;
 
 }
 
 body {
 
     margin: 0;
-    background-color: wheat;
+    background-color: white;
 }
 
 
 .container {
+
+    margin: auto;
+    margin-top: 20px;
     display: flex;
+    min-height: 90vh;
+    height: fit-content;
+    width: 90vh;
 
 }
 
 #tiles {
 
     /* position: relative; */
-
-    height: 80vh;
-    background-color: gray;
+    height: 100px;
+    background-color: inherit;
     justify-content: space-around;
     align-content: space-around;
     padding: 1%;
@@ -32,6 +39,7 @@ body {
 
     position: relative;
 
+    background-color: #EFEFE6;
     flex-basis: auto;
     height: 23%;
     /* dobar look ovisi o paddingu contairera */
@@ -44,13 +52,12 @@ body {
 
 }
 
-.tile > div {
+.tile>div {
 
     position: absolute;
 
     width: 100%;
     height: 100%;
-    background-color: white;
     border-radius: 15px;
 }
 
@@ -75,7 +82,7 @@ body {
 
 .invis {
     /* umjesto opacity da se ne transfera na djecu */
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .buttons {
