@@ -49,19 +49,16 @@ function clickAction(target) {
 function init() {
 
    const tileHome = document.getElementById("tiles");
-   const tileTemplate = document.getElementById("tile_template");
-   json.forEach((category) => {
-      category.elements.forEach((term) => {
+   json.forEach((category, ic) => {
+      category.elements.forEach((term, it) => {
 
-         const tileHome = document.getElementById("tiles");
-         const tileTemplate = document.getElementById("tile_template");
+         const newTile = createTile(term, it, ic, false);
 
-         const newTile = document.importNode(tileTemplate.content, true);
-         newTile.firstElementChild.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
-         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
+   // TODO: implement, changes element css order property to reflext x and y coords
+   fixTileOrder();
 
 }
 
@@ -97,19 +94,70 @@ function submit() {
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json) {
          if (category.elements.every(e => selectedArr.includes(e))) {
-            console.log(category.title);
 
-            resolveCategory(category.title);
+            console.log("success")
+            // visually
+            resolveCategory(category);
 
          }
       }
       if (selected.size != 0) {
+         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
          console.log("fail")
          addMistake()
          deselectAll() //? 
          // locsk elements, animation
       }
    }
+}
+
+function fixTileOrder() {
+   const tiles = document.getElementById("tiles");
+
+   for (let tile of tiles.children) {
+      tile.style.order = tile.x + tile.y * 4;
+   }
+}
+
+function shuffle() {
+   const tiles = document.querySelectorAll(".tile:not(solved)");
+
+   const available = [...Array(tiles.length).keys()];
+   // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
+   for (let i = available.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [available[i], available[j]] = [available[j], available[i]];
+   }
+
+
+   [...tiles].forEach((tile) => {
+      let order = available.pop();
+      tile.style.order = order + 1;
+      tile.x = order % 4;
+      tile.y = Math.floor(order / 4);
+   });
+
+
+}
+
+function createTile(title, x, y, solved) {
+   // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
+   const tileTemplate = document.getElementById("tile_template");
+
+   const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
+   //console.log(newTile)
+
+   newTile.x = x;
+   newTile.y = y;
+
+   newTile.firstElementChild.firstElementChild.innerText = title;
+   if (!solved) {
+      newTile.addEventListener("click", e => clickAction(e.target))
+   }
+   else {
+      newTile.classList.add("solved");
+   }
+   return newTile
 }
 
 function updateButtonClickability() {

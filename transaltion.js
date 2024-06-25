@@ -5,6 +5,7 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
     const style = document.createElement('style');
 
+    console.log(x1, y1, x2, y2, name)
 
     const kf = `
     @keyframes ${name}_ {
@@ -15,8 +16,8 @@ function translationAnimation(x1, y1, x2, y2, name) {
             height: 100%;
         }
         100% {
-            top: ${(x2 - x1) * 100 * 25 / 23}%;
-            left: ${(y2 - y1) * 100 * 25 / 23}%;
+            top: ${(y2 - y1) * 100 * 25 / 23}%;
+            left: ${(x2 - x1) * 100 * 25 / 23}%;
         }
     }
 
@@ -35,21 +36,21 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
 
 
-// ako ne radi setTimeout ovdje mayb
-setTimeout(() => {
 
-    const tilesH = document.getElementById("tiles");
+// TODO: jako jako uzasna globalna varijabla, fix
+let AXxjs = 0;
+function translateElement(el, x1, y1, x2, y2){
+    AXxjs ++;
 
-    let E = tilesH.children.item(11);
+    translationAnimation(x1, y1, x2, y2, `tr_${AXxjs}`)
 
-    translationAnimation(2, 2, 0, 0, "tr1")
-    E.firstElementChild.classList.add("tr1")
-    E.classList.add("invis");
+    console.log(el.firstElementChild)
+    el.firstElementChild.classList.add(`tr_${AXxjs}`);
+    el.classList.add("invis");
     setTimeout(() => {
-        E.classList.remove("invis");
-        E.style = `order: ${4 * 0 + 0};`;
+        el.classList.remove("invis");
+        el.style.order = 4 * y2 + x2;
+        [el.x, el.y] = [x2, y2];
+        
     }, animationDuration * 1000);
-
-
-}, 2000);
-
+}
