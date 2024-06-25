@@ -122,9 +122,28 @@ function submit() {
 function fixTileOrder(){
    const tiles = document.getElementById("tiles");
 
-   tiles.forEach((tile) => {
+   for(let tile of tiles.children) {
       tile.style.order = tile.x + tile.y*4;
-   })
+   }
+}
+
+function shuffle(){
+   const tiles = document.querySelectorAll(".tile:not(solved)");
+
+   const available = [...Array(tiles.length).keys()];
+   // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
+   for (let i = available.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [available[i], available[j]] = [available[j], available[i]];
+   }
+  
+
+   [...tiles].forEach((tile) => {
+      let order = available.pop();
+      tile.style.order = order + 1;
+      tile.x = order % 4;
+      tile.y = Math.floor(order / 4);
+   });
 
 
 }

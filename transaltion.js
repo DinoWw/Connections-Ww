@@ -49,6 +49,8 @@ function translateElement(el, x1, y1, x2, y2){
     el.classList.add("invis");
     setTimeout(() => {
         el.classList.remove("invis");
-        el.style = `order: ${4 * 0 + 0};`;
+        el.style.order = 4 * y2 + x2;
+        [el.x, el.y] = [x2, y2];
+        
     }, animationDuration * 1000);
 }
