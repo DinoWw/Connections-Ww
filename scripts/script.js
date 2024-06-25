@@ -7,7 +7,7 @@ let json
 
 async function onLoad() {
 
-   fetch('./game.json').then(async response => {
+   fetch('./data/game.json').then(async response => {
 
       json = (await response.json())
 
