@@ -7,13 +7,14 @@ let json
 
 async function onLoad() {
 
-   fetch('./data/game.json').then(async response => {
+   fetch('data/game.json').then(async response => {
 
       json = (await response.json())
 
       init();
-      addEventListeners();
    })
+
+   // append event listeners on buttons
 
    const deselectButton = document.querySelector("#deselect")
    deselectButton.addEventListener("click", deselectAll)
@@ -33,14 +34,14 @@ function clickAction(target) {
 
    if (selected.has(text)) {
       // unselect
-      selected.delete(text)
+      remFromSelected(text)
 
       target.classList.toggle("selected")
    }
    else {
       if (selected.size < 4) {
          //selects
-         selected.add(text);
+         addToSelected(text);
          target.classList.toggle("selected")
 
       }
@@ -50,7 +51,7 @@ function clickAction(target) {
 function init() {
 
    const tileHome = document.getElementById("tiles");
-   json.forEach((category, ic) => {
+   json.categories.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
          const newTile = createTile(term, it, ic, false);
@@ -62,91 +63,26 @@ function init() {
 
 }
 
-// TODO: name doesn't reflect behavior, is it redundant?
-//       createTile() already adds event listeners to tile
-function addEventListeners() {
-   json.forEach(obj => obj.elements.forEach(e =>
-      items.push(e)
-   ))
-
-
-   for (let tile of tiles) {
-      let index = Math.floor(Math.random() * items.length)
-      let itemSelected = items[index];
-      tile.textContent = itemSelected
-      items.splice(index, 1)
-   }
-}
-
-function deselectAll() {
-   const tiles = document.querySelectorAll(".tile")
-   for (let tile of tiles) {
-      if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
-         tile.firstElementChild.classList.toggle("selected")
-      }
-   }
-   selected.clear()
-}
-
-function submit() {
-   if (selected.size = 4) {
-      let selectedArr = Array.from(selected)
-
-      //TODO: rework, would be nice if selectedArr contined DOM objects
-      for (let category of json) {
-         if (category.elements.every(e => selectedArr.includes(e))) {
-
-            console.log("success")
-            // visually
-            resolveCategory(category);
-            selected.clear();
-
-         }
-      }
-   }
-}
-
-function fixTileOrder(){
+function fixTileOrder() {
    const tiles = document.getElementById("tiles");
 
-   for(let tile of tiles.children) {
-      tile.style.order = tile.x + tile.y*4;
+   for (let tile of tiles.children) {
+      tile.style.order = tile.x + tile.y * 4;
    }
 }
 
-function shuffle(){
-   const tiles = document.querySelectorAll(".tile:not(solved)");
-
-   const available = [...Array(tiles.length).keys()].map(x => x + 16 - tiles.length);
-   // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
-   for (let i = available.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [available[i], available[j]] = [available[j], available[i]];
-   }
-  
-
-   [...tiles].forEach((tile) => {
-      let order = available.pop();
-      tile.style.order = order;
-      tile.x = order % 4;
-      tile.y = Math.floor(order / 4);
-   });
-
-
-}
-
-function createTile(title, x, y, solved){
+function createTile(title, x, y, solved) {
    // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
    const tileTemplate = document.getElementById("tile_template");
 
    const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
    //console.log(newTile)
-   
+
    newTile.x = x;
    newTile.y = y;
 
    newTile.firstElementChild.firstElementChild.innerText = title;
-   if(!solved){
+   if (!solved) {
       newTile.addEventListener("click", e => clickAction(e.target))
       //newTile.addEventListener("click", e => console.log(newTile.x, newTile.y, newTile.style.order))
    }
@@ -157,4 +93,28 @@ function createTile(title, x, y, solved){
    return newTile
 }
 
+
+function addToSelected(str) {
+   selected.add(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+   if (deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (selected.size == 4 && submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+function remFromSelected(str) {
+   selected.delete(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+   if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (!submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
 onLoad()
+// nyt official colors: #A0C359 #F8DF6E #B2C4E5 #B881B9
