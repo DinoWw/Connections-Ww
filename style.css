@@ -18,6 +18,7 @@ p {
     font-family: Arial;
     font-size: 20px;
     font-weight: 700;
+    user-select: none;
 }
 
 
@@ -157,10 +158,30 @@ button {
     font-size: 16px;
 }
 
+.dot-container {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 .dot {
+    margin: auto;
     display: block;
     background-color: #5A594E;
     height: 20px;
     width: 20px;
     border-radius: 20px;
+
+    transition: all 700ms;
+}
+
+.dot.biggerdot {
+    height: 30px;
+    width: 30px;
+}
+
+.dot.smallerdot {
+    height: 0px;
+    width: 0px;
 }

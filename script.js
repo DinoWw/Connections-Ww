@@ -78,17 +78,19 @@ function addEventListeners() {
 }
 
 function deselectAll() {
-   const tiles = document.querySelectorAll(".tile")
-   for (let tile of tiles) {
-      if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
-         tile.firstElementChild.classList.toggle("selected")
-         remFromSelected(tile.firstElementChild.firstElementChild.textContent)
+   if (!document.querySelector("#deselect").classList.contains("unclickable")) {
+      const tiles = document.querySelectorAll(".tile")
+      for (let tile of tiles) {
+         if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
+            tile.firstElementChild.classList.toggle("selected")
+            remFromSelected(tile.firstElementChild.firstElementChild.textContent)
+         }
       }
    }
 }
 
 function submit() {
-   if (selected.size = 4) {
+   if (!document.querySelector("#submit").classList.contains("unclickable")) {
       let selectedArr = Array.from(selected)
 
       //TODO: rework, would be nice if selectedArr contined DOM objects
@@ -160,17 +162,6 @@ function createTile(title, x, y, solved) {
    return newTile
 }
 
-function updateButtonClickability() {
-   if (selected.size == 1 && deselectButton.classList.contains("unclickable")) {
-      deselectButton.classList.toggle("unclickable");
-   }
-   if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
-      deselectButton.classList.toggle("unclickable");
-   }
-   if (selected.size == 4 && submitButton.classList.contains("unclickable")) {
-      submitButton.classList.toggle("unclickable");
-   }
-}
 
 function addToSelected(str) {
    selected.add(str)
@@ -201,8 +192,9 @@ function addMistake() {
    let mistakes_cont = document.querySelector("#mistakes")
    let children = mistakes_cont.children
    for (let i = children.length - 1; i > 0; i--) {
-      if (children[i].style.opacity != '0') {
-         children[i].style.opacity = '0';
+      if (!children[i].firstElementChild.classList.contains("smallerdot")) {
+
+         children[i].firstElementChild.classList.add("smallerdot")
          if (i == 1) {
             console.log("loss")
          }
