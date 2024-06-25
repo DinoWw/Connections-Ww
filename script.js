@@ -99,14 +99,9 @@ function submit() {
             console.log("success")
             // visually
             resolveCategory(category);
+            selected.clear();
 
          }
-      }
-      if (selected.size != 0) {
-         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
-         console.log("fail")
-         deselectAll() //? 
-         // locsk elements, animation
       }
    }
 }
@@ -122,7 +117,7 @@ function fixTileOrder(){
 function shuffle(){
    const tiles = document.querySelectorAll(".tile:not(solved)");
 
-   const available = [...Array(tiles.length).keys()];
+   const available = [...Array(tiles.length).keys()].map(x => x + 16 - tiles.length);
    // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
    for (let i = available.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -132,7 +127,7 @@ function shuffle(){
 
    [...tiles].forEach((tile) => {
       let order = available.pop();
-      tile.style.order = order + 1;
+      tile.style.order = order;
       tile.x = order % 4;
       tile.y = Math.floor(order / 4);
    });
@@ -156,6 +151,7 @@ function createTile(title, x, y, solved){
    }
    else {
       newTile.classList.add("solved");
+      newTile.style.order = -1;
    }
    return newTile
 }

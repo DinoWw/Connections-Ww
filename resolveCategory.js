@@ -52,8 +52,9 @@ function collectElements(row, ...elements){
     
 
     elements.forEach((el, i)=> {
-        const [x1, y1] = [ el.x, el.y ]; // TODO: izracunat iz oredera il ljepse stavit u prop
-                
+        const [x1, y1] = [ el.x, el.y ];
+        
+        console.log(el.innerHTML);
         translateElement(el, x1, y1, i, row);
 
         const tile2 = tileByCoordinates(i, row);
