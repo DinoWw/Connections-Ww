@@ -42,10 +42,12 @@ function translateElement(el, x1, y1, x2, y2){
     //console.log(el.firstElementChild)
     el.firstElementChild.classList.add(`tr_${AXxjs}`);
     el.classList.add("invis");
-    setTimeout(() => {
+    setTimeout((e) => {
         el.classList.remove("invis");
         el.style.order = 4 * y2 + x2;
-        [el.x, el.y] = [x2, y2];
+        el.x = x2;
+        el.y = y2;
         
-    }, animationDuration * 1000);
+    }, animationDuration *1000);
+    // TODO: el.addEventListener("finish"... bi bio super umjesto setitmoueta
 }

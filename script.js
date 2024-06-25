@@ -54,7 +54,6 @@ function init() {
       category.elements.forEach((term, it) => {
 
          const newTile = createTile(term, it, ic, false);
-
          tileHome.appendChild(newTile);
       })
    })
@@ -63,7 +62,8 @@ function init() {
 
 }
 
-
+// TODO: name doesn't reflect behavior, is it redundant?
+//       createTile() already adds event listeners to tile
 function addEventListeners() {
    json.forEach(obj => obj.elements.forEach(e =>
       items.push(e)
@@ -148,6 +148,7 @@ function createTile(title, x, y, solved){
    newTile.firstElementChild.firstElementChild.innerText = title;
    if(!solved){
       newTile.addEventListener("click", e => clickAction(e.target))
+      //newTile.addEventListener("click", e => console.log(newTile.x, newTile.y, newTile.style.order))
    }
    else {
       newTile.classList.add("solved");
