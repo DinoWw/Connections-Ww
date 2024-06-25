@@ -6,10 +6,17 @@
     <meta chatset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="script.js" defer></script>
-    <script src="transaltion.js" defer></script>
-    <script src="resolveCategory.js" defer></script>
+
+    <link href="styles/tiles.css" rel="stylesheet" type="text/css">
+    <link href="styles/mistakes.css" rel="stylesheet" type="text/css">
+    <link href="styles/buttons.css" rel="stylesheet" type="text/css">
+
+    <script src="scripts/transaltion.js" defer></script>
+    <script src="scripts/resolveCategory.js" defer></script>
+    <script src="scripts/addMistake.js" defer></script>
+    <script src="scripts/buttons.js" defer></script>
+    <script src="scripts/script.js" defer></script>
+
     <title>Connections-Ww</title>
 
 </head>
@@ -27,11 +34,34 @@
         </div>
     </template>
 
+    <div id="mistakes">
+        <p class="mistakes-text">Mistakes remaining:</p>
+
+        <span class="dot-container">
+            <span class="dot"></span>
+        </span>
+        <span class="dot-container">
+            <span class="dot"></span>
+        </span>
+        <span class="dot-container">
+            <span class="dot"></span>
+        </span>
+        <span class="dot-container">
+            <span class="dot"></span>
+        </span>
+
+
+
+
+    </div>
+
     <div class="buttons">
         <button id="shuffle">Shuffle</button>
-        <button id="deselect">Deselect all</button>
-        <button id="submit">Submit</button>
+        <button id="deselect" class="unclickable">Deselect all</button>
+        <button id="submit" class="submit unclickable">Submit</button>
     </div>
+
+
 
 </body>
 

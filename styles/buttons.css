@@ -1,0 +1,27 @@
+.buttons {
+   display: flex;
+   justify-content: center;
+
+}
+
+.unclickable {
+   border: 1px solid #7F7F7F !important;
+   color: #7F7F7F !important;
+   background-color: white !important;
+}
+
+button {
+   margin: 20px;
+   padding: 16px;
+   border: 1px solid black;
+   border-radius: 32px;
+   background-color: white;
+   line-height: 16px;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+.submit {
+   color: white;
+   background-color: black;
+}
