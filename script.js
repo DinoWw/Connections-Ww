@@ -45,6 +45,7 @@ function clickAction(target) {
 
       }
    }
+   updateButtonClickability();
 }
 
 function init() {
@@ -109,6 +110,16 @@ function submit() {
          deselectAll() //? 
          // locsk elements, animation
       }
+   }
+}
+
+function updateButtonClickability() {
+   let deselectButton = document.querySelector("#deselect")
+   if (selected.size == 1 && deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
    }
 }
 
