@@ -36,8 +36,8 @@ function resolveCategory(category){
 
         tileHome.appendChild(newTile);
 
-    }, 4000);
-    // TODO: ^zapravo zamjenit nekom globalnom varijablom durationa tog animationa
+    }, animationDuration * 1000);
+    // TODO: ^ths should not be global, or at least we should be sure it is loaded
 
 };
 
