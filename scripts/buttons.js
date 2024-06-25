@@ -37,7 +37,7 @@ function deselectAll() {
 function submit() {
    if (!document.querySelector("#submit").classList.contains("unclickable")) {
       let selectedArr = Array.from(selected)
-
+      logGuess(selectedArr)
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json.categories) {
          if (category.elements.every(e => selectedArr.includes(e))) {
@@ -45,14 +45,14 @@ function submit() {
             console.log("success")
             // visually
             resolveCategory(category);
-
+            selected.clear()
          }
       }
       if (selected.size != 0) {
-         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
          console.log("fail")
+         document.querySelector("#submit").classList.toggle("unclickable")
          addMistake()
-         deselectAll() //? 
+         //deselectAll() //? 
          // locsk elements, animation
       }
    }

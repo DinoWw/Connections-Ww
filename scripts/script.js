@@ -14,6 +14,10 @@ async function onLoad() {
       init();
    })
 
+   if (!localStorage.guesses) {
+      localStorage.setItem("guesses", "")
+   }
+
    // append event listeners on buttons
 
    const deselectButton = document.querySelector("#deselect")
