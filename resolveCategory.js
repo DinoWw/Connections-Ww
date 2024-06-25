@@ -1,3 +1,6 @@
+
+// TODO: ugly global
+let nextRowSolved = 0;
 function resolveCategory(category){
 
 
@@ -20,10 +23,22 @@ function resolveCategory(category){
     // else 
 
     // TODO: fix row
-    collectElements(0, ...correctEls);
+    collectElements(nextRowSolved, ...correctEls);
 
+    setTimeout(() => {
+        correctEls.forEach(el => {
+            el.parentNode.removeChild(el);
+        })
 
-    // TODO: clear correctEls
+        const tileHome = document.getElementById("tiles");
+        const newTile = createTile(category.title, 0, nextRowSolved, true);
+        nextRowSolved++
+
+        tileHome.appendChild(newTile);
+
+    }, 4000);
+    // TODO: ^zapravo zamjenit nekom globalnom varijablom durationa tog animationa
+
 };
 
 
@@ -44,13 +59,6 @@ function collectElements(row, ...elements){
         const tile2 = tileByCoordinates(i, row);
         translateElement(tile2, i, row, x1, y1);
     })
-
-    // TODO: ranzmjestit ostale elemente da ima mjesta
-
-
-    // TODO: implement, see script js, also setitimeoutat ga
-    fixTileOrder();
-
 }
 
 

@@ -50,19 +50,11 @@ function clickAction(target) {
 function init() {
 
    const tileHome = document.getElementById("tiles");
-   const tileTemplate = document.getElementById("tile_template");
    json.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
-         const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
-         console.log(newTile)
-         // TODO: tu treba stavit nekak x i y
-            //console.log(newTile)
-         newTile.x = it;
-         newTile.y = ic;
+         const newTile = createTile(term, it, ic, false);
 
-         newTile.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
-         newTile.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
@@ -146,6 +138,26 @@ function shuffle(){
    });
 
 
+}
+
+function createTile(title, x, y, solved){
+   // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
+   const tileTemplate = document.getElementById("tile_template");
+
+   const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
+   //console.log(newTile)
+   
+   newTile.x = x;
+   newTile.y = y;
+
+   newTile.firstElementChild.firstElementChild.innerText = title;
+   if(!solved){
+      newTile.addEventListener("click", e => clickAction(e.target))
+   }
+   else {
+      newTile.classList.add("solved");
+   }
+   return newTile
 }
 
 onLoad()
