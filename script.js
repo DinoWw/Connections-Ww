@@ -33,14 +33,13 @@ function clickAction(target) {
 
    if (selected.has(text)) {
       // unselect
-      selected.delete(text)
-
+      remFromSelected(text)
       target.classList.toggle("selected")
    }
    else {
       if (selected.size < 4) {
          //selects
-         selected.add(text);
+         addToSelected(text)
          target.classList.toggle("selected")
 
       }
@@ -79,17 +78,19 @@ function addEventListeners() {
 }
 
 function deselectAll() {
-   const tiles = document.querySelectorAll(".tile")
-   for (let tile of tiles) {
-      if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
-         tile.firstElementChild.classList.toggle("selected")
+   if (!document.querySelector("#deselect").classList.contains("unclickable")) {
+      const tiles = document.querySelectorAll(".tile")
+      for (let tile of tiles) {
+         if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
+            tile.firstElementChild.classList.toggle("selected")
+            remFromSelected(tile.firstElementChild.firstElementChild.textContent)
+         }
       }
    }
-   selected.clear()
 }
 
 function submit() {
-   if (selected.size = 4) {
+   if (!document.querySelector("#submit").classList.contains("unclickable")) {
       let selectedArr = Array.from(selected)
 
       //TODO: rework, would be nice if selectedArr contined DOM objects
@@ -103,18 +104,25 @@ function submit() {
 
          }
       }
+      if (selected.size != 0) {
+         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
+         console.log("fail")
+         addMistake()
+         deselectAll() //? 
+         // locsk elements, animation
+      }
    }
 }
 
-function fixTileOrder(){
+function fixTileOrder() {
    const tiles = document.getElementById("tiles");
 
-   for(let tile of tiles.children) {
-      tile.style.order = tile.x + tile.y*4;
+   for (let tile of tiles.children) {
+      tile.style.order = tile.x + tile.y * 4;
    }
 }
 
-function shuffle(){
+function shuffle() {
    const tiles = document.querySelectorAll(".tile:not(solved)");
 
    const available = [...Array(tiles.length).keys()].map(x => x + 16 - tiles.length);
@@ -123,7 +131,7 @@ function shuffle(){
       const j = Math.floor(Math.random() * (i + 1));
       [available[i], available[j]] = [available[j], available[i]];
    }
-  
+
 
    [...tiles].forEach((tile) => {
       let order = available.pop();
@@ -135,18 +143,18 @@ function shuffle(){
 
 }
 
-function createTile(title, x, y, solved){
+function createTile(title, x, y, solved) {
    // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
    const tileTemplate = document.getElementById("tile_template");
 
    const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
    //console.log(newTile)
-   
+
    newTile.x = x;
    newTile.y = y;
 
    newTile.firstElementChild.firstElementChild.innerText = title;
-   if(!solved){
+   if (!solved) {
       newTile.addEventListener("click", e => clickAction(e.target))
       //newTile.addEventListener("click", e => console.log(newTile.x, newTile.y, newTile.style.order))
    }
@@ -155,6 +163,47 @@ function createTile(title, x, y, solved){
       newTile.style.order = -1;
    }
    return newTile
+}
+
+
+function addToSelected(str) {
+   selected.add(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+
+   if (deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (selected.size == 4 && submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+
+function remFromSelected(str) {
+   selected.delete(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+   if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (!submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+
+function addMistake() {
+   let mistakes_cont = document.querySelector("#mistakes")
+   let children = mistakes_cont.children
+   for (let i = children.length - 1; i > 0; i--) {
+      if (!children[i].firstElementChild.classList.contains("smallerdot")) {
+
+         children[i].firstElementChild.classList.add("smallerdot")
+         if (i == 1) {
+            console.log("loss")
+         }
+         return
+      }
+   }
 }
 
 onLoad()

@@ -7,6 +7,10 @@ body {
 
     margin: 0;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+
+
 }
 
 p {
@@ -14,6 +18,7 @@ p {
     font-family: Arial;
     font-size: 20px;
     font-weight: 700;
+    user-select: none;
 }
 
 
@@ -22,9 +27,9 @@ p {
     margin: auto;
     margin-top: 20px;
     display: flex;
-    min-height: 90vh;
+    min-height: 80vh;
     height: fit-content;
-    width: 90vh;
+    width: 80vh;
 
 }
 
@@ -116,6 +121,67 @@ p {
 
 }
 
+.unclickable {
+    border: 1px solid #7F7F7F !important;
+    color: #7F7F7F !important;
+    background-color: white !important;
+}
+
 button {
     margin: 20px;
+    padding: 16px;
+    border: 1px solid black;
+    border-radius: 32px;
+    background-color: white;
+    line-height: 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit {
+    color: white;
+    background-color: black;
+}
+
+#mistakes {
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 10px
+}
+
+.mistakes-text {
+    font-weight: 600;
+    margin: 0;
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.dot-container {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    margin: auto;
+    display: block;
+    background-color: #5A594E;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+
+    transition: all 700ms;
+}
+
+.dot.biggerdot {
+    height: 30px;
+    width: 30px;
+}
+
+.dot.smallerdot {
+    height: 0px;
+    width: 0px;
 }
