@@ -1,19 +1,18 @@
 const tiles = document.querySelectorAll(".tile")
 
-
-const items = new Array()
 const selected = new Set()
 let json
 
 async function onLoad() {
 
-   fetch('./game.json').then(async response => {
+   fetch('data/game.json').then(async response => {
 
       json = (await response.json())
 
       init();
-      addEventListeners();
    })
+
+   // append event listeners on buttons
 
    const deselectButton = document.querySelector("#deselect")
    deselectButton.addEventListener("click", deselectAll)
@@ -49,7 +48,7 @@ function clickAction(target) {
 function init() {
 
    const tileHome = document.getElementById("tiles");
-   json.forEach((category, ic) => {
+   json.categories.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
          const newTile = createTile(term, it, ic, false);
@@ -63,55 +62,7 @@ function init() {
 }
 
 
-function addEventListeners() {
-   json.forEach(obj => obj.elements.forEach(e =>
-      items.push(e)
-   ))
 
-
-   for (let tile of tiles) {
-      let index = Math.floor(Math.random() * items.length)
-      let itemSelected = items[index];
-      tile.textContent = itemSelected
-      items.splice(index, 1)
-   }
-}
-
-function deselectAll() {
-   if (!document.querySelector("#deselect").classList.contains("unclickable")) {
-      const tiles = document.querySelectorAll(".tile")
-      for (let tile of tiles) {
-         if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
-            tile.firstElementChild.classList.toggle("selected")
-            remFromSelected(tile.firstElementChild.firstElementChild.textContent)
-         }
-      }
-   }
-}
-
-function submit() {
-   if (!document.querySelector("#submit").classList.contains("unclickable")) {
-      let selectedArr = Array.from(selected)
-
-      //TODO: rework, would be nice if selectedArr contined DOM objects
-      for (let category of json) {
-         if (category.elements.every(e => selectedArr.includes(e))) {
-
-            console.log("success")
-            // visually
-            resolveCategory(category);
-
-         }
-      }
-      if (selected.size != 0) {
-         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
-         console.log("fail")
-         addMistake()
-         deselectAll() //? 
-         // locsk elements, animation
-      }
-   }
-}
 
 function fixTileOrder() {
    const tiles = document.getElementById("tiles");
@@ -121,26 +72,7 @@ function fixTileOrder() {
    }
 }
 
-function shuffle() {
-   const tiles = document.querySelectorAll(".tile:not(solved)");
 
-   const available = [...Array(tiles.length).keys()];
-   // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
-   for (let i = available.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [available[i], available[j]] = [available[j], available[i]];
-   }
-
-
-   [...tiles].forEach((tile) => {
-      let order = available.pop();
-      tile.style.order = order + 1;
-      tile.x = order % 4;
-      tile.y = Math.floor(order / 4);
-   });
-
-
-}
 
 function createTile(title, x, y, solved) {
    // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
@@ -188,19 +120,7 @@ function remFromSelected(str) {
    }
 }
 
-function addMistake() {
-   let mistakes_cont = document.querySelector("#mistakes")
-   let children = mistakes_cont.children
-   for (let i = children.length - 1; i > 0; i--) {
-      if (!children[i].firstElementChild.classList.contains("smallerdot")) {
-
-         children[i].firstElementChild.classList.add("smallerdot")
-         if (i == 1) {
-            console.log("loss")
-         }
-         return
-      }
-   }
-}
 
 onLoad()
+
+// nyt official colors: #A0C359 #F8DF6E #B2C4E5 #B881B9

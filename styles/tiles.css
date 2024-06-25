@@ -105,6 +105,21 @@ p {
     order: 1;
     /* flex-grow: 4; */
     flex-basis: 98%;
+    animation: popin 500ms;
+}
+
+@keyframes popin {
+    0% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.1;
+    }
+
+    100% {
+        scale: 1;
+    }
 }
 
 
@@ -113,75 +128,4 @@ p {
 .invis {
     /* umjesto opacity da se ne transfera na djecu */
     background-color: rgba(0, 0, 0, 0);
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-
-}
-
-.unclickable {
-    border: 1px solid #7F7F7F !important;
-    color: #7F7F7F !important;
-    background-color: white !important;
-}
-
-button {
-    margin: 20px;
-    padding: 16px;
-    border: 1px solid black;
-    border-radius: 32px;
-    background-color: white;
-    line-height: 16px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.submit {
-    color: white;
-    background-color: black;
-}
-
-#mistakes {
-    width: 300px;
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    margin-top: 10px
-}
-
-.mistakes-text {
-    font-weight: 600;
-    margin: 0;
-    line-height: 16px;
-    font-size: 16px;
-}
-
-.dot-container {
-    height: 20px;
-    width: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.dot {
-    margin: auto;
-    display: block;
-    background-color: #5A594E;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-
-    transition: all 700ms;
-}
-
-.dot.biggerdot {
-    height: 30px;
-    width: 30px;
-}
-
-.dot.smallerdot {
-    height: 0px;
-    width: 0px;
 }

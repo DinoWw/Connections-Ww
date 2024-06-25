@@ -1,0 +1,45 @@
+{
+   "initial": [],
+   "categories": [
+      {
+         "title": "INTERNET LINGO",
+         "color": "#FFF78D",
+         "elements": [
+            "YAP",
+            "MOMMY",
+            "GOAT",
+            "BRO"
+         ]
+      },
+      {
+         "title": "THE HOLY TRINITY",
+         "color": "#A4DCFF",
+         "elements": [
+            "FATHER",
+            "SON",
+            "HOLY",
+            "SPIRIT"
+         ]
+      },
+      {
+         "title": "NO '______' SIGNS",
+         "color": "#C279D3",
+         "elements": [
+            "RUNNING",
+            "TALKING",
+            "PHONES",
+            "FIREARMS"
+         ]
+      },
+      {
+         "title": "TYPE OF ASSIGNMENT IN TEXTBOOK",
+         "color": "pink",
+         "elements": [
+            "DISCUSS",
+            "EXPLAIN",
+            "WRITE",
+            "SOLVE"
+         ]
+      }
+   ]
+}
