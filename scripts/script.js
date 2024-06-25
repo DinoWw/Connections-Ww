@@ -52,7 +52,6 @@ function init() {
       category.elements.forEach((term, it) => {
 
          const newTile = createTile(term, it, ic, false);
-
          tileHome.appendChild(newTile);
       })
    })
@@ -87,9 +86,11 @@ function createTile(title, x, y, solved) {
    newTile.firstElementChild.firstElementChild.innerText = title;
    if (!solved) {
       newTile.addEventListener("click", e => clickAction(e.target))
+      //newTile.addEventListener("click", e => console.log(newTile.x, newTile.y, newTile.style.order))
    }
    else {
       newTile.classList.add("solved");
+      newTile.style.order = -1;
    }
    return newTile
 }
