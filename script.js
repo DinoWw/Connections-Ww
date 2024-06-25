@@ -31,7 +31,6 @@ async function onLoad() {
 function clickAction(target) {
    let text = target.firstElementChild.textContent
 
-   console.log(target)
    if (selected.has(text)) {
       // unselect
       selected.delete(text)
@@ -74,10 +73,9 @@ function init() {
 
 
 function addEventListeners() {
-   json.forEach(obj => obj.elements.forEach(e => {
-      console.log(e)
+   json.forEach(obj => obj.elements.forEach(e =>
       items.push(e)
-   }))
+   ))
 
 
    for (let tile of tiles) {
