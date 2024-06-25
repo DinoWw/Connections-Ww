@@ -33,19 +33,17 @@ function clickAction(target) {
 
    if (selected.has(text)) {
       // unselect
-      selected.delete(text)
-
+      remFromSelected(text)
       target.classList.toggle("selected")
    }
    else {
       if (selected.size < 4) {
          //selects
-         selected.add(text);
+         addToSelected(text)
          target.classList.toggle("selected")
 
       }
    }
-   updateButtonClickability();
 }
 
 function init() {
@@ -87,9 +85,9 @@ function deselectAll() {
    for (let tile of tiles) {
       if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
          tile.firstElementChild.classList.toggle("selected")
+         remFromSelected(tile.firstElementChild.firstElementChild.textContent)
       }
    }
-   selected.clear()
 }
 
 function submit() {
@@ -107,6 +105,7 @@ function submit() {
       }
       if (selected.size != 0) {
          console.log("fail")
+         addMistake()
          deselectAll() //? 
          // locsk elements, animation
       }
@@ -114,12 +113,53 @@ function submit() {
 }
 
 function updateButtonClickability() {
-   let deselectButton = document.querySelector("#deselect")
    if (selected.size == 1 && deselectButton.classList.contains("unclickable")) {
       deselectButton.classList.toggle("unclickable");
    }
    if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
       deselectButton.classList.toggle("unclickable");
+   }
+   if (selected.size == 4 && submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+
+function addToSelected(str) {
+   selected.add(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+
+   if (deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (selected.size == 4 && submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+
+function remFromSelected(str) {
+   selected.delete(str)
+   let deselectButton = document.querySelector("#deselect")
+   let submitButton = document.querySelector("#submit")
+   if (selected.size == 0 && !deselectButton.classList.contains("unclickable")) {
+      deselectButton.classList.toggle("unclickable");
+   }
+   if (!submitButton.classList.contains("unclickable")) {
+      submitButton.classList.toggle("unclickable");
+   }
+}
+
+function addMistake() {
+   let mistakes_cont = document.querySelector("#mistakes")
+   let children = mistakes_cont.children
+   for (let i = children.length - 1; i > 0; i--) {
+      if (children[i].style.opacity != '0') {
+         children[i].style.opacity = '0';
+         if (i == 1) {
+            console.log("loss")
+         }
+         return
+      }
    }
 }
 

@@ -121,8 +121,9 @@ p {
 }
 
 .unclickable {
-    border: 1px solid #7F7F7F;
-    color: #7F7F7F;
+    border: 1px solid #7F7F7F !important;
+    color: #7F7F7F !important;
+    background-color: white !important;
 }
 
 button {
@@ -136,8 +137,13 @@ button {
     cursor: pointer;
 }
 
+.submit {
+    color: white;
+    background-color: black;
+}
+
 #mistakes {
-    width: 30%;
+    width: 300px;
     display: flex;
     justify-content: space-evenly;
     margin: auto;
