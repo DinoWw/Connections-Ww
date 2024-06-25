@@ -3,55 +3,55 @@ function resolveCategory(category){
 
     // this part relies on global set selected
 
+    const tiles = document.getElementById("tiles");
+
     let correctEls = [];
-
-    tiles.forEach((tEl) => {
-        if(selected.any(name => tEl.firstElementChild.firstElementChild.innerHTML == name)){
-            correctEl.push(tEl);
+    for(tEl of tiles.children){
+        if(tEl.localName == 'template') continue;
+        console.log(tEl.localName)
+        if(category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)){
+            correctEls.push(tEl);
         }
-    });
-
-    if(correctEls != 4){
+    };
+    console.log("correct: ", correctEls)
+    if(correctEls.length != 4){
         return false;
     }
     // else 
 
-    correctEls.forEach(el => {
-        //TODO: continue
-        console.log(el.id);
-    });
+    // TODO: fix row
+    collectElements(0, ...correctEls);
+
 
     // TODO: clear correctEls
 };
 
 
-
-// TODO: jako jako uzasna globalna varijabla, fix
-let AXxjs = 0;
 // moraju bit parent divovi u ovom elemnts !!!
 function collectElements(row, ...elements){
     if(elements.length != 4){
         throw new Error("cudno koristenje collectElements");
     }
 
+    console.log(elements)
     
 
     elements.forEach((el, i)=> {
-        AXxjs ++;
         const [x1, y1] = [ el.x, el.y ]; // TODO: izracunat iz oredera il ljepse stavit u prop
                 
-        translationAnimation(x1, y1, row, i, `tr_${AXxjs}`)
-
-        el.firstElementChild.classList.add("tr1")
-        el.add("invis");
-        setTimeout(() => {
-            el.classList.remove("invis");
-            E.style = `order: ${4 * 0 + 0};`;
-        }, animationDuration * 1000);
+        translateElement(el, x1, y1, i, row);
+        //translateElement(el, x1, y1, i, row);
     })
 
-    // TODO: implement, see script js
+    // TODO: ranzmjestit ostale elemente da ima mjesta
+
+
+    // TODO: implement, see script js, also setitimeoutat ga
     fixTileOrder();
 
 }
 
+
+function fixTileOrder(){
+    
+}

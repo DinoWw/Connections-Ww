@@ -5,6 +5,7 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
     const style = document.createElement('style');
 
+    console.log(x1, y1, x2, y2, name)
 
     const kf = `
     @keyframes ${name}_ {
@@ -15,8 +16,8 @@ function translationAnimation(x1, y1, x2, y2, name) {
             height: 100%;
         }
         100% {
-            top: ${(x2 - x1) * 100 * 25 / 23}%;
-            left: ${(y2 - y1) * 100 * 25 / 23}%;
+            top: ${(y2 - y1) * 100 * 25 / 23}%;
+            left: ${(x2 - x1) * 100 * 25 / 23}%;
         }
     }
 
@@ -35,8 +36,19 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
 
 
-// ako ne radi setTimeout ovdje mayb
-setTimeout(() => {
-    
-}, 2000);
 
+// TODO: jako jako uzasna globalna varijabla, fix
+let AXxjs = 0;
+function translateElement(el, x1, y1, x2, y2){
+    AXxjs ++;
+
+    translationAnimation(x1, y1, x2, y2, `tr_${AXxjs}`)
+
+    console.log(el.firstElementChild)
+    el.firstElementChild.classList.add(`tr_${AXxjs}`);
+    el.classList.add("invis");
+    setTimeout(() => {
+        el.classList.remove("invis");
+        el.style = `order: ${4 * 0 + 0};`;
+    }, animationDuration * 1000);
+}

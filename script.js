@@ -55,21 +55,20 @@ function init() {
    json.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
-         const tileHome = document.getElementById("tiles");
-         const tileTemplate = document.getElementById("tile_template");
-
-         const newTile = document.importNode(tileTemplate.content, true);
-
+         const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
+         console.log(newTile)
+         // TODO: tu treba stavit nekak x i y
+            //console.log(newTile)
          newTile.x = it;
          newTile.y = ic;
 
-         newTile.firstElementChild.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
-         newTile.firstElementChild.addEventListener("click", e => clickAction(e.target))
+         newTile.firstElementChild.firstElementChild.innerText = term //.firstElementChild.innerHtml = term);
+         newTile.addEventListener("click", e => clickAction(e.target))
          tileHome.appendChild(newTile);
       })
    })
    // TODO: implement, changes element css order property to reflext x and y coords
-   fixElementOrder();
+   fixTileOrder();
 
 }
 
@@ -102,23 +101,34 @@ function deselectAll() {
 function submit() {
    if (selected.size = 4) {
       let selectedArr = Array.from(selected)
-      console.log('A', selectedArr)
 
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json) {
          if (category.elements.every(e => selectedArr.includes(e))) {
-            console.log(category.title);
 
-            resolveCategory(category.title);
+            console.log("success")
+            // visually
+            resolveCategory(category);
 
          }
       }
       if (selected.size != 0) {
+         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
          console.log("fail")
          deselectAll() //? 
          // locsk elements, animation
       }
    }
+}
+
+function fixTileOrder(){
+   const tiles = document.getElementById("tiles");
+
+   tiles.forEach((tile) => {
+      tile.style.order = tile.x + tile.y*4;
+   })
+
+
 }
 
 onLoad()
