@@ -12,7 +12,7 @@ function shuffle() {
 
    [...tiles].forEach((tile) => {
       let order = available.pop();
-      tile.style.order = order + 1;
+      tile.style.order = order;
       tile.x = order % 4;
       tile.y = Math.floor(order / 4);
    });
