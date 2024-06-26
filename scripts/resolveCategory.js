@@ -9,7 +9,7 @@ function resolveCategory(category) {
     let correctEls = [];
     for (tEl of tiles.children) {
         if (tEl.localName == 'template') continue;
-        console.log(tEl.localName)
+        
         if (category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)) {
             correctEls.push(tEl);
         }
@@ -32,7 +32,7 @@ function resolveCategory(category) {
         })
 
         elems.innerHTML = elems.innerHTML.slice(0, -1)
-        console.log(elems.innerHTML)
+        
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, 0, nextRowSolved, true);
 
@@ -55,7 +55,7 @@ function resolveCategory(category) {
         })
 
         elems.innerHTML = elems.innerHTML.slice(0, -1)
-        console.log(elems.innerHTML)
+        
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, 0, nextRowSolved, true);
 
@@ -74,9 +74,6 @@ function collectElements(row, ...elements) {
     if (elements.length != 4) {
         throw new Error("cudno koristenje collectElements");
     }
-
-    console.log(elements)
-
 
 
     // TO DO-not: this is horrible code for edge case where a tile is in a row it is supposed to be in

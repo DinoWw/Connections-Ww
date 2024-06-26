@@ -5,7 +5,7 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
     const style = document.createElement('style');
 
-    console.log(x1, y1, "->", x2, y2, name)
+    //console.log(x1, y1, "->", x2, y2, name)
 
     const kf = `
     @keyframes ${name}_ {
