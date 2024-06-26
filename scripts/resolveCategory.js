@@ -16,13 +16,29 @@ function resolveCategory(category){
             correctEls.push(tEl);
         }
     };
-    console.log("correct: ", correctEls)
+    //console.log("correct: ", correctEls)
     if(correctEls.length != 4){
         return false;
     }
-    // else 
 
-    // TODO: fix row
+    // else if all are already ordered, do just merge them
+
+    // TODO: code duplication, el should be event.target 
+    //      or smthing and code should be refactored into a function
+    if(correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)){
+        correctEls.forEach(el => {
+            el.parentNode.removeChild(el);
+        })
+
+        const tileHome = document.getElementById("tiles");
+        const newTile = createTile(category.title, 0, nextRowSolved, true);
+        nextRowSolved++
+
+        tileHome.appendChild(newTile);
+        return;
+    }
+    // else
+
     collectElements(nextRowSolved, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {

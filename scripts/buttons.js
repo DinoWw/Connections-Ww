@@ -21,16 +21,22 @@ function shuffle() {
 }
 
 // deselect button
-function deselectAll() {
-   if (!document.querySelector("#deselect").classList.contains("unclickable")) {
+function deselectAllHandler(){
+   if (document.querySelector("#deselect").classList.contains("unclickable")) return;
+   deselectAll(true);
+}
+
+function deselectAll(visuallyDeselect) {
+   if(visuallyDeselect){
       const tiles = document.querySelectorAll(".tile")
       for (let tile of tiles) {
          if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
             tile.firstElementChild.classList.toggle("selected")
-            remFromSelected(tile.firstElementChild.firstElementChild.textContent)
+            //console.log('!:', tile.firstElementChild.firstElementChild.textContent)
          }
       }
    }
+   remAllFromSelected();
 }
 
 // submit button 
@@ -45,14 +51,15 @@ function submit() {
             console.log("success")
             // visually
             resolveCategory(category);
-
+            deselectAll(false);
+            break;
          }
       }
       if (selected.size != 0) {
          // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
          console.log("fail")
          addMistake()
-         deselectAll() //? 
+         deselectAll(true); //? 
          // locsk elements, animation
       }
    }
