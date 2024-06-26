@@ -23,7 +23,7 @@ function resolveCategory(category) {
     // TODO: fix row
     collectElements(nextRowSolved, ...correctEls);
 
-    setTimeout(() => {
+    correctEls[0].addEventListener("animationend", () => {
         correctEls.forEach(el => {
             el.parentNode.removeChild(el);
         })
@@ -35,9 +35,7 @@ function resolveCategory(category) {
 
         tileHome.appendChild(newTile);
 
-    }, animationDuration * 1000);
-    // TODO: ^ths should not be global, or at least we should be sure it is loaded
-
+    })
 };
 
 
@@ -95,6 +93,7 @@ function tileByCoordinates(x, y) {
     }
 
     // else
+    console.error("ERROR: could not find tile on ", x, y)
     return undefined;
 
 }

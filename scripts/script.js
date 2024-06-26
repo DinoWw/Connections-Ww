@@ -62,7 +62,7 @@ function init() {
          tileHome.appendChild(newTile);
       })
    })
-   // TODO: implement, changes element css order property to reflext x and y coords
+   
    fixTileOrder();
 
 }
@@ -71,6 +71,7 @@ function fixTileOrder() {
    const tiles = document.getElementById("tiles");
 
    for (let tile of tiles.children) {
+      if(tile.classList.contains("solved")) continue;
       tile.style.order = tile.x + tile.y * 4;
    }
 }
