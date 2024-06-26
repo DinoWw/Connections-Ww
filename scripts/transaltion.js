@@ -1,5 +1,5 @@
 
-const animationDuration = 4;
+const animationDuration = 1.5;  // in seconds
 
 function translationAnimation(x1, y1, x2, y2, name) {
 
