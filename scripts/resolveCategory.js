@@ -24,6 +24,8 @@ function resolveCategory(category) {
     // TODO: code duplication, el should be event.target 
     //      or smthing and code should be refactored into a function
     if (correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)) {
+
+        const elems = document.createElement('p');
         correctEls.forEach(el => {
             elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
             el.parentNode.removeChild(el);
