@@ -24,13 +24,19 @@ function resolveCategory(category) {
     collectElements(nextRowSolved, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
+        const elems = document.createElement("p");
         correctEls.forEach(el => {
+            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
             el.parentNode.removeChild(el);
         })
 
+        elems.innerHTML = elems.innerHTML.slice(0, -1)
+        console.log(elems.innerHTML)
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, 0, nextRowSolved, true);
+
         newTile.firstElementChild.style.backgroundColor = category.color
+        newTile.firstElementChild.appendChild(elems)
         nextRowSolved++
 
         tileHome.appendChild(newTile);
