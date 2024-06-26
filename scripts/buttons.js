@@ -23,13 +23,13 @@ function shuffle() {
 }
 
 // deselect button
-function deselectAllHandler(){
+function deselectAllHandler() {
    if (document.querySelector("#deselect").classList.contains("unclickable")) return;
    deselectAll(true);
 }
 
 function deselectAll(visuallyDeselect) {
-   if(visuallyDeselect){
+   if (visuallyDeselect) {
       const tiles = document.querySelectorAll(".tile")
       for (let tile of tiles) {
          if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
@@ -45,7 +45,7 @@ function deselectAll(visuallyDeselect) {
 function submit() {
    if (!document.querySelector("#submit").classList.contains("unclickable")) {
       let selectedArr = Array.from(selected)
-
+      logGuess(selectedArr)
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json.categories) {
          if (category.elements.every(e => selectedArr.includes(e))) {
@@ -58,8 +58,8 @@ function submit() {
          }
       }
       if (selected.size != 0) {
-         // Dino_ww: mislim da se ovaj kod slucajno runa zbog mene
          console.log("fail")
+         document.querySelector("#submit").classList.toggle("unclickable")
          addMistake()
          deselectAll(true); //? 
          // locsk elements, animation

@@ -1,23 +1,21 @@
 
 // TODO: ugly global
 let nextRowSolved = 0;
-function resolveCategory(category){
+function resolveCategory(category) {
 
-
-    // this part relies on global set selected
 
     const tiles = document.getElementById("tiles");
 
     let correctEls = [];
-    for(tEl of tiles.children){
-        if(tEl.localName == 'template') continue;
+    for (tEl of tiles.children) {
+        if (tEl.localName == 'template') continue;
         console.log(tEl.localName)
-        if(category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)){
+        if (category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)) {
             correctEls.push(tEl);
         }
     };
     //console.log("correct: ", correctEls)
-    if(correctEls.length != 4){
+    if (correctEls.length != 4) {
         return false;
     }
 
@@ -25,13 +23,21 @@ function resolveCategory(category){
 
     // TODO: code duplication, el should be event.target 
     //      or smthing and code should be refactored into a function
-    if(correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)){
+    if (correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)) {
+
+        const elems = document.createElement('p');
         correctEls.forEach(el => {
+            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
             el.parentNode.removeChild(el);
         })
 
+        elems.innerHTML = elems.innerHTML.slice(0, -1)
+        console.log(elems.innerHTML)
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, 0, nextRowSolved, true);
+
+        newTile.firstElementChild.style.backgroundColor = category.color
+        newTile.firstElementChild.appendChild(elems)
         nextRowSolved++
 
         tileHome.appendChild(newTile);
@@ -42,12 +48,19 @@ function resolveCategory(category){
     collectElements(nextRowSolved, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
+        const elems = document.createElement("p");
         correctEls.forEach(el => {
+            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
             el.parentNode.removeChild(el);
         })
 
+        elems.innerHTML = elems.innerHTML.slice(0, -1)
+        console.log(elems.innerHTML)
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, 0, nextRowSolved, true);
+
+        newTile.firstElementChild.style.backgroundColor = category.color
+        newTile.firstElementChild.appendChild(elems)
         nextRowSolved++
 
         tileHome.appendChild(newTile);
@@ -57,13 +70,13 @@ function resolveCategory(category){
 
 
 // moraju bit parent divovi u ovom elemnts !!!
-function collectElements(row, ...elements){
-    if(elements.length != 4){
+function collectElements(row, ...elements) {
+    if (elements.length != 4) {
         throw new Error("cudno koristenje collectElements");
     }
 
     console.log(elements)
-    
+
 
 
     // TO DO-not: this is horrible code for edge case where a tile is in a row it is supposed to be in
@@ -99,16 +112,16 @@ function collectElements(row, ...elements){
 
 
 // TODO: Very bad, rework by storing elements in matrix
-function tileByCoordinates(x, y){
+function tileByCoordinates(x, y) {
 
     const tiles = document.getElementById("tiles");
 
-    for(let tile of tiles.children) {
-        if(tile.x == x && tile.y == y){
+    for (let tile of tiles.children) {
+        if (tile.x == x && tile.y == y) {
             return tile;
         }
     }
-    
+
     // else
     console.error("ERROR: could not find tile on ", x, y)
     return undefined;
