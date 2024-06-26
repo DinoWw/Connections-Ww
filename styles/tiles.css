@@ -92,20 +92,11 @@ p {
 
 }
 
-/*
- TODO: ne znam overruleat boju on hover kad je selected
-*/
-.selected:hover {
-    background-color: #5A594E;
-    color: #FFFFFF;
-}
 
-.tile-innerdiv:hover {
+.tile-innerdiv:not(.selected):hover {
     background-color: #D8D3AD;
     cursor: pointer;
 }
-
-.tile:hover {}
 
 
 .solved {
