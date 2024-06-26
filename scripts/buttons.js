@@ -1,6 +1,6 @@
 // shuffle button
 function shuffle() {
-   const tiles = document.querySelectorAll(".tile:not(solved)");
+   const tiles = document.querySelectorAll(".tile:not(.solved)");
 
    const available = [...Array(tiles.length).keys()];
    // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
@@ -21,16 +21,22 @@ function shuffle() {
 }
 
 // deselect button
-function deselectAll() {
-   if (!document.querySelector("#deselect").classList.contains("unclickable")) {
+function deselectAllHandler() {
+   if (document.querySelector("#deselect").classList.contains("unclickable")) return;
+   deselectAll(true);
+}
+
+function deselectAll(visuallyDeselect) {
+   if (visuallyDeselect) {
       const tiles = document.querySelectorAll(".tile")
       for (let tile of tiles) {
          if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
             tile.firstElementChild.classList.toggle("selected")
-            remFromSelected(tile.firstElementChild.firstElementChild.textContent)
+            //console.log('!:', tile.firstElementChild.firstElementChild.textContent)
          }
       }
    }
+   remAllFromSelected();
 }
 
 // submit button 
@@ -45,14 +51,15 @@ function submit() {
             console.log("success")
             // visually
             resolveCategory(category);
-            selected.clear()
+            deselectAll(false);
+            break;
          }
       }
       if (selected.size != 0) {
          console.log("fail")
          document.querySelector("#submit").classList.toggle("unclickable")
          addMistake()
-         //deselectAll() //? 
+         deselectAll(true); //? 
          // locsk elements, animation
       }
    }

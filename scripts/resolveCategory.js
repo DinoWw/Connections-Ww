@@ -14,13 +14,35 @@ function resolveCategory(category) {
             correctEls.push(tEl);
         }
     };
-    console.log("correct: ", correctEls)
+    //console.log("correct: ", correctEls)
     if (correctEls.length != 4) {
         return false;
     }
-    // else 
 
-    // TODO: fix row
+    // else if all are already ordered, do just merge them
+
+    // TODO: code duplication, el should be event.target 
+    //      or smthing and code should be refactored into a function
+    if (correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)) {
+        correctEls.forEach(el => {
+            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
+            el.parentNode.removeChild(el);
+        })
+
+        elems.innerHTML = elems.innerHTML.slice(0, -1)
+        console.log(elems.innerHTML)
+        const tileHome = document.getElementById("tiles");
+        const newTile = createTile(category.title, 0, nextRowSolved, true);
+
+        newTile.firstElementChild.style.backgroundColor = category.color
+        newTile.firstElementChild.appendChild(elems)
+        nextRowSolved++
+
+        tileHome.appendChild(newTile);
+        return;
+    }
+    // else
+
     collectElements(nextRowSolved, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
