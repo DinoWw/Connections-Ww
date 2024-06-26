@@ -1,6 +1,6 @@
 // shuffle button
 function shuffle() {
-   const tiles = document.querySelectorAll(".tile:not(solved)");
+   const tiles = document.querySelectorAll(".tile:not(.solved)");
 
    const available = [...Array(tiles.length).keys()];
    // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
