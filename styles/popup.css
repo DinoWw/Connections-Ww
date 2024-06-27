@@ -11,19 +11,19 @@
 }
 
 .overlay.show {
-   visibility: visible;
    animation: fadeIn;
-   animation-duration: 1s;
+   animation-duration: 2s;
    animation-delay: 2s;
 }
 
 @keyframes fadeIn {
    from {
-      visibility: visible;
+
       opacity: 0;
    }
 
    to {
+      visibility: visible;
       opacity: 0.4;
    }
 }
@@ -55,8 +55,8 @@
    animation-name: slideIn;
    animation-duration: 1s;
    animation-delay: 2s;
-   visibility: visible
-      /*
+
+   /*
    ne smije bit odmah visible jer sjebe animavciju
    opacity 0 ne radi
    mozda insertat js al idk
@@ -66,14 +66,14 @@
 @keyframes slideIn {
    0% {
       top: 20vw;
-      opacity: 0;
+
+      visibility: hidden;
    }
 
-   30% {
-      opacity: 1;
-   }
+   30% {}
 
    100% {
+      visibility: visible;
       top: 0px
    }
 }
