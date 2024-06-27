@@ -69,6 +69,7 @@ function resolveCategory(category) {
 };
 
 
+
 // moraju bit parent divovi u ovom elemnts !!!
 function collectElements(row, ...elements) {
     if (elements.length != 4) {

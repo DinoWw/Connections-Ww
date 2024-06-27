@@ -6,6 +6,7 @@
 body {
 
     margin: 0;
+    height: 100vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -16,7 +17,7 @@ body {
 p {
     pointer-events: none;
     font-family: Arial;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 300;
     user-select: none;
     margin: 5px;
@@ -24,7 +25,8 @@ p {
 
 
 .term-text {
-    font-size: 24px;
+    width: 90%;
+    font-size: 20px;
     font-weight: 700;
 }
 
@@ -43,7 +45,6 @@ p {
 #tiles {
 
     /* position: relative; */
-    height: 100px;
     background-color: #fff;
     justify-content: space-around;
     align-content: space-around;

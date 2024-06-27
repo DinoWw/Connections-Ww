@@ -34,8 +34,8 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
 // TODO: jako jako uzasna globalna varijabla, fix
 let AXxjs = 0;
-function translateElement(el, x1, y1, x2, y2){
-    AXxjs ++;
+function translateElement(el, x1, y1, x2, y2) {
+    AXxjs++;
 
     translationAnimation(x1, y1, x2, y2, `tr_${AXxjs}`)
 
@@ -47,6 +47,6 @@ function translateElement(el, x1, y1, x2, y2){
         el.y = y2;
         el.style.order = 4 * y2 + x2;
         el.classList.remove("invis");
-        
+
     });
 }
