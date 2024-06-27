@@ -1,0 +1,106 @@
+.overlay {
+   visibility: hidden;
+   background-color: white;
+   z-index: 1;
+   opacity: 0.4;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0
+}
+
+.overlay.show {
+   animation: fadeIn;
+   animation-duration: 2s;
+   animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+   from {
+
+      opacity: 0;
+   }
+
+   to {
+      visibility: visible;
+      opacity: 0.4;
+   }
+}
+
+.popup {
+   visibility: hidden;
+   position: absolute;
+   z-index: 2;
+   left: 0;
+   right: 0;
+   width: 38vw;
+   height: fit-content;
+   margin: 31vw;
+   margin-top: 15vh;
+   background-color: white;
+   padding: 10px;
+
+   opacity: 1;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: baseline;
+   border-radius: 6px;
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+
+}
+
+.popup.show {
+   animation-name: slideIn;
+   animation-duration: 1s;
+   animation-delay: 2s;
+
+   /*
+   ne smije bit odmah visible jer sjebe animavciju
+   opacity 0 ne radi
+   mozda insertat js al idk
+   */
+}
+
+@keyframes slideIn {
+   0% {
+      top: 20vw;
+
+      visibility: hidden;
+   }
+
+   30% {}
+
+   100% {
+      visibility: visible;
+      top: 0px
+   }
+}
+
+.popup>p {
+   text-align: center;
+   padding: 20px;
+}
+
+.copy-button {
+   margin-left: auto;
+   margin-right: auto;
+
+   width: 40%;
+   /* mozda previse hard coded */
+   /* some things are hard coded, but im hard while coding */
+   color: white;
+   background-color: black;
+}
+
+.copy-button:hover {
+   opacity: 0.7;
+}
+
+
+.win-text {
+   font-size: 24px;
+   font-weight: 600;
+   /*trebamo nac neki bolji font*/
+}

@@ -30,6 +30,10 @@ async function onLoad() {
    const shuffleButton = document.querySelector("#shuffle")
    shuffleButton.addEventListener("click", shuffle)
 
+   document.querySelector(".copy-button").addEventListener("click", copyToClipboard)
+
+   document.querySelector(".overlay").addEventListener("click", removeWinScreen)
+
 }
 
 
@@ -62,7 +66,7 @@ function init() {
          tileHome.appendChild(newTile);
       })
    })
-   
+
    fixTileOrder();
 
 }
@@ -71,7 +75,7 @@ function fixTileOrder() {
    const tiles = document.getElementById("tiles");
 
    for (let tile of tiles.children) {
-      if(tile.classList.contains("solved")) continue;
+      if (tile.classList.contains("solved")) continue;
       tile.style.order = tile.x + tile.y * 4;
    }
 }
@@ -118,10 +122,10 @@ function remAllFromSelected() {
    selected.clear();
    updateButtonClickability();
 }
-function updateButtonClickability(){
+function updateButtonClickability() {
    let deselectButton = document.querySelector("#deselect")
    let submitButton = document.querySelector("#submit")
-   
+
    if (selected.size == 4) {
       submitButton.classList.remove("unclickable");
       deselectButton.classList.remove("unclickable");
@@ -130,7 +134,7 @@ function updateButtonClickability(){
       submitButton.classList.add("unclickable")
       deselectButton.classList.add("unclickable");
    }
-   else{
+   else {
       submitButton.classList.add("unclickable")
       deselectButton.classList.remove("unclickable");
    }

@@ -41,10 +41,11 @@ function deselectAll(visuallyDeselect) {
 }
 
 // submit button 
+let guessed = 0; // treba napravit pametno ali sad sam umorna
+
 function submit() {
    if (!document.querySelector("#submit").classList.contains("unclickable")) {
       let selectedArr = Array.from(selected)
-      logGuess(selectedArr)
       //TODO: rework, would be nice if selectedArr contined DOM objects
       for (let category of json.categories) {
          if (category.elements.every(e => selectedArr.includes(e))) {
@@ -53,6 +54,10 @@ function submit() {
             // visually
             resolveCategory(category);
             deselectAll(false);
+            guessed = guessed + 1
+            //if (guessed == 4) {
+            winScreen()
+            //}
             break;
          }
       }
