@@ -1,6 +1,7 @@
 import { json } from "./modules/globals.js"
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { createTile, fixTileOrder} from "./modules/tiles.js";
+import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
 
 
 async function onLoad() {
@@ -48,7 +49,7 @@ function init() {
    json.categories.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
-         const newTile = createTile(term, category, it, ic, false);
+         const newTile = createTile(term, category.title, it, ic, false);
 
          tileHome.appendChild(newTile);
       })

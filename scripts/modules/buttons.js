@@ -3,6 +3,7 @@ import { remAllFromSelected } from "./selectedManager.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
 import { logGuess } from "./resultsLogger.js";
+import { winScreen } from "./endScreen.js";
 
 export {shuffle, deselectAll, deselectAllHandler, submit};
 
@@ -69,12 +70,11 @@ function submit() {
 
       logGuess(selectedEls.map(x => x.category));
 
-      //TODO: rework, would be nice if selectedArr contined DOM objects
       if (selectedEls.every(e => e.category == selectedEls[0].category)) {
 
          console.log("success")
          // visually
-         resolveCategory(selectedEls[0].category, selectedEls);
+         resolveCategory(json.categories.find(c => c.title = selectedEls[0].category), selectedEls);
          deselectAll(false);
          guessed = guessed + 1
          //if (guessed == 4) {
