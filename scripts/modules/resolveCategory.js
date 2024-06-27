@@ -7,19 +7,9 @@ export { resolveCategory };
 
 
 let nextRowSolved = 0;
-function resolveCategory(category) {
-
-
-    const tiles = document.getElementById("tiles");
-
-    let correctEls = [];
-    for (const tEl of tiles.children) {
-        if (tEl.localName == 'template') continue;
-        
-        if (category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)) {
-            correctEls.push(tEl);
-        }
-    };
+function resolveCategory(category, elems) {
+    let correctEls = elems;
+    
     //console.log("correct: ", correctEls)
     if (correctEls.length != 4) {
         return false;
@@ -40,7 +30,7 @@ function resolveCategory(category) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
         
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, 0, nextRowSolved, true);
+        const newTile = createTile(category.title, null, 0, nextRowSolved, true);
 
         newTile.firstElementChild.style.backgroundColor = category.color
         newTile.firstElementChild.appendChild(elems)
@@ -63,7 +53,7 @@ function resolveCategory(category) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
         
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, 0, nextRowSolved, true);
+        const newTile = createTile(category.title, null, 0, nextRowSolved, true);
 
         newTile.firstElementChild.style.backgroundColor = category.color
         newTile.firstElementChild.appendChild(elems)

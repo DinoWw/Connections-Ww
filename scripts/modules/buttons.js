@@ -54,23 +54,34 @@ let guessed = 0; // treba napravit pametno ali sad sam umorna
 
 function submit() {
    if (!document.querySelector("#submit").classList.contains("unclickable")) {
-      let selectedArr = Array.from(selected)
-      //TODO: rework, would be nice if selectedArr contined DOM objects
-      for (let category of json.categories) {
-         if (category.elements.every(e => selectedArr.includes(e))) {
+      const selectedArr = Array.from(selected)
+      const selectedEls = [];
 
-            console.log("success")
-            // visually
-            resolveCategory(category);
-            deselectAll(false);
-            guessed = guessed + 1
-            //if (guessed == 4) {
-            winScreen()
-            //}
-            break;
-         }
+      const tiles = document.querySelectorAll(".tile:not(.solved)");
+ 
+      for (const tEl of tiles) {  
+         if(selectedArr.includes(tEl.firstElementChild.firstElementChild.innerHTML)) {
+            selectedEls.push(tEl);
+         }      
+      }   
+
+      if(selectedEls.length != 4) throw new Error("invalid submit");
+
+      logGuess(selectedEls.map(x => x.category));
+
+      //TODO: rework, would be nice if selectedArr contined DOM objects
+      if (selectedEls.every(e => e.category == selectedEls[0].category)) {
+
+         console.log("success")
+         // visually
+         resolveCategory(selectedEls[0].category, selectedEls);
+         deselectAll(false);
+         guessed = guessed + 1
+         //if (guessed == 4) {
+         winScreen()
+         //}
       }
-      if (selected.size != 0) {
+      else {
          console.log("fail")
          document.querySelector("#submit").classList.toggle("unclickable")
          addMistake()

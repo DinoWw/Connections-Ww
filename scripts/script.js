@@ -9,9 +9,7 @@ async function onLoad() {
 
       // update so reference passed to buttonFunctions doesn't break
       await response.json().then((data) => {
-         console.log(data, json)
          for(let key in data) {
-            console.log(key)
             json[key] = data[key];
          }
       });
@@ -50,7 +48,8 @@ function init() {
    json.categories.forEach((category, ic) => {
       category.elements.forEach((term, it) => {
 
-         const newTile = createTile(term, it, ic, false);
+         const newTile = createTile(term, category, it, ic, false);
+
          tileHome.appendChild(newTile);
       })
    })
