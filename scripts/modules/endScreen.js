@@ -7,7 +7,7 @@ function winScreen() {
    console.log("pop")
    document.querySelector(".popup").classList.toggle("show")
    document.querySelector(".overlay").classList.toggle("show")
-
+   
    document.getElementById("copypasta").innerHTML = emoji();
 }
 

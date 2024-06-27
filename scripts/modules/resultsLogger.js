@@ -2,6 +2,14 @@ import { json } from "./globals.js";
 
 export { logGuess, emoji };
 
+const colorEmoji = {
+   "#FFF78D": String.fromCodePoint(0x1F7E8),
+   "#A4DCFF": String.fromCodePoint(0x1F7E6),
+   "#A173BC": String.fromCodePoint(0x1F7E7),
+   "pink": String.fromCodePoint(0x1F7EA),
+}
+
+
 const guesses = [];
 
 const categoryId = {};
@@ -32,5 +40,9 @@ function emoji() {
 }
 
 function emojiByColor(color){
+   const square = colorEmoji[color];
+   if(square != undefined){
+      return square
+   }
    return String.fromCodePoint(0x1F621);
 }
