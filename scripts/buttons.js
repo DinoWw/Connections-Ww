@@ -2,7 +2,9 @@
 function shuffle() {
    const tiles = document.querySelectorAll(".tile:not(.solved)");
 
-   const available = [...Array(tiles.length).keys()];
+   // map compensates for solved tiles taking up space near top
+   const available = [...Array(tiles.length).keys()].map(x => x + 16 - tiles.length);
+   console.log(available, tiles.length)
    // shuffle code. It IS correct, https://blog.codinghorror.com/the-danger-of-naivete/
    for (let i = available.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

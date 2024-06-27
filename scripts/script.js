@@ -127,7 +127,7 @@ function updateButtonClickability(){
       deselectButton.classList.remove("unclickable");
    }
    else if (selected.size == 0) {
-      submitButton.classList.remove("unclickable")
+      submitButton.classList.add("unclickable")
       deselectButton.classList.add("unclickable");
    }
    else{
