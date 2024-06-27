@@ -1,5 +1,11 @@
 
-// TODO: ugly global
+import { createTile } from "./tiles.js";
+import { translateElement } from "./translateElement.js";
+
+export { resolveCategory };
+
+
+
 let nextRowSolved = 0;
 function resolveCategory(category) {
 
@@ -7,7 +13,7 @@ function resolveCategory(category) {
     const tiles = document.getElementById("tiles");
 
     let correctEls = [];
-    for (tEl of tiles.children) {
+    for (const tEl of tiles.children) {
         if (tEl.localName == 'template') continue;
         
         if (category.elements.some(name => tEl.firstElementChild.firstElementChild.innerHTML == name)) {

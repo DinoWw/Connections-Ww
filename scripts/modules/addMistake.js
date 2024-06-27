@@ -1,3 +1,4 @@
+export { addMistake };
 
 function addMistake() {
    let mistakes_cont = document.querySelector("#mistakes")

@@ -1,3 +1,12 @@
+import { selected, json } from "./globals.js";
+import { remAllFromSelected } from "./selectedManager.js";
+import { resolveCategory } from "./resolveCategory.js";
+import { addMistake } from "./addMistake.js";
+import { logGuess } from "./resultsLogger.js";
+
+export {shuffle, deselectAll, deselectAllHandler, submit};
+
+
 // shuffle button
 function shuffle() {
    const tiles = document.querySelectorAll(".tile:not(.solved)");
@@ -70,3 +79,4 @@ function submit() {
       }
    }
 }
+
