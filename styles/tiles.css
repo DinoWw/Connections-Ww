@@ -104,7 +104,7 @@ p {
     order: 1;
     /* flex-grow: 4; */
     flex-basis: 98%;
-    animation: popin 500ms;
+    animation: popin 400ms;
 }
 
 @keyframes popin {

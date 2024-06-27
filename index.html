@@ -10,6 +10,7 @@
     <link href="styles/tiles.css" rel="stylesheet" type="text/css">
     <link href="styles/mistakes.css" rel="stylesheet" type="text/css">
     <link href="styles/buttons.css" rel="stylesheet" type="text/css">
+    <link href="styles/popup.css" rel="stylesheet" type="text/css">
 
     <script src="scripts/transaltion.js" defer></script>
     <script src="scripts/resolveCategory.js" defer></script>
@@ -35,6 +36,14 @@
         </div>
     </template>
 
+    <div class="overlay"> </div>
+    <div class="popup">
+        <p class="win-text">WIN</p>
+        <p id="copypasta">insert copypasta</p>
+        <button class="copy-button">Copy to clipboard</button>
+    </div>
+
+
     <div id="mistakes">
         <p class="mistakes-text">Mistakes remaining:</p>
 
@@ -50,10 +59,6 @@
         <span class="dot-container">
             <span class="dot"></span>
         </span>
-
-
-
-
     </div>
 
     <div class="buttons">
