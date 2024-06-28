@@ -9,7 +9,7 @@ export { resolveCategory };
 let nextRowSolved = 0;
 function resolveCategory(category, elems) {
     let correctEls = elems;
-    
+
     //console.log("correct: ", correctEls)
     if (correctEls.length != 4) {
         return false;
@@ -28,7 +28,7 @@ function resolveCategory(category, elems) {
         })
 
         elems.innerHTML = elems.innerHTML.slice(0, -1)
-        
+
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, null, 0, nextRowSolved, true);
 
@@ -51,7 +51,7 @@ function resolveCategory(category, elems) {
         })
 
         elems.innerHTML = elems.innerHTML.slice(0, -1)
-        
+
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, null, 0, nextRowSolved, true);
 

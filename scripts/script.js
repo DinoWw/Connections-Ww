@@ -1,7 +1,8 @@
 import { json } from "./modules/globals.js"
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
-import { createTile, fixTileOrder} from "./modules/tiles.js";
+import { createTile, fixTileOrder } from "./modules/tiles.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
+import { toggleMenu } from "./modules/menu.js";
 
 
 async function onLoad() {
@@ -10,11 +11,11 @@ async function onLoad() {
 
       // update so reference passed to buttonFunctions doesn't break
       await response.json().then((data) => {
-         for(let key in data) {
+         for (let key in data) {
             json[key] = data[key];
          }
       });
-         
+
 
       init();
    })
@@ -38,6 +39,16 @@ async function onLoad() {
    document.querySelector(".copy-button").addEventListener("click", copyToClipboard)
 
    document.querySelector(".overlay").addEventListener("click", removeWinScreen)
+
+   // mozda staviti jednu istu klasu oboma elementima
+   document.querySelector(".popup").addEventListener("animationend", event => {
+      event.target.style.visibility = "visible"
+   })
+   document.querySelector(".overlay").addEventListener("animationend", event => {
+      event.target.style.visibility = "visible"
+   })
+
+   document.querySelector(".menu-button").addEventListener("click", toggleMenu)
 
 }
 
