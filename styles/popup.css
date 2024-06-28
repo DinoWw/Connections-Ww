@@ -54,7 +54,7 @@
 .popup.show {
    animation-name: slideIn;
    animation-duration: 1s;
-   animation-delay: 2s;
+   animation-delay: 750ms;
 
    /*
    ne smije bit odmah visible jer sjebe animavciju
@@ -66,15 +66,16 @@
 @keyframes slideIn {
    0% {
       top: 20vw;
-
-      visibility: hidden;
+      visibility: visible;
+      opacity: 0;
    }
 
    30% {}
 
    100% {
+      top: 0px;
       visibility: visible;
-      top: 0px
+      opacity: 1;
    }
 }
 
