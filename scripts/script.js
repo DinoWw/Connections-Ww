@@ -73,9 +73,10 @@ function init() {
       // TODO: uncomment, its just annoying for testing
       //shuffle();
    }
-
-
    fixTileOrder();
+
+   // TODO: handle if title is undefined
+   document.querySelectorAll(".gameTitle").forEach(el => el.textContent = json.title);
 
 }
 
