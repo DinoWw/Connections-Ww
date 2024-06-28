@@ -77,9 +77,12 @@ function submit() {
          resolveCategory(json.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
          guessed = guessed + 1
-         //if (guessed == 4) {
-         winScreen()
-         //}
+         
+         if(guessed == 4){
+            // Wait on animation to finish
+            selectedEls[0].addEventListener("animationend", winScreen);
+         }
+         
       }
       else {
          if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {

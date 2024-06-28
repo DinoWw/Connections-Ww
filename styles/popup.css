@@ -13,7 +13,7 @@
 .overlay.show {
    animation: fadeIn;
    animation-duration: 1s;
-   animation-delay: 2s;
+   animation-delay: 750ms;
 }
 
 @keyframes fadeIn {
