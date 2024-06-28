@@ -5,7 +5,7 @@ import { addMistake } from "./addMistake.js";
 import { logGuess } from "./resultsLogger.js";
 import { winScreen } from "./endScreen.js";
 
-export {shuffle, deselectAll, deselectAllHandler, submit};
+export { shuffle, deselectAll, deselectAllHandler, submit };
 
 
 // shuffle button
@@ -59,14 +59,14 @@ function submit() {
       const selectedEls = [];
 
       const tiles = document.querySelectorAll(".tile:not(.solved)");
- 
-      for (const tEl of tiles) {  
-         if(selectedArr.includes(tEl.firstElementChild.firstElementChild.innerHTML)) {
-            selectedEls.push(tEl);
-         }      
-      }   
 
-      if(selectedEls.length != 4) throw new Error("invalid submit");
+      for (const tEl of tiles) {
+         if (selectedArr.includes(tEl.firstElementChild.firstElementChild.innerHTML)) {
+            selectedEls.push(tEl);
+         }
+      }
+
+      if (selectedEls.length != 4) throw new Error("invalid submit");
 
       logGuess(selectedEls.map(x => x.category));
 
@@ -74,7 +74,7 @@ function submit() {
 
          console.log("success")
          // visually
-         resolveCategory(json.categories.find(c => c.title = selectedEls[0].category), selectedEls);
+         resolveCategory(json.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
          guessed = guessed + 1
          //if (guessed == 4) {

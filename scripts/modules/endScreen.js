@@ -7,7 +7,6 @@ function winScreen() {
    console.log("pop")
    document.querySelector(".popup").classList.toggle("show")
    document.querySelector(".overlay").classList.toggle("show")
-   
    document.getElementById("copypasta").innerHTML = emoji();
 }
 
@@ -23,7 +22,9 @@ function copyToClipboard() {
 }
 
 function removeWinScreen() {
-   console.log("rem")
+   // malo ruzno
    document.querySelector(".overlay").classList.toggle("show")
    document.querySelector(".popup").classList.toggle("show")
+   document.querySelector(".overlay").style.visibility = "hidden"
+   document.querySelector(".popup").style.visibility = "hidden"
 }
