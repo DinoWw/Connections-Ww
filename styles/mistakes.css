@@ -31,11 +31,6 @@
    transition: all 700ms;
 }
 
-.dot.biggerdot {
-   height: 30px;
-   width: 30px;
-}
-
 .dot.smallerdot {
    animation-duration: 2s;
    animation-name: shrink;
