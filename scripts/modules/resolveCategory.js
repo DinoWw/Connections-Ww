@@ -9,6 +9,7 @@ export { resolveCategory };
 let nextRowSolved = 0;
 // category - object; elems - DOM element array
 function resolveCategory(category, elems) {
+    if(category == undefined) throw new Error("cannot resolve undefined category");
     let correctEls = elems;
 
     //console.log("correct: ", correctEls)

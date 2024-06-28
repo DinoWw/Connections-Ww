@@ -1,7 +1,7 @@
 import { selected } from "./globals.js";
 import { addToSelected, remFromSelected } from "./selectedManager.js";
 
-export { createTile, clickAction, fixTileOrder };
+export { createTile, clickAction, fixTileOrder, tileByTitle };
 
 function createTile(title, category, x, y, solved) {
    // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
@@ -54,3 +54,10 @@ function fixTileOrder() {
    }
 }
 
+
+
+function tileByTitle(title){
+   const tiles = [...document.querySelectorAll(".tile")];
+   return tiles.find((tile) => tile.firstElementChild.firstElementChild.innerText == title);
+
+}
