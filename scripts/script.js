@@ -50,6 +50,10 @@ async function onLoad() {
 
    document.querySelector(".menu-button").addEventListener("click", toggleMenu)
 
+   document.querySelector(".one-away").addEventListener("animationend", event => {
+      event.target.classList.remove("show")
+   })
+
 }
 
 

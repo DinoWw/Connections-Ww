@@ -130,3 +130,39 @@ p {
     /* umjesto opacity da se ne transfera na djecu */
     background-color: rgba(0, 0, 0, 0);
 }
+
+.one-away {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.one-away.show {
+    animation-name: showOneAway;
+    animation-duration: 5s;
+}
+
+@keyframes showOneAway {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
