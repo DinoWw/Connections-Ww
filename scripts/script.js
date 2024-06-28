@@ -16,7 +16,6 @@ async function onLoad() {
          }
       });
 
-
       init();
    })
 
@@ -66,11 +65,22 @@ function init() {
 
          const newTile = createTile(term, category.title, it, ic, false);
 
+         if(json.initial){
+            // TODO: if initial order is present, handle positions differently
+         }
+
          tileHome.appendChild(newTile);
       })
    })
 
+   if(!json.initial || json.initial == []){
+      // TODO: uncomment, its just annoying for testing
+      //shuffle();
+   }
    fixTileOrder();
+
+   // TODO: handle if title is undefined
+   document.querySelectorAll(".gameTitle").forEach(el => el.textContent = json.title);
 
 }
 

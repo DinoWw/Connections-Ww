@@ -11,7 +11,13 @@ function winScreen() {
 }
 
 function copyToClipboard() {
-   const text = document.querySelector("#copypasta").textContent
+   let text = document.querySelector("#copypasta").innerHTML
+   text = text.replaceAll("<br>", "\n");
+   text = text.concat(
+`
+netwwork.duckdns.org/connections\
+`
+   );
    navigator.clipboard.writeText(text);
 
    const button = document.querySelector(".copy-button")
