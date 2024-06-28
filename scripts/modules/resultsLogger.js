@@ -36,7 +36,7 @@ function emoji() {
       (guess) => guess.map(
          id => emojiByColor(json.categories[id].color)
       ).join("")
-   ).join("\n");
+   ).join("<br/>");
 }
 
 function emojiByColor(color){

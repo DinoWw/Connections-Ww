@@ -14,7 +14,7 @@ async function onLoad() {
             json[key] = data[key];
          }
       });
-         
+      console.log(json)
 
       init();
    })

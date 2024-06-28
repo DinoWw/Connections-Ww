@@ -7,6 +7,7 @@ export { resolveCategory };
 
 
 let nextRowSolved = 0;
+// category - object; elems - DOM element array
 function resolveCategory(category, elems) {
     let correctEls = elems;
     
@@ -31,8 +32,7 @@ function resolveCategory(category, elems) {
         
         const tileHome = document.getElementById("tiles");
         const newTile = createTile(category.title, null, 0, nextRowSolved, true);
-
-        newTile.firstElementChild.style.backgroundColor = category.color
+        newTile.firstElementChild.style.backgroundColor = category.color;
         newTile.firstElementChild.appendChild(elems)
         nextRowSolved++
 
