@@ -1,0 +1,52 @@
+{
+    "title": "Connections #001",
+    "initial": [
+        ["ROLLING", "JOY", "STOP", "DUNE"],
+        ["TISSUE", "FRAME", "EUPHORIA", "SAND"],
+        ["NOSTALGIA", "ZAPPED", "WALL", "KNOB"],
+        ["HINGE", "ENNUI", "GRACE", "FORTNITE"]
+    ],
+    "author": "lor",
+    "categories": [
+       {
+          "title": "TYPES OF PAPER",
+          "color": "#FFF78D",
+          "elements": [
+             "WALL",
+             "SAND",
+             "TISSUE",
+             "ROLLING"
+          ]
+       },
+       {
+          "title": "PARTS OF DOOR",
+          "color": "#A4DCFF",
+          "elements": [
+             "KNOB",
+             "FRAME",
+             "STOP",
+             "HINGE"
+          ]
+       },
+       {
+          "title": "STARRING ZENDAYA",
+          "color": "#A173BC",
+          "elements": [
+             "DUNE",
+             "EUPHORIA",
+             "ZAPPED",
+             "FORTNITE"
+          ]
+       },
+       {
+          "title": "INSIDE OUT 2 CHARACTERS",
+          "color": "pink",
+          "elements": [
+             "NOSTALGIA",
+             "ENNUI",
+             "JOY",
+             "GRACE"
+          ]
+       }
+    ]
+ }
