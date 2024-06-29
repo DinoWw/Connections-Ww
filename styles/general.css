@@ -17,6 +17,7 @@ body {
 p {
    pointer-events: none;
    font-family: Arial;
+   margin: 0;
 }
 
 .textbox {

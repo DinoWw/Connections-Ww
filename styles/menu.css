@@ -39,8 +39,9 @@ a {
 }
 
 .menu-option {
+
    text-align: left;
-   padding: 2px;
+   padding: 10px;
    padding-left: 10px;
    background-color: #EFEFE6;
    width: 100%;
@@ -64,11 +65,11 @@ a {
 
 .menu-options>p {
    padding-left: 10px;
+
    /* border-top: solid 5px #D8D3AD; */
 }
 
 .menu-options {
-
    font-weight: 600;
    padding-top: 60px;
 }
