@@ -1,6 +1,8 @@
 import { gameData } from "./globals.js";
 
-export { logGuess, emoji };
+export { logGuess, emoji, clearGuesses };
+
+// TODO: log guesses to localStorage !!
 
 const colorEmoji = {
    "#FFF78D": String.fromCodePoint(0x1F7E8),
@@ -45,4 +47,10 @@ function emojiByColor(color) {
       return square
    }
    return String.fromCodePoint(0x1F621);
+}
+
+
+function clearGuesses(){
+   // clear the array
+   guesses.length = 0;
 }

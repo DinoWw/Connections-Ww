@@ -1,4 +1,4 @@
-export { selected, gameData, categoryByElement};
+export { selected, gameData, categoryByElement, fillGameStructures };
 
 
 
@@ -6,20 +6,6 @@ const selected = new Set();
 let gameData = {};
 
 
-const onGameDataLoaded = new Event("gamedataloaded");
-await fetch('data/game2.json').then(async response => {
-
-   // TODO: gamedata = data? mayb
-   await response.json().then((data) => {
-      normalizeFormat(data);
-		gameData = data;
-   });
-
-}).then(() => {
-	setTimeout(() => {
-		window.dispatchEvent(onGameDataLoaded);
-	}, 50);
-});
 
 // alters data
 function normalizeFormat(data) {
@@ -31,13 +17,19 @@ function normalizeFormat(data) {
 
 
 
-const elementCategory = Object.fromEntries(
-	gameData.categories
-	.map(c => 
-		c.elements
-		.map(e => [e, c])
-	).reduce((acc, els) => acc.concat(els), [])
-);
+let elementCategory = {};
+
+function fillGameStructures(jsonData){
+   gameData = jsonData;
+   
+   elementCategory = Object.fromEntries(
+      gameData.categories
+      .map(c => 
+         c.elements
+         .map(e => [e, c])
+      ).reduce((acc, els) => acc.concat(els), [])
+   );
+}
 
 
 
