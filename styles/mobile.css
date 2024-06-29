@@ -36,4 +36,10 @@
 		margin-bottom: 10px;
 	}
 
+	.popup {
+		width: 80vw;
+		margin-left: 10vw;
+		margin-right: 10vw;
+	}
+
 }
