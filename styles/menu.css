@@ -26,7 +26,7 @@
    height: 100%;
    background-color: #EFEFE6;
 
-   transition: transform 800ms ease-in-out
+   transition: transform 500ms ease-in-out
 }
 
 .menu-show {
@@ -38,7 +38,6 @@ a {
 }
 
 .menu-option {
-
    text-align: left;
    padding: 20px;
    background-color: #EFEFE6;

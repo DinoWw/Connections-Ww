@@ -5,8 +5,8 @@ export { logGuess, emoji };
 const colorEmoji = {
    "#FFF78D": String.fromCodePoint(0x1F7E8),
    "#A4DCFF": String.fromCodePoint(0x1F7E6),
-   "#A173BC": String.fromCodePoint(0x1F7E7),
-   "pink": String.fromCodePoint(0x1F7EA),
+   "#A173BC": String.fromCodePoint(0x1F7EA),
+   "pink": String.fromCodePoint(0x1F7E7),
 }
 
 
@@ -20,7 +20,7 @@ const categoryId = {};
 //    enough for now
 let first = true;
 function logGuess(categoryList) {
-   if(first){
+   if (first) {
       gameData.categories.forEach((category, id) => {
          categoryId[category.title] = id;
       });
@@ -39,9 +39,9 @@ function emoji() {
    ).join("<br/>");
 }
 
-function emojiByColor(color){
+function emojiByColor(color) {
    const square = colorEmoji[color];
-   if(square != undefined){
+   if (square != undefined) {
       return square
    }
    return String.fromCodePoint(0x1F621);

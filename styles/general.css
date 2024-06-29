@@ -1,0 +1,31 @@
+* {
+   box-sizing: border-box;
+
+}
+
+body {
+
+   margin: 0;
+   height: 90vh;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+
+
+}
+
+p {
+   pointer-events: none;
+   font-family: Arial;
+   font-size: 16px;
+   font-weight: 300;
+   user-select: none;
+   margin: 5px;
+}
+
+.textbox {
+   margin-top: 60px;
+   padding: 20px;
+   text-align: center;
+   width: 100%;
+}
