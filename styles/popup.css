@@ -30,7 +30,8 @@
    right: 0;
    width: 38vw;
    height: fit-content;
-   margin: 31vw;
+   margin-left: 31vw;
+   margin-right: 31vw;
    margin-top: 15vh;
    background-color: white;
    padding: 10px;
@@ -49,7 +50,7 @@
    transition-property: top, opacity, visibility;
    transition-timing-function: ease-in-out;
 
-   top: 20vw;
+   top: 15vw;
    opacity: 0;
 }
 

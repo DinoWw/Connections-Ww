@@ -4,7 +4,7 @@
 
 }
 
-.unclickable {
+.button-unclickable {
    border: 1px solid #7F7F7F !important;
    color: #7F7F7F !important;
    background-color: white !important;
@@ -21,6 +21,11 @@ button {
    line-height: 16px;
    font-size: 16px;
    cursor: pointer;
+}
+
+button>p {
+   font-weight: 300;
+   margin: 5px;
 }
 
 .submit {

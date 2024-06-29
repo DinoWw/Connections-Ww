@@ -33,7 +33,7 @@ function shuffle() {
 
 // deselect button
 function deselectAllHandler() {
-   if (document.querySelector("#deselect").classList.contains("unclickable")) return;
+   if (document.querySelector("#deselect").classList.contains("button-unclickable")) return;
    deselectAll(true);
 }
 
@@ -54,7 +54,7 @@ function deselectAll(visuallyDeselect) {
 let guessed = 0; // treba napravit pametno ali sad sam umorna
 
 function submit() {
-   if (!document.querySelector("#submit").classList.contains("unclickable")) {
+   if (!document.querySelector("#submit").classList.contains("button-unclickable")) {
       const selectedArr = Array.from(selected)
       const selectedEls = [];
 
@@ -77,12 +77,12 @@ function submit() {
          resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
          guessed = guessed + 1
-         
-         if(guessed == 4){
+
+         if (guessed == 4) {
             // Wait on animation to finish
             selectedEls[0].addEventListener("animationend", () => setTimeout(winScreen, 750));
          }
-         
+
       }
       else {
          if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {
@@ -91,7 +91,7 @@ function submit() {
          }
 
          console.log("fail")
-         document.querySelector("#submit").classList.toggle("unclickable")
+         document.querySelector("#submit").classList.toggle("button-unclickable")
          addMistake()
          deselectAll(true); //? 
          // locsk elements, animation

@@ -5,7 +5,7 @@ function toggleMenu() {
    document.querySelector(".overlay").classList.toggle("show");
 }
 
-function collapseMenu(){
+function collapseMenu() {
    document.querySelector(".menu-container").classList.remove("menu-show")
    document.querySelector(".overlay").classList.remove("show");
 }
@@ -18,7 +18,7 @@ function loadMenu() {
    const gameHome = document.getElementById("game-menu");
 
    // TODO: metaData
-   for(const gameName of ["game", "game2"]){//of metaData.visibleGames){
+   for (const gameName of ["game", "game2"]) {//of metaData.visibleGames){
       const btn = newGameButton(gameName);
       gameHome.appendChild(btn);
    }
@@ -26,16 +26,16 @@ function loadMenu() {
 }
 
 
-function newGameButton(text){
+function newGameButton(text) {
    const p = document.createElement('p');
    // TODO: not text but title... but it's stored in a different file so maybe fix that
    p.innerText = text
    const div = document.createElement('div')
-   div.classList.add("menu-options")
+   div.classList.add("menu-option")
    div.appendChild(p);
-   
+
    // TODO: implement
    //div.addEventListener("click", loadGameHandler);
-   
+
    return div;
 }

@@ -34,15 +34,23 @@
 }
 
 a {
-   all: initial;
+   text-decoration: none;
+   color: inherit;
 }
 
 .menu-option {
    text-align: left;
-   padding: 20px;
+   padding: 2px;
+   padding-left: 10px;
    background-color: #EFEFE6;
    width: 100%;
+   height: fit-content;
    transition: background-color 300ms;
+}
+
+.menu-option.unclickable:hover {
+   background-color: #EFEFE6;
+   cursor: default;
 }
 
 .menu-option:hover {
@@ -50,6 +58,30 @@ a {
    cursor: pointer;
 }
 
+.menu-option>p {
+   font-weight: inherit;
+}
+
+.menu-options>p {
+   padding-left: 10px;
+   /* border-top: solid 5px #D8D3AD; */
+}
+
 .menu-options {
+
+   font-weight: 600;
    padding-top: 60px;
+}
+
+#game-menu>.menu-option {
+   padding-left: 30px;
+}
+
+hr {
+   display: block;
+   background-color: #D8D3AD;
+   width: 90%;
+   height: 3px;
+   border: none;
+   border-radius: 3px;
 }
