@@ -13,7 +13,7 @@ onLoad();
 //    msm moze se handleat i sa dodatnim funkcijama
 async function onLoad() {
    // loads tiles and initializes gameState
-   await loadGame("game");
+   await loadGame("game2");
 
    // append event listeners on buttons
 

@@ -3,11 +3,15 @@ import { emoji } from "./resultsLogger.js";
 
 export { winScreen, copyToClipboard, removeWinScreen };
 
-function winScreen() {
+function winScreen(won) {
    console.log("pop")
    document.querySelector(".popup").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
    document.getElementById("copypasta").innerHTML = emoji();
+
+   document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
+
+
 }
 
 function copyToClipboard() {

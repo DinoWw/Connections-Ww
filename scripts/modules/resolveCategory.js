@@ -1,12 +1,12 @@
 
 import { createTile } from "./tiles.js";
 import { translateElement } from "./translateElement.js";
+import { incrementSolvedCatetegoriesCount, solvedCategoriesCount } from "./globals.js";
 
 export { resolveCategory };
 
 
 
-let nextRowSolved = 0;
 // category - object; elems - DOM element array
 function resolveCategory(category, elems) {
     if(category == undefined) throw new Error("cannot resolve undefined category");
@@ -21,7 +21,7 @@ function resolveCategory(category, elems) {
 
     // TODO: code duplication, el should be event.target 
     //      or smthing and code should be refactored into a function
-    if (correctEls.every((el, i) => el.x == i && el.y == nextRowSolved)) {
+    if (correctEls.every((el, i) => el.x == i && el.y == solvedCategoriesCount)) {
 
         const elems = document.createElement('p');
         correctEls.forEach(el => {
@@ -32,17 +32,17 @@ function resolveCategory(category, elems) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, nextRowSolved, true);
+        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
         newTile.firstElementChild.style.backgroundColor = category.color;
         newTile.firstElementChild.appendChild(elems)
-        nextRowSolved++
+        incrementSolvedCatetegoriesCount();
 
         tileHome.appendChild(newTile);
         return;
     }
     // else
 
-    collectElements(nextRowSolved, ...correctEls);
+    collectElements(solvedCategoriesCount, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
         const elems = document.createElement("p");
@@ -54,11 +54,11 @@ function resolveCategory(category, elems) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, nextRowSolved, true);
+        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
 
         newTile.firstElementChild.style.backgroundColor = category.color
         newTile.firstElementChild.appendChild(elems)
-        nextRowSolved++
+        incrementSolvedCatetegoriesCount();
 
         tileHome.appendChild(newTile);
 

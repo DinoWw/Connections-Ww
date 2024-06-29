@@ -1,4 +1,4 @@
-import { gameData } from "./globals.js";
+import { gameData, categoryId } from "./globals.js";
 
 export { logGuess, emoji, clearGuesses };
 
@@ -14,20 +14,8 @@ const colorEmoji = {
 
 const guesses = [];
 
-const categoryId = {};
 
-// Ugly, but needed as gameData is asynchronously loaded and filling categoryId 
-//    can't be done on top level
-// Restructuring code further could solve this, but i do not deem it important 
-//    enough for now
-let first = true;
 function logGuess(categoryList) {
-   if (first) {
-      gameData.categories.forEach((category, id) => {
-         categoryId[category.title] = id;
-      });
-      first = false;
-   }
    const guess = categoryList.map(category => categoryId[category]);
    guesses.push(guess);
 }
