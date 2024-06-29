@@ -1,0 +1,24 @@
+@media only screen and (max-width: 600px) {
+   * {
+		border: 1px dotted green;
+	}
+	
+	body {
+      background-color: lightblue;
+   }
+
+	#tiles {
+		height: 90vw;
+		min-height: initial;
+		width: 90vw;
+	}
+
+	.term-text {
+		font-size: 16px;
+	}
+	.solved > .tile-innerdiv > .term-text {
+		font-size: 20px;
+	}
+
+
+}

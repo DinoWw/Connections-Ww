@@ -1,24 +1,17 @@
-import { json } from "./modules/globals.js"
+import { gameData } from "./modules/globals.js"
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { createTile, fixTileOrder } from "./modules/tiles.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
 import { toggleMenu } from "./modules/menu.js";
+import { categoryByElement } from "./modules/globals.js";
 
 
+// TODO: trebamo napravit da ova funkcija bude re-callable sa argumentom gamea
+//    mayb, mayb ne, discuss
+//    msm moze se handleat i sa dodatnim funkcijama
 async function onLoad() {
 
-   fetch('data/game.json').then(async response => {
-
-      // update so reference passed to buttonFunctions doesn't break
-      await response.json().then((data) => {
-         for (let key in data) {
-            json[key] = data[key];
-         }
-      });
-
-      init();
-   })
-
+   init();
    if (!localStorage.guesses) {
       localStorage.setItem("guesses", "")
    }
@@ -59,31 +52,41 @@ async function onLoad() {
 
 function init() {
 
+   // TODO: refactor into separate file
    const tileHome = document.getElementById("tiles");
-   json.categories.forEach((category, ic) => {
-      category.elements.forEach((term, it) => {
+   
 
-         const newTile = createTile(term, category.title, it, ic, false);
+   if(!gameData.initial || gameData.initial == []){
+      gameData.categories.forEach((category, ic) => {
+         category.elements.forEach((term, it) => {
+            const newTile = createTile(term, category.title, it, ic, false);
 
-         if(json.initial){
-            // TODO: if initial order is present, handle positions differently
-         }
-
-         tileHome.appendChild(newTile);
+            tileHome.appendChild(newTile);
+         })
       })
-   })
-
-   if(!json.initial || json.initial == []){
-      // TODO: uncomment, its just annoying for testing
-      //shuffle();
+      // annoying for testing
+      shuffle();
+   }
+   else {
+      gameData.initial.forEach((row, i) => {
+         row.forEach((title, j) => {
+            tileHome.appendChild(createTile(title, categoryByElement(title), j, i, false));
+         })
+      })
    }
    fixTileOrder();
 
    // TODO: handle if title is undefined
-   document.querySelectorAll(".gameTitle").forEach(el => el.textContent = json.title);
+   document.querySelectorAll(".gameTitle").forEach(el => el.textContent = gameData.title);
 
 }
 
 
-onLoad()
+console.log("HERE : (")
+window.addEventListener("gamedataloaded", () => {
+   console.log("event recieved")
+   onLoad();
+}
+);
+
 // nyt official colors: #A0C359 #F8DF6E #B2C4E5 #B881B9

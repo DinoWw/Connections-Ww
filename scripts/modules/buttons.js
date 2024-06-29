@@ -1,4 +1,4 @@
-import { selected, json } from "./globals.js";
+import { selected, gameData } from "./globals.js";
 import { remAllFromSelected } from "./selectedManager.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
@@ -74,7 +74,7 @@ function submit() {
 
          console.log("success")
          // visually
-         resolveCategory(json.categories.find(c => c.title == selectedEls[0].category), selectedEls);
+         resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
          guessed = guessed + 1
          
