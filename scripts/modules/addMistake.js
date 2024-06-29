@@ -14,7 +14,7 @@ function addMistake() {
          children[i].firstElementChild.classList.add("smallerdot")
          if (i == 1) {
             console.log("loss")
-            endGame();
+            setTimeout(endGame, 750);
          }
          return
       }
@@ -38,7 +38,7 @@ function endGame(){
       console.log(cT)
       if(cT == undefined) {
          // All categories have been merged so display end screen
-         winScreen();
+         setTimeout(winScreen, 750);
          return;
       }
       if(cT[0] != undefined) {

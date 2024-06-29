@@ -80,7 +80,7 @@ function submit() {
          
          if(guessed == 4){
             // Wait on animation to finish
-            selectedEls[0].addEventListener("animationend", winScreen);
+            selectedEls[0].addEventListener("animationend", () => setTimeout(winScreen, 750));
          }
          
       }

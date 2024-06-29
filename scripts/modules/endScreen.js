@@ -5,8 +5,8 @@ export { winScreen, copyToClipboard, removeWinScreen };
 
 function winScreen() {
    console.log("pop")
-   document.querySelector(".popup").classList.toggle("show")
-   document.querySelector(".overlay").classList.toggle("show")
+   document.querySelector(".popup").classList.add("show")
+   document.querySelector(".overlay").classList.add("show")
    document.getElementById("copypasta").innerHTML = emoji();
 }
 
@@ -29,8 +29,6 @@ netwwork.duckdns.org/connections\
 
 function removeWinScreen() {
    // malo ruzno
-   document.querySelector(".overlay").classList.toggle("show")
-   document.querySelector(".popup").classList.toggle("show")
-   document.querySelector(".overlay").style.visibility = "hidden"
-   document.querySelector(".popup").style.visibility = "hidden"
+   document.querySelector(".overlay").classList.remove("show")
+   document.querySelector(".popup").classList.remove("show")
 }

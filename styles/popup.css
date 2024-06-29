@@ -1,32 +1,26 @@
 .overlay {
    visibility: hidden;
+   opacity: 0;
    background-color: white;
    z-index: 1;
-   opacity: 0.4;
    position: absolute;
    top: 0;
    bottom: 0;
    left: 0;
-   right: 0
+   right: 0;
+
+   transition-property: opacity, visibility;
+   transition-duration: 750ms;
+   transition-timing-function: ease-in-out;
+
 }
 
 .overlay.show {
-   animation: fadeIn;
-   animation-duration: 1s;
-   animation-delay: 750ms;
+   opacity: 0.4;
+   visibility: visible;
+
 }
 
-@keyframes fadeIn {
-   from {
-
-      opacity: 0;
-   }
-
-   to {
-      visibility: visible;
-      opacity: 0.4;
-   }
-}
 
 .popup {
    visibility: hidden;
@@ -50,34 +44,21 @@
    border-radius: 6px;
    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
 
+   /* transition-delay: 750ms; */
+   transition-duration: 1s;
+   transition-property: top, opacity, visibility;
+   transition-timing-function: ease-in-out;
+
+   top: 20vw;
+   opacity: 0;
 }
 
 .popup.show {
-   animation-name: slideIn;
-   animation-duration: 1s;
-   animation-delay: 750ms;
 
-   /*
-   ne smije bit odmah visible jer sjebe animavciju
-   opacity 0 ne radi
-   mozda insertat js al idk
-   */
-}
+   visibility: visible;
 
-@keyframes slideIn {
-   0% {
-      top: 20vw;
-      visibility: visible;
-      opacity: 0;
-   }
-
-   30% {}
-
-   100% {
-      top: 0px;
-      visibility: visible;
-      opacity: 1;
-   }
+   top: 0px;
+   opacity: 1;
 }
 
 .popup>p {

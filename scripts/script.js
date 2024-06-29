@@ -2,7 +2,7 @@ import { gameData } from "./modules/globals.js"
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { createTile, fixTileOrder } from "./modules/tiles.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
-import { toggleMenu, loadMenu } from "./modules/menu.js";
+import { loadMenu } from "./modules/menu.js";
 import { categoryByElement } from "./modules/globals.js";
 
 
@@ -37,14 +37,6 @@ async function onLoad() {
    document.querySelector(".copy-button").addEventListener("click", copyToClipboard)
 
    document.querySelector(".overlay").addEventListener("click", removeWinScreen)
-
-   // mozda staviti jednu istu klasu oboma elementima
-   document.querySelector(".popup").addEventListener("animationend", event => {
-      event.target.style.visibility = "visible"
-   })
-   document.querySelector(".overlay").addEventListener("animationend", event => {
-      event.target.style.visibility = "visible"
-   })
 
    // one away
    document.querySelector(".one-away").addEventListener("animationend", event => {
