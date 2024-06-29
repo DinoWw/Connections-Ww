@@ -1,36 +1,37 @@
-import { categoryByElement, gameData, fillGameStructures} from "./globals.js";
+import { categoryByElement, gameData, fillGameStructures } from "./globals.js";
 import { clearGuesses } from "./resultsLogger.js";
 import { createTile, fixTileOrder } from "./tiles.js";
 import { shuffle } from "./buttons.js";
+import { checkTextOverflow } from "./globals.js"
 
 export { loadGame };
 
 
 
 
-async function loadGame(gameName){
-    await fetch(`data/${gameName}.json`).then(async response => {
-        await response.json().then((data) => {
-            // TODO: connect somehow
-            //normalizeFormat(data);
-            fillGameStructures(data);
-        });
-    });
+async function loadGame(gameName) {
+   await fetch(`data/${gameName}.json`).then(async response => {
+      await response.json().then((data) => {
+         // TODO: connect somehow
+         //normalizeFormat(data);
+         fillGameStructures(data);
+      });
+   });
 
-    clearDOM();
-    clearGuesses();
+   clearDOM();
+   clearGuesses();
 
-    fillTiles();
+   fillTiles();
 
 
 }
 
 function clearDOM() {
-    document.getElementById("tiles").querySelectorAll(".tile").forEach(tile => tile.remove());
-    document.querySelectorAll(".dot").forEach(dot => dot.classList.remove("smallerdot"));
+   document.getElementById("tiles").querySelectorAll(".tile").forEach(tile => tile.remove());
+   document.querySelectorAll(".dot").forEach(dot => dot.classList.remove("smallerdot"));
 }
 
-function fillTiles(){
+function fillTiles() {
 
    const tileHome = document.getElementById("tiles");
 
@@ -38,6 +39,7 @@ function fillTiles(){
       gameData.categories.forEach((category, ic) => {
          category.elements.forEach((term, it) => {
             const newTile = createTile(term, category.title, it, ic, false);
+            // check for text resizing
             tileHome.appendChild(newTile);
          })
       })
@@ -53,7 +55,11 @@ function fillTiles(){
    }
    fixTileOrder();
 
+   //maybe perma remove
+   checkTextOverflow()
+
    // TODO: handle if title is undefined
    document.querySelectorAll(".gameTitle").forEach(el => el.textContent = gameData.title);
 
 }
+

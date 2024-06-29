@@ -3,7 +3,10 @@
     text-align: center;
     font-size: 20px;
     font-weight: 700;
-    margin: 5px;
+    padding: 4px;
+    overflow: auto;
+    /* relevant on long tile */
+    /* margin: 5px; */
 }
 
 .tile-innerdiv>p:not(.term-text) {
@@ -18,12 +21,14 @@
 
 #tiles {
 
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 40px;
 
     height: 75vh;
     width: 75vh;
     /* position: relative; */
+    overflow: auto;
     background-color: #fff;
     justify-content: space-around;
     align-content: space-around;
@@ -37,12 +42,11 @@
     position: relative;
     flex-basis: auto;
     height: 23%;
-    /* dobar look ovisi o paddingu contairera */
+    /* dobar look ovisi o paddingu containera */
+    /*bilo je 23% i bez margin */
     width: 23%;
+    /* margin: 5px; */
     text-align: center;
-    /*
-    line-height: ; /// ??????????
-    */
     order: 2;
 
     pointer-events: none;

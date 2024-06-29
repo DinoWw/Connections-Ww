@@ -24,7 +24,7 @@
 	}
 
 	.term-text {
-		font-size: 16px;
+		/* font-size: 3vw; */
 	}
 
 	.solved>.tile-innerdiv>.term-text {
