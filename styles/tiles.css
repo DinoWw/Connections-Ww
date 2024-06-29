@@ -6,7 +6,7 @@
 body {
 
     margin: 0;
-    height: 100vh;
+    height: 90vh;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -42,9 +42,9 @@ p {
 
     margin: auto;
     margin-top: 20px;
-    height: fit-content;
-    min-height: 80vh;
-    width: 80vh;
+
+    height: 75vh;
+    width: 75vh;
     /* position: relative; */
     background-color: #fff;
     justify-content: space-around;

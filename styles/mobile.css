@@ -1,24 +1,41 @@
 @media only screen and (max-width: 600px) {
-   * {
+	* {
 		border: 1px dotted green;
 	}
-	
+
 	body {
-      background-color: lightblue;
-   }
+		background-color: lightblue;
+		justify-content: flex-start;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	button {
+		padding: 10px;
+		margin: 5px;
+	}
 
 	#tiles {
-		height: 90vw;
-		min-height: initial;
-		width: 90vw;
+		margin-bottom: 0;
+		margin-top: 60px;
+		min-height: 85vw;
+		height: 85vw;
+		width: 85vw;
 	}
 
 	.term-text {
 		font-size: 16px;
 	}
-	.solved > .tile-innerdiv > .term-text {
+
+	.solved>.tile-innerdiv>.term-text {
 		font-size: 20px;
 	}
 
+	#mistakes {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 
 }
