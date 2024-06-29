@@ -44,11 +44,12 @@ function translateElement(el, x1, y1, x2, y2) {
     //console.log(el.firstElementChild)
     el.firstElementChild.classList.add(`tr_${AXxjs}`);
     el.classList.add("invis");
+    el.style["z-index"] = el.selected ? 2 : 1;
     el.addEventListener("animationend", (e) => {
         el.x = x2;
         el.y = y2;
         el.style.order = 4 * y2 + x2;
         el.classList.remove("invis");
-
+        el.firstElementChild.classList.remove(`tr_${AXxjs}`);
     });
 }
