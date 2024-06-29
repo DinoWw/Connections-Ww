@@ -18,7 +18,6 @@ await fetch('data/game2.json').then(async response => {
    });
 
 }).then(() => {
-   console.log("gameData loaded")
 	setTimeout(() => {
 		window.dispatchEvent(onGameDataLoaded);
 	}, 50);
@@ -39,6 +38,7 @@ const elementCategory = Object.fromEntries(
 
 
 function categoryByElement(sElement) {
-    return null;
+   console.log(elementCategory, sElement)
+    return elementCategory[sElement];
     //return elementCategory[sElement];
 }

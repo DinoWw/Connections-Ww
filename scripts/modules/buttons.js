@@ -72,7 +72,7 @@ function submit() {
 
       if (selectedEls.every(e => e.category == selectedEls[0].category)) {
 
-         console.log("success")
+         console.log("success", gameData)
          // visually
          resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
