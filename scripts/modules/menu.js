@@ -14,6 +14,28 @@ function loadMenu() {
    document.querySelector(".menu-button").addEventListener("click", toggleMenu)
    document.querySelector(".overlay").addEventListener("click", collapseMenu)
 
-   /* myb dynamically fill depending on number of lvls*/
+   // fill game manager
+   const gameHome = document.getElementById("game-menu");
 
+   // TODO: metaData
+   for(const gameName of ["game", "game2"]){//of metaData.visibleGames){
+      const btn = newGameButton(gameName);
+      gameHome.appendChild(btn);
+   }
+
+}
+
+
+function newGameButton(text){
+   const p = document.createElement('p');
+   // TODO: not text but title... but it's stored in a different file so maybe fix that
+   p.innerText = text
+   const div = document.createElement('div')
+   div.classList.add("menu-options")
+   div.appendChild(p);
+   
+   // TODO: implement
+   //div.addEventListener("click", loadGameHandler);
+   
+   return div;
 }

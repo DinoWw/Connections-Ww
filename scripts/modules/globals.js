@@ -9,7 +9,6 @@ let gameData = {};
 const onGameDataLoaded = new Event("gamedataloaded");
 await fetch('data/game2.json').then(async response => {
 
-   // update so reference passed to buttonFunctions doesn't break
    // TODO: gamedata = data? mayb
    await response.json().then((data) => {
       normalizeFormat(data);
