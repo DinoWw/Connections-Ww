@@ -1,6 +1,6 @@
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
-import { loadMenu } from "./modules/menu.js";
+import { loadMenu, toggleMenu } from "./modules/menu.js";
 import { loadGame } from "./modules/gameLoader.js";
 
 // MAIN:
@@ -23,7 +23,6 @@ async function onLoad() {
    const submitButton = document.querySelector("#submit");
    submitButton.addEventListener("click", submit);
 
-
    const shuffleButton = document.querySelector("#shuffle");
    shuffleButton.addEventListener("click", shuffle);
 
@@ -31,6 +30,8 @@ async function onLoad() {
    // win screen 
 
    document.querySelector(".copy-button").addEventListener("click", copyToClipboard);
+   document.querySelector(".more-button").addEventListener("click", removeWinScreen);
+   document.querySelector(".more-button").addEventListener("click", toggleMenu);
 
    document.querySelector(".overlay").addEventListener("click", removeWinScreen);
 

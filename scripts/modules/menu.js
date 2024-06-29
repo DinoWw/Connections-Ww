@@ -1,4 +1,5 @@
 import { loadGame } from "./gameLoader.js";
+import { removeWinScreen } from "./endScreen.js";
 
 export { toggleMenu, loadMenu };
 
@@ -14,6 +15,7 @@ function collapseMenu() {
 
 function loadMenu() {
    document.querySelector(".menu-button").addEventListener("click", toggleMenu)
+   document.querySelector(".menu-button").addEventListener("click", removeWinScreen)
    document.querySelector(".overlay").addEventListener("click", collapseMenu)
 
    // fill game manager
