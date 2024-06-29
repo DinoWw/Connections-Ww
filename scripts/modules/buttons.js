@@ -1,4 +1,4 @@
-import { selected, gameData } from "./globals.js";
+import { selected, gameData, solvedCategoriesCount } from "./globals.js";
 import { remAllFromSelected } from "./selectedManager.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
@@ -51,8 +51,6 @@ function deselectAll(visuallyDeselect) {
 }
 
 // submit button 
-let guessed = 0; // treba napravit pametno ali sad sam umorna
-
 function submit() {
    if (!document.querySelector("#submit").classList.contains("button-unclickable")) {
       const selectedArr = Array.from(selected)
@@ -71,17 +69,15 @@ function submit() {
       logGuess(selectedEls.map(x => x.category));
 
       if (selectedEls.every(e => e.category == selectedEls[0].category)) {
-
-         console.log("success", gameData)
          // visually
          resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
          deselectAll(false);
-         guessed = guessed + 1
 
-         if (guessed == 4) {
-            // Wait on animation to finish
-            selectedEls[0].addEventListener("animationend", () => setTimeout(winScreen, 750));
-         }
+         // Wait on animation to finish and show endScreen if game is done
+         selectedEls[0].addEventListener("animationend", () => {
+            if (solvedCategoriesCount == 4) setTimeout(() => winScreen(true), 750);
+         });
+
 
       }
       else {

@@ -1,3 +1,5 @@
+import { loadGame } from "./gameLoader.js";
+
 export { toggleMenu, loadMenu };
 
 function toggleMenu() {
@@ -33,9 +35,13 @@ function newGameButton(text) {
    const div = document.createElement('div')
    div.classList.add("menu-option")
    div.appendChild(p);
-
+   div.gameToLoad = text;
    // TODO: implement
-   //div.addEventListener("click", loadGameHandler);
+   div.addEventListener("click", loadGameHandler);
 
    return div;
+}
+
+async function loadGameHandler(e) {
+   loadGame(e.target.gameToLoad);
 }

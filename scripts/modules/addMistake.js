@@ -38,7 +38,7 @@ function endGame(){
       console.log(cT)
       if(cT == undefined) {
          // All categories have been merged so display end screen
-         setTimeout(winScreen, 750);
+         setTimeout(() => winScreen(false), 750);
          return;
       }
       if(cT[0] != undefined) {
