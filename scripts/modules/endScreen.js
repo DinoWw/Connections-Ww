@@ -10,8 +10,6 @@ function winScreen(won) {
    document.getElementById("copypasta").innerHTML = emoji();
 
    document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
-
-
 }
 
 function copyToClipboard() {

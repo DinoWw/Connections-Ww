@@ -75,7 +75,7 @@ function submit() {
          
          // Wait on animation to finish and show endScreen if game is done
          selectedEls[0].addEventListener("animationend", () => {
-            if(solvedCategoriesCount == 4) setTimeout(winScreen, 750);
+            if(solvedCategoriesCount == 4) setTimeout(() => winScreen(true), 750);
          });
 
          
