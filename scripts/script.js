@@ -6,6 +6,9 @@ import { toggleMenu } from "./modules/menu.js";
 import { categoryByElement } from "./modules/globals.js";
 
 
+window.addEventListener("gamedataloaded", () => {
+   onLoad();
+});
 // TODO: trebamo napravit da ova funkcija bude re-callable sa argumentom gamea
 //    mayb, mayb ne, discuss
 //    msm moze se handleat i sa dodatnim funkcijama
@@ -70,7 +73,7 @@ function init() {
    else {
       gameData.initial.forEach((row, i) => {
          row.forEach((title, j) => {
-            tileHome.appendChild(createTile(title, categoryByElement(title), j, i, false));
+            tileHome.appendChild(createTile(title, categoryByElement(title).title, j, i, false));
          })
       })
    }
@@ -82,11 +85,5 @@ function init() {
 }
 
 
-console.log("HERE : (")
-window.addEventListener("gamedataloaded", () => {
-   console.log("event recieved")
-   onLoad();
-}
-);
 
 // nyt official colors: #A0C359 #F8DF6E #B2C4E5 #B881B9
