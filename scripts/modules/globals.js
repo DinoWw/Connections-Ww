@@ -38,7 +38,6 @@ const elementCategory = Object.fromEntries(
 
 
 function categoryByElement(sElement) {
-   console.log(elementCategory, sElement)
     return elementCategory[sElement];
     //return elementCategory[sElement];
 }
