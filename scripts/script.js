@@ -2,7 +2,7 @@ import { gameData } from "./modules/globals.js"
 import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { createTile, fixTileOrder } from "./modules/tiles.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
-import { toggleMenu } from "./modules/menu.js";
+import { toggleMenu, loadMenu } from "./modules/menu.js";
 import { categoryByElement } from "./modules/globals.js";
 
 
@@ -28,6 +28,9 @@ async function onLoad() {
    const shuffleButton = document.querySelector("#shuffle")
    shuffleButton.addEventListener("click", shuffle)
 
+
+   // win screen 
+
    document.querySelector(".copy-button").addEventListener("click", copyToClipboard)
 
    document.querySelector(".overlay").addEventListener("click", removeWinScreen)
@@ -40,11 +43,13 @@ async function onLoad() {
       event.target.style.visibility = "visible"
    })
 
-   document.querySelector(".menu-button").addEventListener("click", toggleMenu)
-
+   // one away
    document.querySelector(".one-away").addEventListener("animationend", event => {
       event.target.classList.remove("show")
    })
+
+
+   loadMenu()
 
 }
 
@@ -54,9 +59,9 @@ function init() {
 
    // TODO: refactor into separate file
    const tileHome = document.getElementById("tiles");
-   
 
-   if(!gameData.initial || gameData.initial == []){
+
+   if (!gameData.initial || gameData.initial == []) {
       gameData.categories.forEach((category, ic) => {
          category.elements.forEach((term, it) => {
             const newTile = createTile(term, category.title, it, ic, false);

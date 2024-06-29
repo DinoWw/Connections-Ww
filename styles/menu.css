@@ -1,19 +1,56 @@
 .menu-button {
-   position: absolute;
+   position: fixed;
    top: 0;
    left: 0;
    height: 40px;
    width: 40px;
    margin: 10px;
-   background-color: gray;
+   border-radius: 5px;
+   background-color: #D8D3AD;
+   z-index: 3;
+
+   transition: background-color 300ms;
+}
+
+.menu-button:hover {
+   background-color: #5A594E;
 }
 
 .menu-container {
-   display: none
+   z-index: 2;
+
+   position: fixed;
+   top: 0;
+   left: -200px;
+   width: 200px;
+   height: 100%;
+   background-color: #EFEFE6;
+
+   transition: transform 800ms ease-in-out
 }
 
+.menu-show {
+   transform: translate(200px, 0);
+}
+
+a {
+   all: initial;
+}
 
 .menu-option {
+
+   text-align: left;
    padding: 20px;
+   background-color: #EFEFE6;
    width: 100%;
+   transition: background-color 300ms;
+}
+
+.menu-option:hover {
+   background-color: #D8D3AD;
+   cursor: pointer;
+}
+
+.menu-options {
+   padding-top: 60px;
 }
