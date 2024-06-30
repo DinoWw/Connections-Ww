@@ -3,6 +3,7 @@ import { clearGuesses } from "./resultsLogger.js";
 import { createTile, fixTileOrder } from "./tiles.js";
 import { shuffle } from "./buttons.js";
 import { checkTextOverflow } from "./globals.js"
+import * as local from "./localStorageInterface.js";
 
 export { loadGame };
 
@@ -10,13 +11,21 @@ export { loadGame };
 
 
 async function loadGame(gameName) {
-   await fetch(`data/${gameName}.json`).then(async response => {
-      await response.json().then((data) => {
-         // TODO: connect somehow
-         //normalizeFormat(data);
-         fillGameStructures(data);
+
+   //if(game === undefined || game === null){
+      await fetch(`data/${gameName}.json`).then(async response => {
+         await response.json().then((data) => {
+            // TODO: connect somehow
+            //normalizeFormat(data);
+            fillGameStructures(data);
+         });
       });
-   });
+   // }
+   // else {
+      // fillGameStructures(game);
+      // updateGuesses
+   // }
+
 
    clearDOM();
    clearGuesses();

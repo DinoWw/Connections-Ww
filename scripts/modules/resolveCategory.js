@@ -1,7 +1,7 @@
 
 import { createTile } from "./tiles.js";
 import { translateElement } from "./translateElement.js";
-import { incrementSolvedCatetegoriesCount, solvedCategoriesCount } from "./globals.js";
+import { incrementSolvedCatetegoriesCount, gameData } from "./globals.js";
 
 export { resolveCategory };
 
@@ -21,7 +21,7 @@ function resolveCategory(category, elems) {
 
     // TODO: code duplication, el should be event.target 
     //      or smthing and code should be refactored into a function
-    if (correctEls.every((el, i) => el.x == i && el.y == solvedCategoriesCount)) {
+    if (correctEls.every((el, i) => el.x == i && el.y == gameData.solvedCategoriesCount)) {
 
         const elems = document.createElement('p');
         correctEls.forEach(el => {
@@ -32,7 +32,7 @@ function resolveCategory(category, elems) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
+        const newTile = createTile(category.title, null, 0, gameData.solvedcategoriescount, true);
         newTile.firstElementChild.style.backgroundColor = category.color;
         newTile.firstElementChild.appendChild(elems)
         incrementSolvedCatetegoriesCount();
@@ -42,7 +42,7 @@ function resolveCategory(category, elems) {
     }
     // else
 
-    collectElements(solvedCategoriesCount, ...correctEls);
+    collectElements(gameData.solvedCategoriesCount, ...correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
         const elems = document.createElement("p");
@@ -54,7 +54,7 @@ function resolveCategory(category, elems) {
         elems.innerHTML = elems.innerHTML.slice(0, -1)
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
+        const newTile = createTile(category.title, null, 0, gameData.solvedcategoriescount, true);
 
         newTile.firstElementChild.style.backgroundColor = category.color
         newTile.firstElementChild.appendChild(elems)

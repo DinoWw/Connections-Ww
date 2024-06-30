@@ -1,6 +1,5 @@
 export {
-   solvedCategoriesCount, incrementSolvedCatetegoriesCount,
-   selected,
+   incrementSolvedCatetegoriesCount,
    gameData,
    categoryByElement,
    fillGameStructures,
@@ -8,11 +7,7 @@ export {
    checkTextOverflow
 };
 
-
-
-const selected = new Set();
 let gameData = {};
-let solvedCategoriesCount = 0;
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
@@ -33,7 +28,15 @@ const categoryId = {};
 function fillGameStructures(jsonData) {
    gameData = jsonData;
 
-   solvedCategoriesCount = 0;
+   if(gameData.solvedCategoriesCount === undefined){
+      gameData.solvedCategoriesCount = 0;
+   }
+   if(gameData.selected === undefined) {
+      gameData.selected = new Set();
+   }
+
+
+   gameData.solvedCategoriesCount = 0;
 
    elementCategory = Object.fromEntries(
       gameData.categories
@@ -49,8 +52,8 @@ function fillGameStructures(jsonData) {
 }
 
 function incrementSolvedCatetegoriesCount() {
-   solvedCategoriesCount++;
-   console.log(solvedCategoriesCount)
+   gameData.solvedCategoriesCount++;
+   console.log(gameData.solvedCategoriesCount)
 }
 
 //TODO refactor into categoryByTitle to reflect behavior better

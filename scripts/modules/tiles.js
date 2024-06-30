@@ -1,4 +1,4 @@
-import { selected } from "./globals.js";
+import { gameData } from "./globals.js";
 import { addToSelected, remFromSelected } from "./selectedManager.js";
 
 export { createTile, clickAction, fixTileOrder, tileByTitle };
@@ -37,13 +37,13 @@ function createTile(title, category, x, y, solved) {
 function clickAction(target) {
    let text = target.firstElementChild.textContent
 
-   if (selected.has(text)) {
+   if (gameData.selected.has(text)) {
       // unselect
       remFromSelected(text)
 
       target.classList.toggle("selected")
    }
-   else if (selected.size < 4) {
+   else if (gameData.selected.size < 4) {
       //selects
       addToSelected(text);
       target.classList.toggle("selected")
