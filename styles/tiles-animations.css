@@ -33,19 +33,19 @@
 
 @keyframes wrongAnimation {
    20% {
-      transform: rotate(15deg);
+      transform: rotate(4deg);
    }
 
    40% {
-      transform: rotate(-15deg);
+      transform: rotate(-4deg);
    }
 
    60% {
-      transform: rotate(15deg);
+      transform: rotate(4deg);
    }
 
    80% {
-      transform: rotate(-15deg);
+      transform: rotate(-4deg);
    }
 
    100% {

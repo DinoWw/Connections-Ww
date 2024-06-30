@@ -95,11 +95,14 @@ function submit() {
                el.firstElementChild.classList.add("wrong")
             })
 
+            selectedEls[0].addEventListener("animationend", (e) => {
+               if(e.animationName == "wrongAnimation") deselectAll(true);
+            })
+
             //popUp("Wrong!")
             console.log("fail")
             document.querySelector("#submit").classList.toggle("button-unclickable")
             addMistake()
-            deselectAll(true); //?
          }
       }
 
