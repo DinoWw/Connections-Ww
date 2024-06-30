@@ -17,7 +17,7 @@ function copyToClipboard() {
    text = text.replaceAll("<br>", "\n");
    text = text.concat(
 `
-netwwork.duckdns.org/connections\
+netwwork.duckdns.org/Connections-Ww\
 `
    );
    navigator.clipboard.writeText(text);

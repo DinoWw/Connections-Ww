@@ -40,9 +40,6 @@
     /* dobar look ovisi o paddingu contairera */
     width: 23%;
     text-align: center;
-    /*
-    line-height: ; /// ??????????
-    */
     order: 2;
 
     pointer-events: none;
