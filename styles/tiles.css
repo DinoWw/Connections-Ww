@@ -112,7 +112,7 @@
 
 .popup.show {
     animation-name: showOneAway;
-    animation-duration: 5s;
+    animation-duration: 3s;
 }
 
 

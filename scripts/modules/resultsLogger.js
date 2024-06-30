@@ -1,4 +1,5 @@
-import { gameData, categoryId } from "./globals.js";
+import { gameData, categoryId, categoryByElement } from "./globals.js";
+import { popUp } from "./popUp.js"
 
 export { logGuess, emoji, clearGuesses };
 
@@ -15,16 +16,29 @@ const colorEmoji = {
 const guesses = [];
 
 
-function logGuess(categoryList) {
-   const guess = categoryList.map(category => categoryId[category]);
-   guesses.push(guess);
+// returns false if guessed already, otherwise true
+function logGuess(titleList) {
+
+   if (guesses.some(guess => {
+      return guess.every(item => {
+         return titleList.includes(item)
+      }
+      )
+   })) {
+      return false;
+   }
+   guesses.push(titleList);
+   return true;
 }
 
-
+// i broke
 function emoji() {
+
+   console.log("gamedata", gameData)
    return guesses.map(
       (guess) => guess.map(
-         id => emojiByColor(gameData.categories[id].color)
+         title => emojiByColor(categoryByElement(title).color)
+         // bilo emojiByColor(gameData.categories[categoryByElement(title)].color)
       ).join("")
    ).join("<br/>");
 }
@@ -38,7 +52,7 @@ function emojiByColor(color) {
 }
 
 
-function clearGuesses(){
+function clearGuesses() {
    // clear the array
    guesses.length = 0;
 }

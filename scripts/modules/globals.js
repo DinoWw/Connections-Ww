@@ -32,6 +32,7 @@ const categoryId = {};
 
 function fillGameStructures(jsonData) {
    gameData = jsonData;
+
    solvedCategoriesCount = 0;
 
    elementCategory = Object.fromEntries(
@@ -52,9 +53,9 @@ function incrementSolvedCatetegoriesCount() {
    console.log(solvedCategoriesCount)
 }
 
+//TODO refactor into categoryByTitle to reflect behavior better
 function categoryByElement(sElement) {
    return elementCategory[sElement];
-   //return elementCategory[sElement];
 }
 
 

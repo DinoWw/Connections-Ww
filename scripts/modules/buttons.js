@@ -4,7 +4,7 @@ import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
 import { logGuess } from "./resultsLogger.js";
 import { winScreen } from "./endScreen.js";
-import { popUp } from "./popUp.js"
+import { popUp } from "./popUp.js";
 
 export { shuffle, deselectAll, deselectAllHandler, submit };
 
@@ -67,35 +67,48 @@ function submit() {
 
       if (selectedEls.length != 4) throw new Error("invalid submit");
 
-      logGuess(selectedEls.map(x => x.category));
+      // if logged 
+      if (logGuess(selectedEls.map(x => x.firstElementChild.firstElementChild.textContent))) {
 
-      if (selectedEls.every(e => e.category == selectedEls[0].category)) {
-         // visually
-         resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
-         deselectAll(false);
+         // correct guess
+         if (selectedEls.every(e => e.category == selectedEls[0].category)) {
+            // visually
+            resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls);
+            deselectAll(false);
 
-         // Wait on animation to finish and show endScreen if game is done
-         selectedEls[0].addEventListener("animationend", () => {
-            if (solvedCategoriesCount == 4) setTimeout(() => winScreen(true), 750);
-         });
-
-
-      }
-      else {
-         if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {
-            popUp("One away...")
+            // Wait on animation to finish and show endScreen if game is done
+            selectedEls[0].addEventListener("animationend", () => {
+               if (solvedCategoriesCount == 4) setTimeout(() => winScreen(true), 750);
+            });
          }
 
-         selectedEls.forEach(el => {
-            el.firstElementChild.classList.add("wrong")
-         })
-         popUp("Wrong!")
-         console.log("fail")
-         document.querySelector("#submit").classList.toggle("button-unclickable")
-         addMistake()
-         deselectAll(true); //? 
-         // locsk elements, animation
+
+         // wrong guess
+         else {
+            // check if one away
+            if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {
+               popUp("One away...")
+            }
+
+            // wrong animation
+            selectedEls.forEach(el => {
+               el.firstElementChild.classList.add("wrong")
+            })
+
+            //popUp("Wrong!")
+            console.log("fail")
+            document.querySelector("#submit").classList.toggle("button-unclickable")
+            addMistake()
+            deselectAll(true); //?
+         }
       }
+
+      else {
+         console.log("alr gsd")
+         popUp("Already guessed!")
+
+      }
+
    }
 }
 
