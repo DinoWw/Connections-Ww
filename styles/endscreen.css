@@ -22,7 +22,7 @@
 }
 
 
-.popup {
+.endscreen {
    visibility: hidden;
    position: absolute;
    z-index: 2;
@@ -54,7 +54,7 @@
    opacity: 0;
 }
 
-.popup.show {
+.endscreen.show {
 
    visibility: visible;
 
@@ -62,7 +62,7 @@
    opacity: 1;
 }
 
-.popup>p {
+.endscreen>p {
    text-align: center;
    padding: 10px;
 }

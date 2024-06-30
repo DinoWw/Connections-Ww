@@ -17,6 +17,13 @@ function createTile(title, category, x, y, solved) {
    if (!solved) {
       newTile.category = category;
       newTile.addEventListener("click", e => clickAction(e.target))
+      // removes class after wrong-animation
+      // trebalo bi bit tile-innerdiv
+      newTile.firstElementChild.addEventListener("animationend", e => {
+         if (e.animationName == "wrongAnimation") {
+            e.target.classList.remove("wrong")
+         }
+      })
       //newTile.addEventListener("click", e => console.log(newTile.x, newTile.y, newTile.style.order))
    }
    else {

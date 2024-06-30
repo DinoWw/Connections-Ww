@@ -1,0 +1,56 @@
+@keyframes popin {
+   0% {
+      scale: 1;
+   }
+
+   50% {
+      scale: 1.1;
+   }
+
+   100% {
+      scale: 1;
+   }
+}
+
+
+@keyframes showOneAway {
+   0% {
+      opacity: 0;
+   }
+
+   20% {
+      opacity: 1;
+   }
+
+   80% {
+      opacity: 1;
+   }
+
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes wrongAnimation {
+   20% {
+      transform: rotate(15deg);
+   }
+
+   40% {
+      transform: rotate(-15deg);
+   }
+
+   60% {
+      transform: rotate(15deg);
+   }
+
+   80% {
+      transform: rotate(-15deg);
+   }
+
+   100% {
+      transform: rotate(0);
+   }
+
+   /*todo*/
+}

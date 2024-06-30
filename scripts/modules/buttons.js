@@ -83,9 +83,15 @@ function submit() {
       else {
          if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {
             console.log("one away")
-            document.querySelector(".one-away").classList.toggle("show")
+            document.querySelector(".popup").classList.toggle("show")
          }
 
+         selectedEls.forEach(el => {
+            el.firstElementChild.classList.add("wrong")
+            console.log(el.firstElementChild)
+         })
+
+         console.log(selectedEls)
          console.log("fail")
          document.querySelector("#submit").classList.toggle("button-unclickable")
          addMistake()

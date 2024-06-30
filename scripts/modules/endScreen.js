@@ -4,8 +4,7 @@ import { emoji } from "./resultsLogger.js";
 export { winScreen, copyToClipboard, removeWinScreen };
 
 function winScreen(won) {
-   console.log("pop")
-   document.querySelector(".popup").classList.add("show")
+   document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
    document.getElementById("copypasta").innerHTML = emoji();
 
@@ -16,7 +15,7 @@ function copyToClipboard() {
    let text = document.querySelector("#copypasta").innerHTML
    text = text.replaceAll("<br>", "\n");
    text = text.concat(
-`
+      `
 netwwork.duckdns.org/Connections-Ww\
 `
    );
@@ -32,5 +31,5 @@ netwwork.duckdns.org/Connections-Ww\
 function removeWinScreen() {
    // malo ruzno
    document.querySelector(".overlay").classList.remove("show")
-   document.querySelector(".popup").classList.remove("show")
+   document.querySelector(".endscreen").classList.remove("show")
 }
