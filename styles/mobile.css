@@ -1,6 +1,7 @@
 @media only screen and (max-width: 600px) {
 
 
+
 	body {
 		background-color: lightblue;
 		justify-content: flex-start;
@@ -15,6 +16,8 @@
 		margin: 5px;
 	}
 
+
+
 	#tiles {
 		margin-bottom: 0;
 		margin-top: 60px;
@@ -23,9 +26,8 @@
 		width: 85vw;
 	}
 
-	.term-text {
-		/* font-size: 3vw; */
-	}
+
+
 
 	.solved>.tile-innerdiv>.term-text {
 		font-size: 20px;
@@ -40,6 +42,14 @@
 		width: 80vw;
 		margin-left: 10vw;
 		margin-right: 10vw;
+	}
+
+
+}
+
+@media (hover: none) {
+	.tile-innerdiv:hover {
+		background-color: #EFEFE6;
 	}
 
 }
