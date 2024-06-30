@@ -62,8 +62,10 @@
         <p class="gameTitle"></p>
         <p class="win-text">WIN</p>
         <p id="copypasta">insert copypasta</p>
-        <button class="copy-button">Share</button>
-        <button class="more-button">More</button>
+        <div class="buttons"> <!-- mozda rework -->
+            <button class="endscreen-button copy-button black-button">Share</button>
+            <button class="endscreen-button more-button white-button">More</button>
+        </div>
     </div>
 
 
@@ -84,14 +86,14 @@
         </span>
     </div>
 
-    <div class="buttons">
-        <button id="shuffle">
+    <div class="buttons" id="the-buttons">
+        <button id="shuffle" class="white-button">
             <p>Shuffle</p>
         </button>
-        <button id="deselect" class="button-unclickable">
+        <button id="deselect" class="button-unclickable white-button">
             <p>Deselect all</p>
         </button>
-        <button id="submit" class="submit button-unclickable">
+        <button id="submit" class="submit button-unclickable black-button">
             <p>Submit</p>
         </button>
     </div>

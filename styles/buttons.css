@@ -15,9 +15,7 @@ button {
    margin-top: 10px;
    margin-bottom: 0;
    padding: 12px;
-   border: 1px solid black;
    border-radius: 32px;
-   background-color: white;
    line-height: 16px;
    font-size: 16px;
    cursor: pointer;
@@ -28,7 +26,17 @@ button>p {
    margin: 5px;
 }
 
-.submit {
+.submit {}
+
+.black-button {
+
    color: white;
    background-color: black;
+}
+
+.white-button {
+   border: 1px solid black;
+   background-color: white;
+
+
 }

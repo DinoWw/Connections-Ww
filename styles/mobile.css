@@ -47,7 +47,7 @@
 
 }
 
-@media (hover: none) {
+@media not (hover:hover) {
 	.tile-innerdiv:not(.selected):hover {
 		background-color: #EFEFE6;
 	}

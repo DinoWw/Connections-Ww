@@ -67,24 +67,15 @@
    padding: 10px;
 }
 
-/* mozda bi bilo lijepo napravit animaciju kad se klikne opet */
-.copy-button {
+/* mozda bi bilo lijepo napravit animaciju kad se copy button  klikne opet */
 
-   margin: 20px;
+.endscreen-button {
+   margin: 10px;
    margin-left: auto;
    margin-right: auto;
 
    width: 40%;
-   /* mozda previse hard coded */
-   /* some things are hard coded, but im hard while coding */
-   color: white;
-   background-color: black;
 }
-
-.copy-button:hover {
-   opacity: 0.7;
-}
-
 
 .win-text {
    font-size: 24px;

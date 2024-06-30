@@ -22,8 +22,8 @@ netwwork.duckdns.org/Connections-Ww\
    navigator.clipboard.writeText(text);
 
    const button = document.querySelector(".copy-button")
-   button.style.backgroundColor = "white"
-   button.style.color = "black"
+   button.classList.remove("black-button")
+   button.classList.add("white-button")
    button.textContent = "Copied!"
 
 }
