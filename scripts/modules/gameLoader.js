@@ -20,7 +20,6 @@ async function loadGame(gameName) {
 
    clearDOM();
    clearGuesses();
-
    fillTiles();
 
 

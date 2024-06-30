@@ -77,6 +77,9 @@
 
 }
 
+.tile-innerdiv:hover {
+    cursor: pointer;
+}
 
 .tile-innerdiv:not(.selected):hover {
     background-color: #D8D3AD;
@@ -89,6 +92,11 @@
     /* flex-grow: 4; */
     flex-basis: 98%;
     animation: popin 400ms;
+    cursor: default;
+}
+
+.tile.solved>.tile-innerdiv:not(.selected):hover {
+    cursor: default
 }
 
 

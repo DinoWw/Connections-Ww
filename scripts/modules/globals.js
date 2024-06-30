@@ -32,7 +32,6 @@ const categoryId = {};
 
 function fillGameStructures(jsonData) {
    gameData = jsonData;
-
    solvedCategoriesCount = 0;
 
    elementCategory = Object.fromEntries(
@@ -46,6 +45,8 @@ function fillGameStructures(jsonData) {
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;
    });
+
+   document.getElementById("author").textContent = "Level designed by " + gameData.author
 }
 
 function incrementSolvedCatetegoriesCount() {

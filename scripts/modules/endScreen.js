@@ -8,6 +8,7 @@ function winScreen(won) {
    document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
    document.getElementById("copypasta").innerHTML = emoji();
+   // ? document.getElementById("game-author").textContent = 
 
    //document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
 
@@ -26,7 +27,9 @@ function winScreen(won) {
 
 function copyToClipboard() {
    let text = document.querySelector("#copypasta").innerHTML
+
    text = text.replaceAll("<br>", "\n");
+   text = document.querySelector(".gameTitle").textContent + "\n" + text
    text = text.concat(
       `
 netwwork.duckdns.org/Connections-Ww\
