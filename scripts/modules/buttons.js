@@ -6,7 +6,7 @@ import { logGuess } from "./resultsLogger.js";
 import { winScreen } from "./endScreen.js";
 import { popUp } from "./popUp.js";
 
-export { shuffle, deselectAll, deselectAllHandler, submit };
+export { shuffle, deselectAll, deselectAllHandler, submit, replaceButtons };
 
 
 // shuffle button
@@ -78,7 +78,10 @@ function submit() {
 
             // Wait on animation to finish and show endScreen if game is done
             selectedEls[0].addEventListener("animationend", () => {
-               if (solvedCategoriesCount == 4) setTimeout(() => winScreen(true), 750);
+               if (solvedCategoriesCount == 4) setTimeout(() => {
+                  replaceButtons();
+                  winScreen(true);
+               }, 750);
             });
          }
 
@@ -96,7 +99,7 @@ function submit() {
             })
 
             selectedEls[0].addEventListener("animationend", (e) => {
-               if(e.animationName == "wrongAnimation") deselectAll(true);
+               if (e.animationName == "wrongAnimation") deselectAll(true);
             })
 
             //popUp("Wrong!")
@@ -113,5 +116,17 @@ function submit() {
       }
 
    }
+}
+
+function replaceButtons() { // todo put it somewher better myb
+   let bContainer = document.getElementById("buttons-container")
+   bContainer.replaceChildren()
+   console.log(bContainer)
+   console.log("aaaaaaa")
+   let resultsButton = document.createElement("button")
+   resultsButton.classList.add("white-button")
+   resultsButton.textContent = "View Results"
+   resultsButton.addEventListener("click", e => winScreen()) //todo
+   bContainer.appendChild(resultsButton)
 }
 

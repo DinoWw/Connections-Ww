@@ -4,11 +4,24 @@ import { emoji } from "./resultsLogger.js";
 export { winScreen, copyToClipboard, removeWinScreen };
 
 function winScreen(won) {
+
    document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
    document.getElementById("copypasta").innerHTML = emoji();
 
-   document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
+   //document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
+
+   // current workaround until global variable won implemented
+   if (won == true) {
+      document.querySelector(".win-text").textContent = "WIN"
+   }
+   else if (won == false) {
+      document.querySelector(".win-text").textContent = "LOSS"
+   }
+   else {
+      document.querySelector(".win-text").textContent = "SCORE"
+
+   }
 }
 
 function copyToClipboard() {

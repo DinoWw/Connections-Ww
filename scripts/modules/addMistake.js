@@ -2,6 +2,7 @@ import { winScreen } from "./endScreen.js";
 import { gameData } from "./globals.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { tileByTitle } from "./tiles.js";
+import { replaceButtons } from "./buttons.js";
 
 export { addMistake };
 
@@ -22,11 +23,11 @@ function addMistake() {
 }
 
 
-function endGame(){
+function endGame() {
    const categoryTiles = []
-   for(let category of gameData.categories){
+   for (let category of gameData.categories) {
       const tiles = [];
-      for(let title of category.elements){
+      for (let title of category.elements) {
          tiles.push(tileByTitle(title));
       }
       categoryTiles.push(tiles);
@@ -36,12 +37,15 @@ function endGame(){
    function nextAnimation(e) {
       const cT = categoryTiles[i];
       console.log(cT)
-      if(cT == undefined) {
+      if (cT == undefined) {
          // All categories have been merged so display end screen
-         setTimeout(() => winScreen(false), 750);
+         setTimeout(() => {
+            winScreen(false);
+            replaceButtons();
+         }, 750);
          return;
       }
-      if(cT[0] != undefined) {
+      if (cT[0] != undefined) {
          resolveCategory(gameData.categories[i], cT);
          cT[0].addEventListener("animationend", () => {
             // This delay controls how long the user is left to read 
