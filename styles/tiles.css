@@ -119,5 +119,5 @@
 .wrong {
     animation-name: wrongAnimation;
     animation-timing-function: linear;
-    animation-duration: 800ms;
+    animation-duration: 400ms;
 }
