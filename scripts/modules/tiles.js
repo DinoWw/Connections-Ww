@@ -56,8 +56,9 @@ function fixTileOrder() {
 
 
 
-function tileByTitle(title){
+function tileByTitle(title) {
    const tiles = [...document.querySelectorAll(".tile")];
    return tiles.find((tile) => tile.firstElementChild.firstElementChild.innerText == title);
 
 }
+
