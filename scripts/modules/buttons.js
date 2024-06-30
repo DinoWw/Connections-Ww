@@ -4,6 +4,7 @@ import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
 import { logGuess } from "./resultsLogger.js";
 import { winScreen } from "./endScreen.js";
+import { popUp } from "./popUp.js"
 
 export { shuffle, deselectAll, deselectAllHandler, submit };
 
@@ -82,16 +83,13 @@ function submit() {
       }
       else {
          if (selectedEls.some(e => selectedEls.filter(f => f.category == e.category).length == 3)) {
-            console.log("one away")
-            document.querySelector(".popup").classList.toggle("show")
+            popUp("One away...")
          }
 
          selectedEls.forEach(el => {
             el.firstElementChild.classList.add("wrong")
-            console.log(el.firstElementChild)
          })
-
-         console.log(selectedEls)
+         popUp("Wrong!")
          console.log("fail")
          document.querySelector("#submit").classList.toggle("button-unclickable")
          addMistake()
