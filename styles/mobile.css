@@ -48,8 +48,10 @@
 }
 
 @media (hover: none) {
-	.tile-innerdiv:hover {
+	.tile-innerdiv:not(.selected):hover {
 		background-color: #EFEFE6;
 	}
+
+
 
 }
