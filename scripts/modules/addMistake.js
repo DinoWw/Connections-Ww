@@ -73,7 +73,6 @@ function endGame() {
 
 function removeEventListeners() {
 
-   console.log("removin    ")
    document.querySelector("#deselect").removeEventListener("click", deselectAllHandler);
 
    document.querySelector("#submit").removeEventListener("click", submit);
@@ -82,6 +81,12 @@ function removeEventListeners() {
 
    //  ne radi : (
    let tiles = document.querySelectorAll(".tile-innerdiv")
-   tiles.forEach(t => t.removeEventListener("click", e => clickAction(e.target)))
+   tiles.forEach(t => {
+      t.removeEventListener("click", e => clickAction(e.target))
+      t.classList.remove("selectable")
+   }
+
+   )
+
 
 }

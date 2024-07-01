@@ -18,6 +18,7 @@ function createTile(title, category, x, y, solved) {
       newTile.category = category;
       console.log("newTile", newTile)
       newTile.addEventListener("click", e => clickAction(e.target))
+
       // removes class after wrong-animation
       // trebalo bi bit tile-innerdiv
       newTile.firstElementChild.addEventListener("animationend", e => {
@@ -36,18 +37,21 @@ function createTile(title, category, x, y, solved) {
 
 
 function clickAction(target) {
+
    let text = target.firstElementChild.textContent
 
    if (selected.has(text)) {
       // unselect
       remFromSelected(text)
 
-      target.classList.toggle("selected")
+      target.classList.remove("selected")
+      target.classList.add("selectable")
    }
-   else if (selected.size < 4) {
+   else if (selected.size < 4 && target.classList.contains("selectable")) {
       //selects
       addToSelected(text);
-      target.classList.toggle("selected")
+      target.classList.add("selected")
+      target.classList.remove("selectable")
 
    }
 

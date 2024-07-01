@@ -44,6 +44,7 @@ function deselectAll(visuallyDeselect) {
       for (let tile of tiles) {
          if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
             tile.firstElementChild.classList.toggle("selected")
+            tile.firstElementChild.classList.toggle("selectable")
             //console.log('!:', tile.firstElementChild.firstElementChild.textContent)
          }
       }

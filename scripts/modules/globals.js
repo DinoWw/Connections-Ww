@@ -45,6 +45,7 @@ function fillGameStructures(jsonData) {
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;
    });
+   console.log(gameData)
 
    document.getElementById("author").textContent = "Level designed by " + gameData.author
 }
