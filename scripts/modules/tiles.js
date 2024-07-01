@@ -16,6 +16,7 @@ function createTile(title, category, x, y, solved) {
    newTile.firstElementChild.firstElementChild.innerText = title;
    if (!solved) {
       newTile.category = category;
+      console.log("newTile", newTile)
       newTile.addEventListener("click", e => clickAction(e.target))
       // removes class after wrong-animation
       // trebalo bi bit tile-innerdiv

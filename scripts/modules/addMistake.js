@@ -1,8 +1,10 @@
 import { winScreen } from "./endScreen.js";
 import { gameData } from "./globals.js";
 import { resolveCategory } from "./resolveCategory.js";
-import { tileByTitle } from "./tiles.js";
+import { clickAction, tileByTitle } from "./tiles.js";
 import { replaceButtons } from "./buttons.js";
+import { shuffle, deselectAllHandler, submit } from "./buttons.js"; // za remEventListners
+
 
 export { addMistake };
 
@@ -24,6 +26,11 @@ function addMistake() {
 
 
 function endGame() {
+
+   //make unclickable
+   console.log("endgame")
+   removeEventListeners()
+
    const categoryTiles = []
    for (let category of gameData.categories) {
       const tiles = [];
@@ -62,6 +69,19 @@ function endGame() {
    }
    nextAnimation();
 
+}
 
+function removeEventListeners() {
+
+   console.log("removin    ")
+   document.querySelector("#deselect").removeEventListener("click", deselectAllHandler);
+
+   document.querySelector("#submit").removeEventListener("click", submit);
+
+   document.querySelector("#shuffle").removeEventListener("click", shuffle);
+
+   //  ne radi : (
+   let tiles = document.querySelectorAll(".tile-innerdiv")
+   tiles.forEach(t => t.removeEventListener("click", e => clickAction(e.target)))
 
 }
