@@ -1,15 +1,21 @@
+//import { metaData } from "./globals.js";
+import { gameData, metaData } from "./globals.js";
 
-
-export { loadGame };
+export { loadGame, storeGame };
 
 
 
 function loadGame(gameName) {
-    return localStorage.getItem(gameName);
+    return JSON.parse(localStorage.getItem(gameName));
 }
 
-// gamestate depends on 
+// TODO:
 function storeGame() {
+    let fileName = metaData.visibleGames[gameData.title];
+    if(fileName === undefined) fileName = metaData.invisibleGames[gameData.title];
+    if(fileName === undefined) throw new Error("cannot save game state to localstorage");
 
+    localStorage.setItem(fileName, JSON.stringify(gameData));
+    
 }
 

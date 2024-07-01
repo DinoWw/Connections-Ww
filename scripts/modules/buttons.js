@@ -67,7 +67,7 @@ function submit() {
 
       if (selectedEls.length != 4) throw new Error("invalid submit");
 
-      // if logged 
+      // if not already logged 
       if (logGuess(selectedEls.map(x => x.firstElementChild.firstElementChild.textContent))) {
 
          // correct guess

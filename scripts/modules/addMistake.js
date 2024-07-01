@@ -1,11 +1,16 @@
 import { winScreen } from "./endScreen.js";
 import { gameData } from "./globals.js";
+import { storeGame } from "./localStorageInterface.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { tileByTitle } from "./tiles.js";
 
-export { addMistake };
+export { addMistake, initMistakes };
 
 function addMistake() {
+   if (gameData.mistakes >= 4) return;
+   gameData.mistakes ++;
+   storeGame();
+
    let mistakes_cont = document.querySelector("#mistakes")
    let children = mistakes_cont.children
    for (let i = children.length - 1; i > 0; i--) {
@@ -19,6 +24,22 @@ function addMistake() {
          return
       }
    }
+}
+
+// makes dots reflect gameData.mistakes
+function initMistakes(){;
+   let mistakes_cont = document.querySelector("#mistakes")
+   let children = mistakes_cont.querySelectorAll(".dot-container");
+   console.log(children, gameData.mistakes)
+   
+   for (let i = 0; i < children.length - gameData.mistakes; i++) {
+      console.log(children[i])
+      children[i].firstElementChild.classList.remove("smallerdot")
+   }
+   for (let i = children.length - gameData.mistakes; i < children.length; i++) {
+      children[i].firstElementChild.classList.add("smallerdot")
+   }
+   
 }
 
 

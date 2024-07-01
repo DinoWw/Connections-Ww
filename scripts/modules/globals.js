@@ -1,17 +1,26 @@
+import * as local from "./localStorageInterface.js";
+
 export {
    incrementSolvedCatetegoriesCount,
    gameData,
+   metaData,
    categoryByElement,
    fillGameStructures,
    categoryId,
    checkTextOverflow
 };
 
+// To other modules and scripts should be read-only excepth through the funcutions below !!
 let gameData = {};
+
+const metaData = 
+await fetch(`data/metaData.json`)
+.then(response => response.json());
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
 
+// TODO: at least capitalize all entries
 // alters data
 function normalizeFormat(data) {
    data.initial = data.initial.map(row => row.map(title => title.toUpperCase()));
@@ -28,12 +37,19 @@ const categoryId = {};
 function fillGameStructures(jsonData) {
    gameData = jsonData;
 
-   if(gameData.solvedCategoriesCount === undefined){
-      gameData.solvedCategoriesCount = 0;
+   // always reset as guesses will be re-'played' and solvedCount will increase to its prior value
+   gameData.solvedCategoriesCount = 0;
+   
+   if(gameData.guesses === undefined){
+      gameData.guesses = [];
    }
-   if(gameData.selected === undefined) {
-      gameData.selected = new Set();
+   if(gameData.mistakes === undefined){
+      gameData.mistakes = 0;
    }
+   
+   // always empty sleected as sets cannot be serialized
+   gameData.selected = new Set();
+      
 
 
    gameData.solvedCategoriesCount = 0;
@@ -49,18 +65,19 @@ function fillGameStructures(jsonData) {
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;
    });
+
+   local.storeGame();
 }
 
 function incrementSolvedCatetegoriesCount() {
    gameData.solvedCategoriesCount++;
-   console.log(gameData.solvedCategoriesCount)
+   local.storeGame();
 }
 
 //TODO refactor into categoryByTitle to reflect behavior better
 function categoryByElement(sElement) {
    return elementCategory[sElement];
 }
-
 
 function checkTextOverflow() {
 
