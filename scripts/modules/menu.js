@@ -4,8 +4,19 @@ import { removeWinScreen } from "./endScreen.js";
 export { toggleMenu, loadMenu };
 
 function toggleMenu() {
-   document.querySelector(".menu-container").classList.toggle("menu-show")
-   document.querySelector(".overlay").classList.toggle("show");
+
+   if (document.querySelector(".endscreen").classList.contains("show"))
+      removeWinScreen()
+
+   let menuContainer = document.querySelector(".menu-container")
+   menuContainer.classList.toggle("menu-show")
+   if (menuContainer.classList.contains("menu-show")) {
+      document.querySelector(".overlay").classList.add("show")
+   }
+   else {
+      document.querySelector(".overlay").classList.remove("show");
+   }
+
 }
 
 function collapseMenu() {
@@ -15,7 +26,7 @@ function collapseMenu() {
 
 function loadMenu() {
    document.querySelector(".menu-button").addEventListener("click", toggleMenu)
-   document.querySelector(".menu-button").addEventListener("click", removeWinScreen)
+   //document.querySelector(".menu-button").addEventListener("click", removeWinScreen)
    document.querySelector(".overlay").addEventListener("click", collapseMenu)
 
    // fill game manager

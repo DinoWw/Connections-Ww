@@ -45,7 +45,8 @@ netwwork.duckdns.org/Connections-Ww\
 }
 
 function removeWinScreen() {
-   // malo ruzno
-   document.querySelector(".overlay").classList.remove("show")
-   document.querySelector(".endscreen").classList.remove("show")
+   if (document.querySelector(".endscreen").classList.contains("show")) {
+      document.querySelector(".overlay").classList.remove("show")
+      document.querySelector(".endscreen").classList.remove("show")
+   }
 }

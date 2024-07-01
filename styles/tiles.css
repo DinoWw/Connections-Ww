@@ -105,25 +105,6 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-.popup {
-    opacity: 0;
-    position: absolute;
-    z-index: 1;
-    top: 40px;
-    font-weight: 400;
-    font-size: 14px;
-    color: white;
-    background-color: black;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.popup.show {
-    animation-name: showOneAway;
-    animation-duration: 3s;
-}
-
-
 .wrong {
     animation-name: wrongAnimation;
     animation-timing-function: linear;

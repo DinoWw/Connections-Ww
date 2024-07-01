@@ -1,0 +1,24 @@
+#redakcija {
+   margin: auto;
+   margin-top: 10px;
+   padding: 5px;
+   width: fit-content;
+   border-radius: 5px;
+   font-family: monospace;
+   background-color: #EFEFE6;
+   border: none;
+}
+
+#redakcija:hover {
+   cursor: pointer;
+   background-color: #D8D3AD;
+}
+
+
+.textbox {
+   margin: auto;
+   margin-top: 20%;
+   padding: 20px;
+   text-align: center;
+   width: 100%;
+}
