@@ -1,5 +1,6 @@
 import { gameData, categoryId, categoryByElement } from "./globals.js";
 import { popUp } from "./popUp.js"
+import * as local from "./localStorageInterface.js"
 
 export { logGuess, emoji, clearGuesses };
 
@@ -13,13 +14,10 @@ const colorEmoji = {
 }
 
 
-const guesses = [];
-
-
 // returns false if guessed already, otherwise true
 function logGuess(titleList) {
 
-   if (guesses.some(guess => {
+   if (gameData.guesses.some(guess => {
       return guess.every(item => {
          return titleList.includes(item)
       }
@@ -27,15 +25,15 @@ function logGuess(titleList) {
    })) {
       return false;
    }
-   guesses.push(titleList);
+   gameData.guesses.push(titleList);
+   local.storeGame();
    return true;
 }
 
-// i broke
 function emoji() {
 
    console.log("gamedata", gameData)
-   return guesses.map(
+   return gameData.guesses.map(
       (guess) => guess.map(
          title => emojiByColor(categoryByElement(title).color)
          // bilo emojiByColor(gameData.categories[categoryByElement(title)].color)
@@ -52,7 +50,10 @@ function emojiByColor(color) {
 }
 
 
+// TODO: check if redundant after implementation of loaclstorage
 function clearGuesses() {
    // clear the array
-   guesses.length = 0;
+   console.log("Attempted to clear guesses, is this needed?")
+   //guesses.length = 0;
+   //local.storeGame();
 }

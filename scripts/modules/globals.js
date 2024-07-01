@@ -1,22 +1,26 @@
+import * as local from "./localStorageInterface.js";
+
 export {
-   solvedCategoriesCount, incrementSolvedCatetegoriesCount,
-   selected,
+   incrementSolvedCatetegoriesCount,
    gameData,
+   metaData,
    categoryByElement,
    fillGameStructures,
    categoryId,
    checkTextOverflow
 };
 
-
-
-const selected = new Set();
+// To other modules and scripts should be read-only excepth through the funcutions below !!
 let gameData = {};
-let solvedCategoriesCount = 0;
+
+const metaData = 
+await fetch(`data/metaData.json`)
+.then(response => response.json());
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
 
+// TODO: at least capitalize all entries
 // alters data
 function normalizeFormat(data) {
    data.initial = data.initial.map(row => row.map(title => title.toUpperCase()));
@@ -32,7 +36,23 @@ const categoryId = {};
 
 function fillGameStructures(jsonData) {
    gameData = jsonData;
-   solvedCategoriesCount = 0;
+
+   // always reset as guesses will be re-'played' and solvedCount will increase to its prior value
+   gameData.solvedCategoriesCount = 0;
+   
+   if(gameData.guesses === undefined){
+      gameData.guesses = [];
+   }
+   if(gameData.mistakes === undefined){
+      gameData.mistakes = 0;
+   }
+   
+   // always empty sleected as sets cannot be serialized
+   gameData.selected = new Set();
+      
+
+
+   gameData.solvedCategoriesCount = 0;
 
    elementCategory = Object.fromEntries(
       gameData.categories
@@ -45,20 +65,21 @@ function fillGameStructures(jsonData) {
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;
    });
+   local.storeGame();
 
    document.getElementById("author").textContent = "Level designed by " + gameData.author
+
 }
 
 function incrementSolvedCatetegoriesCount() {
-   solvedCategoriesCount++;
-   console.log(solvedCategoriesCount)
+   gameData.solvedCategoriesCount++;
+   local.storeGame();
 }
 
 //TODO refactor into categoryByTitle to reflect behavior better
 function categoryByElement(sElement) {
    return elementCategory[sElement];
 }
-
 
 function checkTextOverflow() {
 

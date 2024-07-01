@@ -1,7 +1,7 @@
-import { selected } from "./globals.js";
+import { categoryId, gameData } from "./globals.js";
 import { addToSelected, remFromSelected } from "./selectedManager.js";
 
-export { createTile, clickAction, fixTileOrder, tileByTitle };
+export { createTile, clickAction, fixTileOrder, tileByTitle, createCategoryTile};
 
 function createTile(title, category, x, y, solved) {
    // TODO: stavit negdje da se ne ucitava svaki put, ne zelim globalno
@@ -34,17 +34,34 @@ function createTile(title, category, x, y, solved) {
    return newTile;
 }
 
+// category: object
+function createCategoryTile(category, y) {
+
+   const elems = document.createElement('p');
+   category.elements.forEach(el => {
+       elems.innerHTML = elems.innerHTML + " " + el + ",";
+   });
+
+   elems.innerHTML = elems.innerHTML.slice(0, -1);
+   
+   const newTile = createTile(category.title, null, 0, y, true);
+   newTile.firstElementChild.style.backgroundColor = category.color;
+   newTile.firstElementChild.appendChild(elems)
+
+   return newTile;
+}
+
 
 function clickAction(target) {
    let text = target.firstElementChild.textContent
 
-   if (selected.has(text)) {
+   if (gameData.selected.has(text)) {
       // unselect
       remFromSelected(text)
 
       target.classList.toggle("selected")
    }
-   else if (selected.size < 4) {
+   else if (gameData.selected.size < 4) {
       //selects
       addToSelected(text);
       target.classList.toggle("selected")

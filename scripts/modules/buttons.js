@@ -1,4 +1,4 @@
-import { selected, gameData, solvedCategoriesCount } from "./globals.js";
+import { gameData } from "./globals.js";
 import { remAllFromSelected } from "./selectedManager.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
@@ -42,7 +42,7 @@ function deselectAll(visuallyDeselect) {
    if (visuallyDeselect) {
       const tiles = document.querySelectorAll(".tile")
       for (let tile of tiles) {
-         if (selected.has(tile.firstElementChild.firstElementChild.textContent)) {
+         if (gameData.selected.has(tile.firstElementChild.firstElementChild.textContent)) {
             tile.firstElementChild.classList.toggle("selected")
             //console.log('!:', tile.firstElementChild.firstElementChild.textContent)
          }
@@ -54,7 +54,7 @@ function deselectAll(visuallyDeselect) {
 // submit button 
 function submit() {
    if (!document.querySelector("#submit").classList.contains("button-unclickable")) {
-      const selectedArr = Array.from(selected)
+      const selectedArr = Array.from(gameData.selected)
       const selectedEls = [];
 
       const tiles = document.querySelectorAll(".tile:not(.solved)");
@@ -67,7 +67,7 @@ function submit() {
 
       if (selectedEls.length != 4) throw new Error("invalid submit");
 
-      // if logged 
+      // if not already logged 
       if (logGuess(selectedEls.map(x => x.firstElementChild.firstElementChild.textContent))) {
 
          // correct guess
@@ -78,7 +78,7 @@ function submit() {
 
             // Wait on animation to finish and show endScreen if game is done
             selectedEls[0].addEventListener("animationend", () => {
-               if (solvedCategoriesCount == 4) setTimeout(() => {
+               if (gameData.solvedCategoriesCount == 4) setTimeout(() => {
                   replaceButtons();
                   winScreen(true);
                }, 750);

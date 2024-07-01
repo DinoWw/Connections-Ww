@@ -1,0 +1,47 @@
+{
+    "title": "Jedna Laksa",
+    "initial": null,
+    "author": "korny",
+    "categories": [
+       {
+          "title": "HRVATSKE RIJEKE",
+          "color": "#FFF78D",
+          "elements": [
+             "OMBLA",
+             "MURA",
+             "UNA",
+             "RJEČINA"
+          ]
+       },
+       {
+          "title": "HRVATSKA MJESTA",
+          "color": "#A4DCFF",
+          "elements": [
+             "VRATA",
+             "DOBROVA",
+             "BREZOVICA",
+             "ŠKABRNJA"
+          ]
+       },
+       {
+          "title": "HRVATSKA JEZERA",
+          "color": "#A173BC",
+          "elements": [
+             "VRANSKO JEZERO",
+             "LEPENICA",
+             "PERUČKO JEZERO",
+             "JARUN"
+          ]
+       },
+       {
+          "title": "HRVATSKE PLANINE",
+          "color": "pink",
+          "elements": [
+             "VELEBIT",
+             "DINARA",
+             "MOSOR",
+             "UČKA"
+          ]
+       }
+    ]
+ }

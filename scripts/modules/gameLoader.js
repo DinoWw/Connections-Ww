@@ -1,28 +1,37 @@
-import { categoryByElement, gameData, fillGameStructures } from "./globals.js";
+import { categoryByElement, gameData, fillGameStructures, categoryId } from "./globals.js";
 import { clearGuesses } from "./resultsLogger.js";
 import { createTile, fixTileOrder } from "./tiles.js";
 import { shuffle } from "./buttons.js";
 import { checkTextOverflow } from "./globals.js"
+import * as local from "./localStorageInterface.js";
+import { resolveCategory } from "./resolveCategory.js";
+import { initMistakes } from "./addMistake.js";
 
 export { loadGame };
 
 
 
 
-async function loadGame(gameName) {
-   await fetch(`data/${gameName}.json`).then(async response => {
-      await response.json().then((data) => {
-         // TODO: connect somehow
-         //normalizeFormat(data);
-         fillGameStructures(data);
+async function loadGame(fileName) {
+   const game = local.loadGame(fileName);
+
+   if(game === undefined || game === null){
+      await fetch(`data/${fileName}`).then(async response => {
+         await response.json().then((data) => {
+            // TODO: connect somehow
+            // normalizeFormat(data);
+            fillGameStructures(data);
+         });
       });
-   });
+   }
+   else {
+      fillGameStructures(game);
+   }
+
 
    clearDOM();
-   clearGuesses();
    fillTiles();
-
-
+   initMistakes();
 }
 
 function clearDOM() {
@@ -33,6 +42,7 @@ function clearDOM() {
 function fillTiles() {
 
    const tileHome = document.getElementById("tiles");
+
 
    if (!gameData.initial || gameData.initial == []) {
       gameData.categories.forEach((category, ic) => {
@@ -52,6 +62,29 @@ function fillTiles() {
          })
       })
    }
+
+   // redo guesses from localstorage
+   if(gameData.guesses.length != 0){
+      for(let guess of gameData.guesses){
+         const potentialTitle = categoryByElement(guess[0]).title;
+         if(!guess.every((tileText) => categoryByElement(tileText).title == potentialTitle)) continue;
+         //else 
+         //resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls, false);
+
+         const els = 
+         guess.map(title => 
+            [...tileHome.querySelectorAll('.tile')].find(el => 
+               el.querySelector('p').textContent == title
+            )
+         );
+         resolveCategory(gameData.categories[categoryId[potentialTitle]], els, false);
+      }
+   }
+
+
+
+
+
    fixTileOrder();
 
    //maybe perma remove
