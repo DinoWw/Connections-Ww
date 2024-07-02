@@ -1,0 +1,38 @@
+{
+   "title": "grah salata",
+   "initial": null,
+   "author": "je vrlo ukusna",
+   "categories": [
+      {
+         "title": "OBRTALJKE",
+         "color": "#FFF78D",
+         "elements": [
+            "IĆI", 
+            "KISIK", 
+            "KRK", 
+            "POTOP"
+         ]
+      },
+      {
+         "title": "NAPITCI",
+         "color": "#A4DCFF",
+         "elements": [
+            "BAMBUS", "KAKAO", "VODA", "ČAJ"
+         ]
+      },
+      {
+         "title": "POVEZANO S SV. PETROM",
+         "color": "#A173BC",
+         "elements": [
+            "KAJGANA", "KLJUČ", "STIJENA", "ŠUMA"
+         ]
+      },
+      {
+         "title": "DIJELOVI TIJELA S DODANIM SLOVOM NA KRAJU",
+         "color": "pink",
+         "elements": [
+            "BOKS", "RAMEN", "SISAK", "VRATA"
+         ]
+      }
+   ]
+}
