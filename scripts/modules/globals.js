@@ -61,6 +61,7 @@ function fillGameStructures(jsonData) {
                .map(e => [e, c])
          ).reduce((acc, els) => acc.concat(els), [])
    );
+   console.log(gameData)
 
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;

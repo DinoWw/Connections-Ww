@@ -8,7 +8,7 @@ function createTile(title, category, x, y, solved) {
    const tileTemplate = document.getElementById("tile_template");
 
    const newTile = tileTemplate.content.firstElementChild.cloneNode(true);
-   //console.log(newTile)
+
 
    newTile.x = x;
    newTile.y = y;
@@ -16,7 +16,6 @@ function createTile(title, category, x, y, solved) {
    newTile.firstElementChild.firstElementChild.innerText = title;
    if (!solved) {
       newTile.category = category;
-      console.log("newTile", newTile)
       newTile.addEventListener("click", e => clickAction(e.target))
 
       // removes class after wrong-animation

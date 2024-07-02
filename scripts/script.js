@@ -28,7 +28,6 @@ async function onLoad() {
    shuffleButton.addEventListener("click", shuffle);
 
    document.querySelector("#view-results").addEventListener("click", e => winScreen())
-   document.querySelector("#view-results").style.display = "none"
 
    // win screen 
 

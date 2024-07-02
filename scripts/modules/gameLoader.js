@@ -1,11 +1,12 @@
 import { categoryByElement, gameData, fillGameStructures, categoryId } from "./globals.js";
 import { clearGuesses } from "./resultsLogger.js";
 import { createTile, fixTileOrder } from "./tiles.js";
-import { shuffle } from "./buttons.js";
+import { returnButtons, replaceButtons, shuffle } from "./buttons.js";
 import { checkTextOverflow } from "./globals.js"
 import * as local from "./localStorageInterface.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { initMistakes } from "./addMistake.js";
+
 
 export { loadGame };
 
@@ -15,7 +16,7 @@ export { loadGame };
 async function loadGame(fileName) {
    const game = local.loadGame(fileName);
 
-   if(game === undefined || game === null){
+   if (game === undefined || game === null) {
       await fetch(`data/${fileName}`).then(async response => {
          await response.json().then((data) => {
             // TODO: connect somehow
@@ -32,11 +33,17 @@ async function loadGame(fileName) {
    clearDOM();
    fillTiles();
    initMistakes();
+
+   // ako ce se mijenjat gameData je problem
+
 }
 
 function clearDOM() {
    document.getElementById("tiles").querySelectorAll(".tile").forEach(tile => tile.remove());
    document.querySelectorAll(".dot").forEach(dot => dot.classList.remove("smallerdot"));
+   if (gameData.guesses.length == 4) {
+      replaceButtons()
+   }
 }
 
 function fillTiles() {
@@ -64,19 +71,19 @@ function fillTiles() {
    }
 
    // redo guesses from localstorage
-   if(gameData.guesses.length != 0){
-      for(let guess of gameData.guesses){
+   if (gameData.guesses.length != 0) {
+      for (let guess of gameData.guesses) {
          const potentialTitle = categoryByElement(guess[0]).title;
-         if(!guess.every((tileText) => categoryByElement(tileText).title == potentialTitle)) continue;
+         if (!guess.every((tileText) => categoryByElement(tileText).title == potentialTitle)) continue;
          //else 
          //resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls, false);
 
-         const els = 
-         guess.map(title => 
-            [...tileHome.querySelectorAll('.tile')].find(el => 
-               el.querySelector('p').textContent == title
-            )
-         );
+         const els =
+            guess.map(title =>
+               [...tileHome.querySelectorAll('.tile')].find(el =>
+                  el.querySelector('p').textContent == title
+               )
+            );
          resolveCategory(gameData.categories[categoryId[potentialTitle]], els, false);
       }
    }

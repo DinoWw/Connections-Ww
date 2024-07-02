@@ -45,7 +45,6 @@ function deselectAll(visuallyDeselect) {
          if (gameData.selected.has(tile.firstElementChild.firstElementChild.textContent)) {
             tile.firstElementChild.classList.toggle("selected")
             tile.firstElementChild.classList.toggle("selectable")
-            //console.log('!:', tile.firstElementChild.firstElementChild.textContent)
          }
       }
    }
@@ -104,14 +103,12 @@ function submit() {
             })
 
             //popUp("Wrong!")
-            console.log("fail")
             document.querySelector("#submit").classList.toggle("button-unclickable")
             addMistake()
          }
       }
 
       else {
-         console.log("alr gsd")
          popUp("Already guessed!")
 
       }
@@ -129,7 +126,10 @@ function replaceButtons() { // todo put it somewher better myb
 }
 
 function returnButtons() {
+
+   document.querySelector("#shuffle").addEventListener("click", shuffle);
    document.querySelector("#shuffle").style.display = "block"
+
    document.querySelector("#deselect").style.display = "block"
    document.querySelector("#submit").style.display = "block"
    document.querySelector("#view-results").style.display = "none"
