@@ -15,9 +15,9 @@ export {
 // To other modules and scripts should be read-only excepth through the funcutions below !!
 let gameData = {};
 
-const metaData = 
-await fetch(`data/metaData.json`)
-.then(response => response.json());
+const metaData =
+   await fetch(`data/metaData.json`)
+      .then(response => response.json());
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
@@ -41,11 +41,11 @@ function fillGameStructures(jsonData) {
 
    // always reset as guesses will be re-'played' and solvedCount will increase to its prior value
    gameData.solvedCategoriesCount = 0;
-   
-   if(gameData.guesses === undefined){
+
+   if (gameData.guesses === undefined) {
       gameData.guesses = [];
    }
-   if(gameData.mistakes === undefined){
+   if (gameData.mistakes === undefined) {
       gameData.mistakes = 0;
    }
    if(gameData.won === undefined || gameData.lost === undefined) {
@@ -55,7 +55,7 @@ function fillGameStructures(jsonData) {
    
    // always empty sleected as sets cannot be serialized
    gameData.selected = new Set();
-      
+
 
 
    gameData.solvedCategoriesCount = 0;
@@ -67,6 +67,7 @@ function fillGameStructures(jsonData) {
                .map(e => [e, c])
          ).reduce((acc, els) => acc.concat(els), [])
    );
+   console.log(gameData)
 
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;

@@ -37,6 +37,8 @@ button>p {
 .white-button {
    color: black;
    background-color: white;
+}
 
-
+#view-results {
+   display: none;
 }

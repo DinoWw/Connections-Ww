@@ -9,10 +9,9 @@ export { resolveCategory };
 
 // category - object; elems - DOM element array
 function resolveCategory(category, elems, animate = true) {
-    if(category == undefined) throw new Error("cannot resolve undefined category");
+    if (category == undefined) throw new Error("cannot resolve undefined category");
     let correctEls = elems;
 
-    //console.log("correct: ", correctEls)
     if (correctEls.length != 4) {
         throw new Error("cannot resolve, wrong number of elements");
     }
@@ -24,7 +23,7 @@ function resolveCategory(category, elems, animate = true) {
     if (correctEls.every((el, i) => el.x == i && el.y == gameData.solvedCategoriesCount) || !animate) {
 
         const tileHome = document.getElementById("tiles");
-        if(!animate) {
+        if (!animate) {
             collectElements(gameData.solvedCategoriesCount, correctEls, false);
         }
         correctEls.forEach(el => {
@@ -32,7 +31,7 @@ function resolveCategory(category, elems, animate = true) {
         });
         const newTile = createCategoryTile(category, gameData.solvedCategoriesCount);
         tileHome.appendChild(newTile);
-        
+
         incrementSolvedCatetegoriesCount();
 
         return;
@@ -73,8 +72,8 @@ function collectElements(row, elements, animate = true) {
     elements.forEach((el, i) => {
         let [x1, y1] = [el.x, el.y];
         let [x2, y2] = [i, row];
-        
-        if(animate){
+
+        if (animate) {
             translateElement(el, x1, y1, x2, y2);
         }
         else {
@@ -99,7 +98,7 @@ function collectElements(row, elements, animate = true) {
     doubles.forEach(d => {
         const t1 = tileByCoordinates(...d);
         const [x2, y2] = frees.pop();
-        if(animate){
+        if (animate) {
             translateElement(t1, ...d, x2, y2);
         }
         else {
@@ -109,7 +108,7 @@ function collectElements(row, elements, animate = true) {
         }
     });
 
-    if(!animate){
+    if (!animate) {
         const updatePos = (el) => {
             el.x = el.nx;
             el.y = el.ny;

@@ -7,7 +7,6 @@ function translationAnimation(x1, y1, x2, y2, name) {
 
     const style = document.createElement('style');
 
-    //console.log(x1, y1, "->", x2, y2, name)
 
     const kf = `
     @keyframes ${name}_ {
@@ -41,7 +40,6 @@ function translateElement(el, x1, y1, x2, y2) {
 
     translationAnimation(x1, y1, x2, y2, `tr_${AXxjs}`);
 
-    //console.log(el.firstElementChild)
     el.firstElementChild.classList.add(`tr_${AXxjs}`);
     el.classList.add("invis");
     el.firstElementChild.style["z-index"] = el.selected ? 2 : 1;

@@ -32,7 +32,6 @@ function logGuess(titleList) {
 
 function emoji() {
 
-   console.log("gamedata", gameData)
    return gameData.guesses.map(
       (guess) => guess.map(
          title => emojiByColor(categoryByElement(title).color)

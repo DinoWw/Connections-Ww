@@ -2,6 +2,7 @@ import { shuffle, deselectAllHandler, submit } from "./modules/buttons.js";
 import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
 import { loadMenu, toggleMenu } from "./modules/menu.js";
 import { loadGame } from "./modules/gameLoader.js";
+import { winScreen } from "./modules/addMistake.js";
 
 // MAIN:
 onLoad();
@@ -26,6 +27,7 @@ async function onLoad() {
    const shuffleButton = document.querySelector("#shuffle");
    shuffleButton.addEventListener("click", shuffle);
 
+   document.querySelector("#view-results").addEventListener("click", e => winScreen())
 
    // win screen 
 

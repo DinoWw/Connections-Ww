@@ -7,11 +7,11 @@ import { replaceButtons } from "./buttons.js";
 import { shuffle, deselectAllHandler, submit } from "./buttons.js"; // za remEventListners
 
 
-export { addMistake, initMistakes };
+export { addMistake, winScreen, initMistakes };
 
 function addMistake() {
    if (gameData.mistakes >= 4) return;
-   gameData.mistakes ++;
+   gameData.mistakes++;
    storeGame();
 
    let mistakes_cont = document.querySelector("#mistakes")
@@ -21,7 +21,6 @@ function addMistake() {
 
          children[i].firstElementChild.classList.add("smallerdot")
          if (i == 1) {
-            console.log("loss")
             setTimeout(endGame, 750);
             loseGame();
          }
@@ -31,26 +30,24 @@ function addMistake() {
 }
 
 // makes dots reflect gameData.mistakes
-function initMistakes(){;
+function initMistakes() {
+   ;
    let mistakes_cont = document.querySelector("#mistakes")
    let children = mistakes_cont.querySelectorAll(".dot-container");
-   console.log(children, gameData.mistakes)
-   
+
    for (let i = 0; i < children.length - gameData.mistakes; i++) {
-      console.log(children[i])
       children[i].firstElementChild.classList.remove("smallerdot")
    }
    for (let i = children.length - gameData.mistakes; i < children.length; i++) {
       children[i].firstElementChild.classList.add("smallerdot")
    }
-   
+
 }
 
 
 function endGame() {
 
    //make unclickable
-   console.log("endgame")
    removeEventListeners()
 
    const categoryTiles = []
@@ -65,7 +62,6 @@ function endGame() {
    let i = 0;
    function nextAnimation(e) {
       const cT = categoryTiles[i];
-      console.log(cT)
       if (cT == undefined) {
          // All categories have been merged so display end screen
          setTimeout(() => {
@@ -95,15 +91,16 @@ function endGame() {
 
 function removeEventListeners() {
 
-   console.log("removin    ")
-   document.querySelector("#deselect").removeEventListener("click", deselectAllHandler);
-
-   document.querySelector("#submit").removeEventListener("click", submit);
-
    document.querySelector("#shuffle").removeEventListener("click", shuffle);
 
    //  ne radi : (
    let tiles = document.querySelectorAll(".tile-innerdiv")
-   tiles.forEach(t => t.removeEventListener("click", e => clickAction(e.target)))
+   tiles.forEach(t => {
+      t.removeEventListener("click", clickAction)
+      t.classList.remove("selectable")
+   }
+
+   )
+
 
 }

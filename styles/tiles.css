@@ -81,7 +81,13 @@
     cursor: pointer;
 }
 
+/* 
 .tile-innerdiv:not(.selected):hover {
+    background-color: #D8D3AD;
+    cursor: pointer;
+} */
+
+.selectable:hover {
     background-color: #D8D3AD;
     cursor: pointer;
 }
