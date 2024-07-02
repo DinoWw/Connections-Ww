@@ -6,7 +6,7 @@ import { replaceButtons } from "./buttons.js";
 import { shuffle, deselectAllHandler, submit } from "./buttons.js"; // za remEventListners
 
 
-export { addMistake };
+export { addMistake, winScreen };
 
 function addMistake() {
    let mistakes_cont = document.querySelector("#mistakes")

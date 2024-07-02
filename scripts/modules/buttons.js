@@ -6,7 +6,7 @@ import { logGuess } from "./resultsLogger.js";
 import { winScreen } from "./endScreen.js";
 import { popUp } from "./popUp.js";
 
-export { shuffle, deselectAll, deselectAllHandler, submit, replaceButtons };
+export { shuffle, deselectAll, deselectAllHandler, submit, replaceButtons, returnButtons };
 
 
 // shuffle button
@@ -120,14 +120,19 @@ function submit() {
 }
 
 function replaceButtons() { // todo put it somewher better myb
-   let bContainer = document.getElementById("buttons-container")
-   bContainer.replaceChildren()
-   console.log(bContainer)
-   console.log("aaaaaaa")
-   let resultsButton = document.createElement("button")
-   resultsButton.classList.add("white-button")
-   resultsButton.textContent = "View Results"
-   resultsButton.addEventListener("click", e => winScreen()) //todo
-   bContainer.appendChild(resultsButton)
+   document.querySelector("#shuffle").style.display = "none"
+   document.querySelector("#deselect").style.display = "none"
+   document.querySelector("#submit").style.display = "none"
+   document.querySelector("#view-results").style.display = "block"
+
+
+}
+
+function returnButtons() {
+   document.querySelector("#shuffle").style.display = "block"
+   document.querySelector("#deselect").style.display = "block"
+   document.querySelector("#submit").style.display = "block"
+   document.querySelector("#view-results").style.display = "none"
+
 }
 

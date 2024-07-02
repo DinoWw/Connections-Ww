@@ -1,5 +1,6 @@
 import { loadGame } from "./gameLoader.js";
 import { removeWinScreen } from "./endScreen.js";
+import { returnButtons } from "./buttons.js";
 
 export { toggleMenu, loadMenu };
 
@@ -56,5 +57,6 @@ function newGameButton(text) {
 }
 
 async function loadGameHandler(e) {
+   returnButtons()
    loadGame(e.target.gameToLoad);
 }
