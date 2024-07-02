@@ -7,7 +7,9 @@ export {
    categoryByElement,
    fillGameStructures,
    categoryId,
-   checkTextOverflow
+   checkTextOverflow,
+   winGame, 
+   loseGame
 };
 
 // To other modules and scripts should be read-only excepth through the funcutions below !!
@@ -46,6 +48,10 @@ function fillGameStructures(jsonData) {
    if(gameData.mistakes === undefined){
       gameData.mistakes = 0;
    }
+   if(gameData.won === undefined || gameData.lost === undefined) {
+      gameData.won = false;
+      gameData.lost = false;
+   }
    
    // always empty sleected as sets cannot be serialized
    gameData.selected = new Set();
@@ -70,6 +76,17 @@ function fillGameStructures(jsonData) {
    document.getElementById("author").textContent = "Level designed by " + gameData.author
 
 }
+
+function winGame() {
+   gameData.won = true;
+   gameData.lost = false;
+   local.storeGame();
+}function loseGame() {
+   gameData.won = false;
+   gameData.lost = true;
+   local.storeGame();
+}
+
 
 function incrementSolvedCatetegoriesCount() {
    gameData.solvedCategoriesCount++;

@@ -1,4 +1,4 @@
-import { gameData } from "./globals.js";
+import { gameData, winGame } from "./globals.js";
 import { remAllFromSelected } from "./selectedManager.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { addMistake } from "./addMistake.js";
@@ -81,6 +81,7 @@ function submit() {
                if (gameData.solvedCategoriesCount == 4) setTimeout(() => {
                   replaceButtons();
                   winScreen(true);
+                  winGame();
                }, 750);
             });
          }

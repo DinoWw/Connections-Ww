@@ -1,5 +1,5 @@
 import { winScreen } from "./endScreen.js";
-import { gameData } from "./globals.js";
+import { gameData, loseGame } from "./globals.js";
 import { storeGame } from "./localStorageInterface.js";
 import { resolveCategory } from "./resolveCategory.js";
 import { clickAction, tileByTitle } from "./tiles.js";
@@ -23,6 +23,7 @@ function addMistake() {
          if (i == 1) {
             console.log("loss")
             setTimeout(endGame, 750);
+            loseGame();
          }
          return
       }
