@@ -1,5 +1,6 @@
 import { loadGame } from "./gameLoader.js";
 import { removeWinScreen } from "./endScreen.js";
+import { metaData } from "./globals.js";
 import { returnButtons } from "./buttons.js";
 
 export { toggleMenu, loadMenu };
@@ -34,22 +35,22 @@ function loadMenu() {
    const gameHome = document.getElementById("game-menu");
 
    // TODO: metaData
-   for (const gameName of ["game", "game2"]) {//of metaData.visibleGames){
-      const btn = newGameButton(gameName);
+   for (const gameName in metaData.visibleGames) {
+      const btn = newGameButton(gameName, metaData.visibleGames[gameName]);
       gameHome.appendChild(btn);
    }
 
 }
 
 
-function newGameButton(text) {
+function newGameButton(text, fileName) {
    const p = document.createElement('p');
    // TODO: not text but title... but it's stored in a different file so maybe fix that
    p.innerText = text
    const div = document.createElement('div')
    div.classList.add("menu-option")
    div.appendChild(p);
-   div.gameToLoad = text;
+   div.gameToLoad = fileName;
    // TODO: implement
    div.addEventListener("click", loadGameHandler);
 

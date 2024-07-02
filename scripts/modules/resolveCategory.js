@@ -1,87 +1,87 @@
 
-import { createTile } from "./tiles.js";
+import { createCategoryTile, createTile, fixTileOrder } from "./tiles.js";
 import { translateElement } from "./translateElement.js";
-import { incrementSolvedCatetegoriesCount, solvedCategoriesCount } from "./globals.js";
+import { incrementSolvedCatetegoriesCount, gameData } from "./globals.js";
 
 export { resolveCategory };
 
 
 
 // category - object; elems - DOM element array
-function resolveCategory(category, elems) {
+function resolveCategory(category, elems, animate = true) {
     if(category == undefined) throw new Error("cannot resolve undefined category");
     let correctEls = elems;
 
     //console.log("correct: ", correctEls)
     if (correctEls.length != 4) {
-        return false;
+        throw new Error("cannot resolve, wrong number of elements");
     }
 
     // else if all are already ordered, do just merge them
 
     // TODO: code duplication, el should be event.target 
     //      or smthing and code should be refactored into a function
-    if (correctEls.every((el, i) => el.x == i && el.y == solvedCategoriesCount)) {
-
-        const elems = document.createElement('p');
-        correctEls.forEach(el => {
-            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
-            el.parentNode.removeChild(el);
-        })
-
-        elems.innerHTML = elems.innerHTML.slice(0, -1)
+    if (correctEls.every((el, i) => el.x == i && el.y == gameData.solvedCategoriesCount) || !animate) {
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
-        newTile.firstElementChild.style.backgroundColor = category.color;
-        newTile.firstElementChild.appendChild(elems)
+        if(!animate) {
+            collectElements(gameData.solvedCategoriesCount, correctEls, false);
+        }
+        correctEls.forEach(el => {
+            el.parentNode.removeChild(el);
+        });
+        const newTile = createCategoryTile(category, gameData.solvedCategoriesCount);
+        tileHome.appendChild(newTile);
+        
         incrementSolvedCatetegoriesCount();
 
-        tileHome.appendChild(newTile);
         return;
     }
     // else
 
-    collectElements(solvedCategoriesCount, ...correctEls);
+    collectElements(gameData.solvedCategoriesCount, correctEls);
 
     correctEls[0].addEventListener("animationend", () => {
-        const elems = document.createElement("p");
-        correctEls.forEach(el => {
-            elems.innerHTML = elems.innerHTML + " " + el.textContent.trim() + ","
-            el.parentNode.removeChild(el);
-        })
 
-        elems.innerHTML = elems.innerHTML.slice(0, -1)
+        correctEls.forEach(el => {
+            el.parentNode.removeChild(el);
+        });
 
         const tileHome = document.getElementById("tiles");
-        const newTile = createTile(category.title, null, 0, solvedCategoriesCount, true);
+        const newTile = createCategoryTile(category, gameData.solvedCategoriesCount);
+        tileHome.appendChild(newTile);
 
-        newTile.firstElementChild.style.backgroundColor = category.color
-        newTile.firstElementChild.appendChild(elems)
         incrementSolvedCatetegoriesCount();
 
-        tileHome.appendChild(newTile);
+        return;
 
     })
 };
 
 
 
-// moraju bit parent divovi u ovom elemnts !!!
-function collectElements(row, ...elements) {
+// elements contains DOM elements of the outermost div a tile has
+function collectElements(row, elements, animate = true) {
     if (elements.length != 4) {
         throw new Error("cudno koristenje collectElements");
     }
 
 
-    // TO DO-not: this is horrible code for edge case where a tile is in a row it is supposed to be in
+    // handle if tile is in row it should be in
     const frees = [];
     const doubles = [];
     elements.forEach((el, i) => {
         let [x1, y1] = [el.x, el.y];
         let [x2, y2] = [i, row];
-
-        translateElement(el, x1, y1, x2, y2);
+        
+        if(animate){
+            translateElement(el, x1, y1, x2, y2);
+        }
+        else {
+            // next x and next y
+            el.nx = x2;
+            el.ny = y2;
+        }
 
         frees.push([x1, y1]);
         doubles.push([x2, y2]);
@@ -98,9 +98,29 @@ function collectElements(row, ...elements) {
 
     doubles.forEach(d => {
         const t1 = tileByCoordinates(...d);
-        translateElement(t1, ...d, ...frees.pop());
-    })
+        const [x2, y2] = frees.pop();
+        if(animate){
+            translateElement(t1, ...d, x2, y2);
+        }
+        else {
+            // next x and next y
+            t1.nx = x2;
+            t1.ny = y2;
+        }
+    });
 
+    if(!animate){
+        const updatePos = (el) => {
+            el.x = el.nx;
+            el.y = el.ny;
+        }
+        doubles.forEach((pos) => {
+            let t = tileByCoordinates(...pos)
+            updatePos(tileByCoordinates(...pos))
+        });
+        elements.forEach(updatePos);
+        fixTileOrder();
+    }
 
 
 }
