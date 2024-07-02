@@ -1,9 +1,9 @@
 {
     "visibleGames": {
         "Connections #000": "game.json",
-        "Connections #001": "game2.json"
+        "Connections #001": "game2.json",
+        "Jedna Laksa": "game_korny.json"
     },
     "invisibleGames": {
-        "Jedna Laksa": "game_korny.json"
     }
 }
