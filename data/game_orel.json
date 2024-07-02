@@ -1,0 +1,47 @@
+{
+   "title": "Kvizalo",
+   "initial": null,
+   "author": "Hrskavi Orel",
+   "categories": [
+      {
+         "title": "AMERIČKI GRADOVI",
+         "color": "#FFF78D",
+         "elements": [
+            "INDIANA",
+            "IOWA",
+            "OHIO",
+            "WISCONSIN"
+         ]
+      },
+      {
+         "title": "SUPERMAN",
+         "color": "#A4DCFF",
+         "elements": [
+            "HEROJ",
+            "LASER",
+            "LET",
+            "ČOVJEK"
+         ]
+      },
+      {
+         "title": "SPIDERMAN",
+         "color": "#A173BC",
+         "elements": [
+            "KOSTIM",
+            "MOZAK",
+            "PAUK",
+            "UJAK"
+         ]
+      },
+      {
+         "title": "HRVATSKI BRAINROT",
+         "color": "pink",
+         "elements": [
+            "DUPE",
+            "KARIZMA",
+            "RUB",
+            "ČELJUST"
+         ]
+      }
+   ]
+}

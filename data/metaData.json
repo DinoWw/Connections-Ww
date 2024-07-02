@@ -2,7 +2,8 @@
     "visibleGames": {
         "Connections #000": "game.json",
         "Connections #001": "game2.json",
-        "Jedna Laksa": "game_korny.json"
+        "Jedna Laksa": "game_korny.json",
+        "Kvizalo": "game_orel.json"
     },
     "invisibleGames": {
     }
