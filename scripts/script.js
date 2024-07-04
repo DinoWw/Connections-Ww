@@ -37,12 +37,6 @@ async function onLoad() {
 
    document.querySelector(".overlay").addEventListener("click", removeWinScreen);
 
-   // one away and such
-   // is now in popUp.js
-   // document.querySelector(".popup").addEventListener("animationend", event => {
-   //    event.target.classList.remove("show");
-   // });
-
 
    loadMenu();
 
