@@ -1,4 +1,6 @@
+
 import { popUp } from "./modules/popUp.js";
+import { wrongInput, checkIfRepeatingWords } from "./modules/wrongInputHandler.js";
 
 const game = {}
 
@@ -18,7 +20,6 @@ function onLoad() {
 }
 
 function checkForErrors() {
-   // currently not checking if theres repeating items or category names 
 
    // refreshing
    if (Object.values(game).length != 0) Object.keys(game).forEach(key => delete game[key])
@@ -31,15 +32,19 @@ function checkForErrors() {
 
    // each category and its items
    document.querySelectorAll(".category-input").forEach(cat => {
-      let itemlist = cat.querySelector(".items-inp").value.split(",").map(item => item.trim())
+      let itemlist = cat.querySelector(".items-inp").value.split(",").map(item => item.trim().toUpperCase())
       //itemlist = itemlist.map(item => item.trim())
-      console.log(itemlist)
+
       if (itemlist.length != 4) {
          wrongInput(cat.querySelector(".items-inp"))
          success = false
       }
 
-      let catname = cat.querySelector(".category-inp").value
+      let catname = cat.querySelector(".category-inp").value.trim().toUpperCase()
+      if (!catname) {
+         wrongInput(cat.querySelector(".category-inp"))
+         success = false
+      }
       game.categories.push({
          "title": catname,
          "color": colors[index],
@@ -47,6 +52,10 @@ function checkForErrors() {
       })
       index++
    })
+   if (checkIfRepeatingWords(game.categories)) {
+      // wrongInput() // sve cateogry inputs ? 
+      success = false
+   }
 
    // custom order
    let order = document.querySelector(".custom-order")
@@ -58,21 +67,35 @@ function checkForErrors() {
 
    // game name
    let name = document.querySelector(".game-name").value
-   if (!name) wrongInput(document.querySelector(".game-name"))
+   if (!name) {
+      wrongInput(document.querySelector(".game-name"))
+      success = false
+   }
    else game.title = name
 
    // game author
    let author = document.querySelector(".author").value
-   if (!author) wrongInput(document.querySelector(".author"))
+   if (!author) {
+      wrongInput(document.querySelector(".author"))
+      success = false
+   }
    else game.author = author
 
-   console.log(game)
+
+   if (success) correctInput(game)
 
 }
 
-function wrongInput(inpElement) {
-   console.log("error at", inpElement)
-   popUp("cringe")
-   if (inpElement.classList.contains("category-input")) popUp("4 categories, comma-separated!")
-   inpElement.style.backgroundColor = "#ff8888"
+
+async function correctInput(gameObj) {
+   const res = await fetch("/connections/addGame", {
+      mode: 'cors',
+      method: "post",
+      headers: {
+         "Content-type": "application/json",
+         //"Content-type": "application/x-www-form-urlencoded",
+      },
+      body: JSON.stringify({ game: gameObj })
+   })
+   console.log("response", res)
 }
