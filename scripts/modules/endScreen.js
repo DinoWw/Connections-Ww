@@ -26,15 +26,12 @@ function winScreen(won) {
 }
 
 function copyToClipboard() {
-   let text = document.querySelector("#copypasta").innerHTML
-
-   text = text.replaceAll("<br>", "\n");
-   text = document.querySelector(".gameTitle").textContent + "\n" + text
-   text = text.concat(
-      `
+   let text = 
+`${document.querySelector(".gameTitle").textContent}
+${document.querySelector("#copypasta").innerHTML.replaceAll("<br>", "\n")}
 netwwork.duckdns.org/Connections-Ww\
 `
-   );
+
    navigator.clipboard.writeText(text);
 
    const button = document.querySelector(".copy-button")
