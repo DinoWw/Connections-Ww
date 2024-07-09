@@ -65,4 +65,4 @@ router.post("/addGame", function (req, res) {
 
 
 
-module.exports = { /*"path": "/connections",*/ "router": router }
+module.exports = { "path": "/connections", "router": router }
