@@ -4,6 +4,7 @@ export {
    incrementSolvedCatetegoriesCount,
    gameData,
    metaData,
+   reloadMetaData,
    categoryByElement,
    fillGameStructures,
    categoryId,
@@ -15,9 +16,8 @@ export {
 // To other modules and scripts should be read-only excepth through the funcutions below !!
 let gameData = {};
 
-const metaData =
-   await fetch(`data/metaData.json`)
-      .then(response => response.json());
+let metaData;
+await reloadMetaData;
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
@@ -117,3 +117,8 @@ function checkTextOverflow() {
    }
 }
 
+async function reloadMetaData(){
+   metaData =
+      await fetch(`data/metaData.json`)
+         .then(response => response.json());
+}
