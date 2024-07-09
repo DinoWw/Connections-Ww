@@ -10,7 +10,7 @@ router.post("/addGame", function (req, res) {
    let body = req.body.game
 
    // check 
-   // dodat check dal postocji isti game 
+   // TODO dodat check dal postocji isti game name
    let goodInput = true
    if (body.title && body.author) {
 
