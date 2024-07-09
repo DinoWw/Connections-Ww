@@ -50,7 +50,8 @@ function fillTiles() {
 
    const tileHome = document.getElementById("tiles");
 
-   if (!gameData.initial || gameData.initial == []) {
+
+   if (!gameData.initial || gameData.initial.length == 0) {
       gameData.categories.forEach((category, ic) => {
          category.elements.forEach((term, it) => {
             const newTile = createTile(term, category.title, it, ic, false);
@@ -70,33 +71,20 @@ function fillTiles() {
    }
 
    // redo guesses from localstorage
-   if(gameData.guesses.length != 0){
-      if(gameData.lost) {
-         for(let c of gameData.categories){
-            const els = 
-            c.elements.map(title => 
-               [...tileHome.querySelectorAll('.tile')].find(el => 
+   if (gameData.guesses.length != 0) {
+      for (let guess of gameData.guesses) {
+         const potentialTitle = categoryByElement(guess[0]).title;
+         if (!guess.every((tileText) => categoryByElement(tileText).title == potentialTitle)) continue;
+         //else 
+         //resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls, false);
+
+         const els =
+            guess.map(title =>
+               [...tileHome.querySelectorAll('.tile')].find(el =>
                   el.querySelector('p').textContent == title
                )
             );
-            resolveCategory(c, els, false);
-         }
-      }
-      else {
-         for(let guess of gameData.guesses){
-            const potentialTitle = categoryByElement(guess[0]).title;
-            if(!guess.every((tileText) => categoryByElement(tileText).title == potentialTitle)) continue;
-            //else 
-            //resolveCategory(gameData.categories.find(c => c.title == selectedEls[0].category), selectedEls, false);
-   
-            const els = 
-            guess.map(title => 
-               [...tileHome.querySelectorAll('.tile')].find(el => 
-                  el.querySelector('p').textContent == title
-               )
-            );
-            resolveCategory(gameData.categories[categoryId[potentialTitle]], els, false);
-         }
+         resolveCategory(gameData.categories[categoryId[potentialTitle]], els, false);
       }
    }
 
