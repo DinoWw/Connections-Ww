@@ -39,7 +39,7 @@ router.post("/addGame", function (req, res) {
       let gameFileName = "game_" + Object.keys(metaData.visibleGames).length + ".json"
 
       // create file
-      fs.writeFile(path.resolve(__dirname, "./public/data/") + gameFileName, gameJSON, (err) => {
+      fs.writeFile(path.resolve(__dirname, "./public/data/", gameFileName), gameJSON, (err) => {
          if (err) throw err;
          console.log('The file has been saved! Filename: ' + gameFileName);
       })
