@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
+const path = require("path")
+
+router.use(express.static(path.join(__dirname, 'public')));
 
 
 router.post("/addGame", function (req, res) {
@@ -60,4 +63,4 @@ router.post("/addGame", function (req, res) {
 
 
 
-module.exports = { /*"path": "/connections",*/ "router": router }
+module.exports = { "path": "/connections", "router": router }
