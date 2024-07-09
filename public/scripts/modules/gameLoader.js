@@ -51,7 +51,7 @@ function fillTiles() {
    const tileHome = document.getElementById("tiles");
 
 
-   if (!gameData.initial || gameData.initial == []) {
+   if (!gameData.initial || gameData.initial.length == 0) {
       gameData.categories.forEach((category, ic) => {
          category.elements.forEach((term, it) => {
             const newTile = createTile(term, category.title, it, ic, false);
