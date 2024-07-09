@@ -1,15 +1,13 @@
 
-import { popUp } from "./modules/popUp.js";
 import { wrongInput, checkIfRepeatingWords } from "./modules/wrongInputHandler.js";
 
 const game = {}
 
 // should be a global var or in a .json
 const colors = ["#FFF78D", "#A4DCFF", "#A173BC", "pink"]
+let existingNames = null
 
-onLoad();
-
-function onLoad() {
+async function onLoad() {
    document.getElementById("submit-game").addEventListener("click", checkForErrors)
    let i = 0
    document.querySelectorAll(".category-input").forEach(c => {
@@ -17,6 +15,8 @@ function onLoad() {
       i++
    })
 
+   existingNames = await fetch("./data/metaData.json").then(res => res.json())
+   existingNames = existingNames.visibleGames
 }
 
 function checkForErrors() {
@@ -67,7 +67,8 @@ function checkForErrors() {
 
    // game name
    let name = document.querySelector(".game-name").value
-   if (!name) {
+   console.log(existingNames)
+   if (!name || Object.keys(existingNames).includes(name)) {
       wrongInput(document.querySelector(".game-name"))
       success = false
    }
@@ -99,3 +100,6 @@ async function correctInput(gameObj) {
    })
    console.log("response", res)
 }
+
+
+onLoad();
