@@ -56,6 +56,10 @@ input:focus {
 }
 
 @media only screen and (max-width: 800px) {
+   body {
+      padding: 60px;
+   }
+
    .hor-container {
       width: 100%;
       display: block;
