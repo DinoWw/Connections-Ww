@@ -101,7 +101,9 @@ async function correctInput(gameObj) {
    })
    if (res.status == 200) {
       popUp("Sucessfully added")
-      //document.querySelectorAll("input").forEach(inp => inp.value = "")
+      document.querySelectorAll("input").forEach(inp => inp.value = "")
+      existingNames = await fetch("./data/metaData.json").then(res => res.json())
+      existingNames = existingNames.visibleGames
    }
 }
 
