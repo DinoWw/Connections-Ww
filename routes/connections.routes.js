@@ -10,7 +10,6 @@ router.post("/addGame", function (req, res) {
    // dodat check dal postocji isti game 
    let goodInput = true
    if (body.title && body.author) {
-      console.log("good.1")
 
       let items = new Set()
       let titles = new Set()
@@ -28,7 +27,6 @@ router.post("/addGame", function (req, res) {
       goodInput = false
 
    }
-   console.log(goodInput, "goodinput")
 
    // creating game file
    if (goodInput) {
@@ -40,7 +38,7 @@ router.post("/addGame", function (req, res) {
       // create file
       fs.writeFile("./public/data/" + gameFileName, gameJSON, (err) => {
          if (err) throw err;
-         console.log('The file has been saved!');
+         console.log('The file has been saved! Filename: ' + gameFileName);
       })
 
 

@@ -1,4 +1,5 @@
 
+import { popUp } from "./modules/popUp.js";
 import { wrongInput, checkIfRepeatingWords } from "./modules/wrongInputHandler.js";
 
 const game = {}
@@ -98,7 +99,10 @@ async function correctInput(gameObj) {
       },
       body: JSON.stringify({ game: gameObj })
    })
-   console.log("response", res)
+   if (res.status == 200) {
+      popUp("Sucessfully added")
+      //document.querySelectorAll("input").forEach(inp => inp.value = "")
+   }
 }
 
 

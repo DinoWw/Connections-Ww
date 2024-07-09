@@ -1,12 +1,23 @@
 export { popUp }
 
-document.querySelector(".popup").addEventListener("animationend", event => {
-   event.target.classList.remove("show");
-});
 
 function popUp(text) {
-   let popup = document.querySelector(".popup")
-   popup.textContent = text
-   popup.classList.add("show")
+   document.querySelectorAll(".newpopup").forEach(p => p.remove())
 
+   let popup = document.createElement("p")
+   popup.innerHTML = document.querySelector(".popup").innerHTML
+   popup.classList.add("popup", "newpopup")
+   popup.textContent = text
+
+   setTimeout(() => popup.classList.add("show"), 1)
+
+   setTimeout(() => removePopUp(popup), 3000)
+   document.body.appendChild(popup)
+}
+
+function removePopUp(popup) {
+   if (!popup) return
+   popup.classList.remove("show")
+
+   setTimeout(() => popup.remove(), 2000)
 }

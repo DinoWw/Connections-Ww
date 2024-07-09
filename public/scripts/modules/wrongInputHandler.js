@@ -6,7 +6,7 @@ export { wrongInput, checkIfRepeatingWords }
 
 function wrongInput(inpElement) {
    console.log("error at", inpElement)
-   popUp("cringe")
+   //popUp("cringe")
    if (inpElement.classList.contains("category-input")) popUp("Write 4 categories, comma separated!")
    else if (inpElement.classList.contains("game-name")) popUp("Can't be empty! Maybe name already exists.")
    else popUp("Incorrect input!")
