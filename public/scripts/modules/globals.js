@@ -9,7 +9,7 @@ export {
    fillGameStructures,
    categoryId,
    checkTextOverflow,
-   winGame, 
+   winGame,
    loseGame
 };
 
@@ -17,7 +17,7 @@ export {
 let gameData = {};
 
 let metaData;
-await reloadMetaData;
+await reloadMetaData();
 
 // needs reformatting if we need more than one onresize function
 window.onresize = checkTextOverflow;
@@ -48,11 +48,11 @@ function fillGameStructures(jsonData) {
    if (gameData.mistakes === undefined) {
       gameData.mistakes = 0;
    }
-   if(gameData.won === undefined || gameData.lost === undefined) {
+   if (gameData.won === undefined || gameData.lost === undefined) {
       gameData.won = false;
       gameData.lost = false;
    }
-   
+
    // always empty sleected as sets cannot be serialized
    gameData.selected = new Set();
 
@@ -82,7 +82,7 @@ function winGame() {
    gameData.won = true;
    gameData.lost = false;
    local.storeGame();
-}function loseGame() {
+} function loseGame() {
    gameData.won = false;
    gameData.lost = true;
    local.storeGame();
@@ -117,8 +117,9 @@ function checkTextOverflow() {
    }
 }
 
-async function reloadMetaData(){
+async function reloadMetaData() {
    metaData =
       await fetch(`data/metaData.json`)
          .then(response => response.json());
+   console.log(metaData)
 }

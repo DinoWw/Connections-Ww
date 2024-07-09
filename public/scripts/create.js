@@ -1,6 +1,7 @@
 
 import { popUp } from "./modules/popUp.js";
 import { wrongInput, checkIfRepeatingWords } from "./modules/wrongInputHandler.js";
+import { reloadMetaData } from "./modules/globals.js";
 
 const game = {}
 
@@ -104,6 +105,10 @@ async function correctInput(gameObj) {
       document.querySelectorAll("input").forEach(inp => inp.value = "")
       existingNames = await fetch("./data/metaData.json").then(res => res.json())
       existingNames = existingNames.visibleGames
+      await reloadMetaData()
+   }
+   else {
+      popUp("error")
    }
 }
 
