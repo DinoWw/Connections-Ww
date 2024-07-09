@@ -34,12 +34,12 @@ router.post("/addGame", function (req, res) {
    // creating game file
    if (goodInput) {
       let gameJSON = JSON.stringify(body)
-      let metaData = JSON.parse(fs.readFileSync("./public/data/metaData.json", "utf8"))
+      let metaData = JSON.parse(fs.readFileSync(path.resolve(__dirname, "./public/data/metaData.json"), "utf8"))
       let gameName = body.title
       let gameFileName = "game_" + Object.keys(metaData.visibleGames).length + ".json"
 
       // create file
-      fs.writeFile("./public/data/" + gameFileName, gameJSON, (err) => {
+      fs.writeFile(path.resolve(__dirname, "./public/data/") + gameFileName, gameJSON, (err) => {
          if (err) throw err;
          console.log('The file has been saved! Filename: ' + gameFileName);
       })
@@ -47,7 +47,7 @@ router.post("/addGame", function (req, res) {
 
       // edit metaData visible games
       metaData.visibleGames[gameName] = gameFileName
-      fs.writeFile("./public/data/metaData.json", JSON.stringify(metaData), (err) => {
+      fs.writeFile(path.resolve(__dirname, "./public/data/metaData.json"), JSON.stringify(metaData), (err) => {
          if (err) throw err;
          console.log('MetaData has been altered');
       })
