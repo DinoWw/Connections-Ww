@@ -3,6 +3,9 @@ const router = express.Router()
 const fs = require('fs')
 
 
+router.use(express.static(path.join(__dirname, 'public')));
+
+
 router.post("/addGame", function (req, res) {
    let body = req.body.game
 
