@@ -55,7 +55,8 @@ function checkForErrors() {
       index++
    })
    if (checkIfRepeatingWords(game.categories)) {
-      // wrongInput() // sve cateogry inputs ? 
+      //wrongInput()  
+      popUp("Repeating words!")
       success = false
    }
 
