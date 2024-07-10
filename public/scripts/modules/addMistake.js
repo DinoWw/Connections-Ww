@@ -65,7 +65,7 @@ function endGame() {
       if (cT == undefined) {
          // All categories have been merged so display end screen
          setTimeout(() => {
-            winScreen(false);
+            winScreen();
             replaceButtons();
          }, 750);
          return;

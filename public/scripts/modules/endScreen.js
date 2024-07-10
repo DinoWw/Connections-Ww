@@ -3,7 +3,7 @@ import { emoji } from "./resultsLogger.js";
 
 export { winScreen, copyToClipboard, removeWinScreen };
 
-function winScreen(won) {
+function winScreen() {
 
    document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
@@ -16,7 +16,7 @@ function winScreen(won) {
    if (won == true) {
       document.querySelector(".win-text").textContent = "WIN"
    }
-   else if (won == false) {
+   else if (lost == false) {
       document.querySelector(".win-text").textContent = "LOSS"
    }
    else {
@@ -27,7 +27,7 @@ function winScreen(won) {
 
 function copyToClipboard() {
    let text =
-      `${document.querySelector(".gameTitle").textContent}
+`${document.querySelector(".gameTitle").textContent}
 ${document.querySelector("#copypasta").innerHTML.replaceAll("<br>", "\n")}
 netwwork.duckdns.org/connections\
 `

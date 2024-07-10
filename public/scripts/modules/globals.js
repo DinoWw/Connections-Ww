@@ -10,7 +10,9 @@ export {
    categoryId,
    checkTextOverflow,
    winGame,
-   loseGame
+   loseGame,
+   won,
+   lost
 };
 
 // To other modules and scripts should be read-only excepth through the funcutions below !!
