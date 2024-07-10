@@ -17,10 +17,8 @@ function wrongInput(inpElement) {
 function checkIfRepeatingWords(categories) {
    console.log("checking")
    let set = new Set()
-   console.log(set)
 
    categories.forEach(c => c.elements.forEach(elem => set.add(elem))) //uppercase bi trebalo bit zanemarivo 
-
    console.log(set)
    if (set.size != 16) {
       return true
@@ -32,7 +30,6 @@ function checkIfRepeatingWords(categories) {
    if (set.size != 4) {
       return true
    }
-
 
    return false
 }

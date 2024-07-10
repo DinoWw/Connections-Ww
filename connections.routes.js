@@ -56,7 +56,7 @@ router.post("/addGame", function (req, res) {
       let metaData = JSON.parse(fs.readFileSync(path.resolve(__dirname, "./public/data/metaData.json"), "utf8"))
       let gameName = body.title
       //let gameFileName = "game_" + Object.keys(metaData.visibleGames).length + ".json"
-      let gameFileName = "game_" + gameName + "_" + body.author + ".json"
+      let gameFileName = "game_" + gameName.replace(/\s+/g, '') + "_" + body.author.replace(/\s+/g, '') + ".json"
 
       // checks if filename already exists
       let existsAlready = fs.readdirSync(path.resolve(__dirname, "./public/data")).includes(gameFileName)
