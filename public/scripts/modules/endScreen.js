@@ -29,7 +29,7 @@ function copyToClipboard() {
    let text =
       `${document.querySelector(".gameTitle").textContent}
 ${document.querySelector("#copypasta").innerHTML.replaceAll("<br>", "\n")}
-netwwork.duckdns.org/Connections-Ww\
+netwwork.duckdns.org/connections\
 `
 
    navigator.clipboard.writeText(text);
