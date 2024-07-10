@@ -26,8 +26,8 @@ function winScreen(won) {
 }
 
 function copyToClipboard() {
-   let text = 
-`${document.querySelector(".gameTitle").textContent}
+   let text =
+      `${document.querySelector(".gameTitle").textContent}
 ${document.querySelector("#copypasta").innerHTML.replaceAll("<br>", "\n")}
 netwwork.duckdns.org/Connections-Ww\
 `

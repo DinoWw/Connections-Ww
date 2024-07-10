@@ -59,13 +59,15 @@ function checkForErrors() {
       success = false
    }
 
+   /*
    // custom order
    let order = document.querySelector(".custom-order")
    if (order.value) {
       game.initial = order.value.split(",")
    } else {
       game.initial = []
-   }
+   }*/
+   game.initial = []
 
    // game name
    let name = document.querySelector(".game-name").value
