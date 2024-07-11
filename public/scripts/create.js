@@ -34,7 +34,7 @@ function checkForErrors() {
 
    // each category and its items
    document.querySelectorAll(".category-input").forEach(cat => {
-      let itemlist = cat.querySelector(".items-inp").value.split(",").map(item => item.trim().toUpperCase())
+      let itemlist = cat.querySelector(".items-inp").value.split(",").map(item => item.trim().toUpperCase()).filter(item => item != "")
       //itemlist = itemlist.map(item => item.trim())
 
       if (itemlist.length != 4) {
@@ -55,7 +55,6 @@ function checkForErrors() {
       index++
    })
    if (checkIfRepeatingWords(game.categories)) {
-      //wrongInput()  
       popUp("Repeating words!")
       success = false
    }

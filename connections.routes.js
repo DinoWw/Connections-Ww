@@ -29,7 +29,6 @@ router.post("/addGame", function (req, res) {
    let body = req.body.game
 
    // check 
-   // TODO dodat check dal postocji isti game name
    let goodInput = true
    if (body.title && body.author) {
 
@@ -55,14 +54,17 @@ router.post("/addGame", function (req, res) {
       let gameJSON = JSON.stringify(body)
       let metaData = JSON.parse(fs.readFileSync(path.resolve(__dirname, "./public/data/metaData.json"), "utf8"))
       let gameName = body.title
-      //let gameFileName = "game_" + Object.keys(metaData.visibleGames).length + ".json"
-      let gameFileName = "game_" + gameName.replace(/\s+/g, '') + "_" + body.author.replace(/\s+/g, '') + ".json"
+      let numOfGames = Object.keys(metaData.visibleGames).length
+      let gameFileName = "game_" + numOfGames + ".json"
+      //let gameFileName = "game_" + gameName.replace(/\s+/g, '') + "_" + body.author.replace(/\s+/g, '') + ".json"
 
       // checks if filename already exists
       let existsAlready = fs.readdirSync(path.resolve(__dirname, "./public/data")).includes(gameFileName)
-      if (existsAlready) {
-         res.sendStatus(404)
-         return
+      while (existsAlready) {
+         numOfGames++
+         gameFileName = "game_" + numOfGames + ".json"
+         existsAlready = fs.readdirSync(path.resolve(__dirname, "./public/data")).includes(gameFileName)
+
       }
 
       // create file

@@ -16,6 +16,7 @@
     <link href="styles/mobile.css" rel="stylesheet" type="text/css">
     <link href="styles/general.css" rel="stylesheet" type="text/css">
     <link href="styles/popup.css" rel="stylesheet" type="text/css">
+    <link href="styles/tutorial.css" rel="stylesheet" type="text/css">
 
 
     <script src="scripts/script.js" defer type="module"></script>
@@ -30,6 +31,12 @@
     <div class="menu-button"></div>
     <div class="menu-container">
         <div class="menu-options">
+
+            <div class="menu-option" id="tutorial-button">
+                <p>Tutorial</p>
+            </div>
+
+            <hr>
 
             <div class="menu-option unclickable">
                 <p>More connections: </p>
@@ -68,7 +75,7 @@
 
     <div class="overlay"> </div>
     <div class="endscreen">
-        <p class="gameTitle"></p>
+        <p class="gameTitle "></p>
         <p class="win-text">WIN</p>
         <p id="copypasta">insert copypasta</p>
         <p id="author"></p>
@@ -77,6 +84,22 @@
             <button class="endscreen-button more-button white-button">More</button>
         </div>
     </div>
+
+    <div class="tutorial endscreen">
+        <p class="tutorial-title">TUTORIAL</p>
+        <p class="tutorial-text">
+
+            Match <b>4</b> items that belong in the <b> same category.
+            </b></p>
+
+        <p>Use the <b>left-side menu</b> to select a game.</p>
+
+        <p><b>Create your own game</b> by selecting "Create yours!" in the menu.</p>
+        <div class="buttons"> <!-- mozda rework -->
+            <button class="gotit-button black-button">Got it!</button>
+        </div>
+    </div>
+
 
 
     <div id="mistakes">

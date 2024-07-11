@@ -6,6 +6,8 @@ export { winScreen, copyToClipboard, removeWinScreen };
 
 
 function winScreen() {
+   // remove if existing
+   document.querySelectorAll(".endscreen").forEach(elem => elem.classList.remove("show"))
 
    document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
@@ -29,7 +31,7 @@ function winScreen() {
 
 function copyToClipboard() {
    let text =
-`${document.querySelector(".gameTitle").textContent}
+      `${document.querySelector(".gameTitle").textContent}
 ${document.querySelector("#copypasta").innerHTML.replaceAll("<br>", "\n")}
 netwwork.duckdns.org/connections\
 `

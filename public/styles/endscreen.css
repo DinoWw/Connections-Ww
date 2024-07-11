@@ -34,7 +34,7 @@
    margin-right: 31vw;
    margin-top: 15vh;
    background-color: white;
-   padding: 10px;
+   padding: 20px;
 
    opacity: 1;
 
@@ -52,6 +52,14 @@
 
    top: 15vw;
    opacity: 0;
+
+
+   text-align: center;
+
+}
+
+.endscreen>p {
+   padding: 10px;
 }
 
 .endscreen.show {
@@ -62,10 +70,6 @@
    opacity: 1;
 }
 
-.endscreen>p {
-   text-align: center;
-   padding: 10px;
-}
 
 /* mozda bi bilo lijepo napravit animaciju kad se copy button  klikne opet */
 
