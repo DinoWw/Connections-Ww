@@ -20,7 +20,7 @@ function winScreen() {
    if (gameData.won == true) {
       document.querySelector(".win-text").textContent = "WIN"
    }
-   else if (gameData.lost == false) {
+   else if (gameData.lost == true) {
       document.querySelector(".win-text").textContent = "LOSS"
    }
    else {
