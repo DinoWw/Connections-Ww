@@ -1,6 +1,6 @@
 
 import { emoji } from "./resultsLogger.js";
-import { won, lost } from "./globals.js";
+import { gameData } from "./globals.js";
 
 export { winScreen, copyToClipboard, removeWinScreen };
 
@@ -17,10 +17,10 @@ function winScreen() {
    //document.querySelector(".win-text").textContent = won ? "WIN" : "LOSS";
 
    // current workaround until global variable won implemented
-   if (won == true) {
+   if (gameData.won == true) {
       document.querySelector(".win-text").textContent = "WIN"
    }
-   else if (lost == false) {
+   else if (gameData.lost == false) {
       document.querySelector(".win-text").textContent = "LOSS"
    }
    else {
