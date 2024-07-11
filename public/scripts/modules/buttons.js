@@ -80,8 +80,8 @@ function submit() {
             selectedEls[0].addEventListener("animationend", () => {
                if (gameData.solvedCategoriesCount == 4) setTimeout(() => {
                   replaceButtons();
-                  winScreen(true);
                   winGame();
+                  winScreen();
                }, 750);
             });
          }

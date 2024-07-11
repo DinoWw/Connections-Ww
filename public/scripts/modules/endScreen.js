@@ -3,7 +3,7 @@ import { emoji } from "./resultsLogger.js";
 
 export { winScreen, copyToClipboard, removeWinScreen };
 
-function winScreen(won) {
+function winScreen() {
    // remove if existing
    document.querySelectorAll(".endscreen").forEach(elem => elem.classList.remove("show"))
 
@@ -18,7 +18,7 @@ function winScreen(won) {
    if (won == true) {
       document.querySelector(".win-text").textContent = "WIN"
    }
-   else if (won == false) {
+   else if (lost == false) {
       document.querySelector(".win-text").textContent = "LOSS"
    }
    else {
