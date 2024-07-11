@@ -1,7 +1,9 @@
 
 import { emoji } from "./resultsLogger.js";
+import { won, lost } from "./globals.js";
 
 export { winScreen, copyToClipboard, removeWinScreen };
+
 
 function winScreen() {
    // remove if existingrAll(".endscreen").forEach(elem => elem.classList.remove("show"))
