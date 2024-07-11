@@ -9,6 +9,9 @@ function wrongInput(inpElement) {
    //popUp("cringe")
    if (inpElement.classList.contains("category-input")) popUp("Write 4 categories, comma separated!")
    else if (inpElement.classList.contains("game-name")) popUp("Can't be empty! Maybe name already exists.")
+   else if (inpElement.classList.contains("author")) popUp("Missing author name!")
+   else if (inpElement.classList.contains("category-inp")) popUp("Missing category name!")
+   else if (inpElement.classList.contains("items-inp")) popUp("Not enough words!")
    else popUp("Incorrect input!")
    inpElement.style.backgroundColor = "#ff8888"
 }

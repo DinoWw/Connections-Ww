@@ -3,6 +3,8 @@ import { removeWinScreen, copyToClipboard } from "./modules/endScreen.js";
 import { loadMenu, toggleMenu } from "./modules/menu.js";
 import { loadGame } from "./modules/gameLoader.js";
 import { winScreen } from "./modules/addMistake.js";
+import { showTutorial } from "./modules/tutorial.js"
+import { removeTutorial } from "./modules/tutorial.js";
 
 // MAIN:
 onLoad();
@@ -35,8 +37,12 @@ async function onLoad() {
    document.querySelector(".more-button").addEventListener("click", removeWinScreen);
    document.querySelector(".more-button").addEventListener("click", toggleMenu);
 
+   // should be 1 function to remove all overlay elements but alas...
    document.querySelector(".overlay").addEventListener("click", removeWinScreen);
+   document.querySelector(".overlay").addEventListener("click", removeTutorial);
 
+   document.getElementById("tutorial-button").addEventListener("click", showTutorial);
+   document.querySelector(".gotit-button").addEventListener("click", removeTutorial);
 
    loadMenu();
 

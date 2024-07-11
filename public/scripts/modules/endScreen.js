@@ -4,6 +4,8 @@ import { emoji } from "./resultsLogger.js";
 export { winScreen, copyToClipboard, removeWinScreen };
 
 function winScreen(won) {
+   // remove if existing
+   document.querySelectorAll(".endscreen").forEach(elem => elem.classList.remove("show"))
 
    document.querySelector(".endscreen").classList.add("show")
    document.querySelector(".overlay").classList.add("show")
