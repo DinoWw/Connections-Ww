@@ -105,6 +105,8 @@ function checkTextOverflow() {
 
    for (let t of terms) {
       let font = "20px" // hardcoded in tiles.css
+      console.log(window.screen.width)
+      if (window.screen.width < 600) font = "18px"
       t.style.fontSize = font;
 
       // while the word is too long 
