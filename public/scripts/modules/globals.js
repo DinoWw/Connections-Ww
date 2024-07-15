@@ -67,7 +67,6 @@ function fillGameStructures(jsonData) {
                .map(e => [e, c])
          ).reduce((acc, els) => acc.concat(els), [])
    );
-   console.log(gameData)
 
    gameData.categories.forEach((category, id) => {
       categoryId[category.title] = id;
@@ -105,7 +104,6 @@ function checkTextOverflow() {
 
    for (let t of terms) {
       let font = "20px" // hardcoded in tiles.css
-      console.log(window.screen.width)
       if (window.screen.width < 600) font = "18px"
       t.style.fontSize = font;
 
@@ -123,5 +121,4 @@ async function reloadMetaData() {
    metaData =
       await fetch(`data/metaData.json`)
          .then(response => response.json());
-   console.log(metaData)
 }

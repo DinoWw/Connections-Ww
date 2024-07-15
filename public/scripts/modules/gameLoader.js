@@ -1,7 +1,6 @@
 import { categoryByElement, gameData, fillGameStructures, categoryId } from "./globals.js";
-import { clearGuesses } from "./resultsLogger.js";
 import { createTile, fixTileOrder } from "./tiles.js";
-import { returnButtons, replaceButtons, shuffle } from "./buttons.js";
+import { replaceButtons, shuffle } from "./buttons.js";
 import { checkTextOverflow } from "./globals.js"
 import * as local from "./localStorageInterface.js";
 import { resolveCategory } from "./resolveCategory.js";
