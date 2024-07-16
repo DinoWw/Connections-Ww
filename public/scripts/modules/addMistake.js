@@ -29,9 +29,9 @@ function addMistake() {
    }
 }
 
-// makes dots reflect gameData.mistakes
+// makes visual state reflect gameData.mistakes
 function initMistakes() {
-   ;
+   
    let mistakes_cont = document.querySelector("#mistakes")
    let children = mistakes_cont.querySelectorAll(".dot-container");
 
@@ -42,10 +42,15 @@ function initMistakes() {
       children[i].firstElementChild.classList.add("smallerdot")
    }
 
+   if(gameData.mistakes >= 4) {
+      endGame(false);
+   }
+
+
 }
 
 
-function endGame() {
+function endGame(animate = true) {
 
    //make unclickable
    removeEventListeners()
@@ -62,7 +67,7 @@ function endGame() {
    let i = 0;
    function nextAnimation(e) {
       const cT = categoryTiles[i];
-      if (cT == undefined) {
+      if (i >= 4) {
          // All categories have been merged so display end screen
          setTimeout(() => {
             winScreen();
@@ -81,11 +86,21 @@ function endGame() {
          i++;
       }
       else {
+         // category already solved
          i++;
          nextAnimation();
       }
    }
-   nextAnimation();
+   if(animate){
+      nextAnimation();
+   }
+   else {
+      for(let i = 0; i < 4; i++){
+         const cT = categoryTiles[i];
+         if (cT[0] === undefined) continue;  // category already solved
+         resolveCategory(gameData.categories[i], cT, false);
+      }
+   }
 
 }
 

@@ -1,4 +1,4 @@
-import { categoryByElement, gameData, fillGameStructures, categoryId } from "./globals.js";
+import { categoryByElement, gameData, fillGameStructures, categoryId, loseGame } from "./globals.js";
 import { createTile, fixTileOrder } from "./tiles.js";
 import { replaceButtons, shuffle } from "./buttons.js";
 import { checkTextOverflow } from "./globals.js"
@@ -14,7 +14,6 @@ export { loadGame };
 
 async function loadGame(fileName) {
    const game = local.loadGame(fileName);
-
    if (game === undefined || game === null) {
       await fetch(`data/${fileName}`).then(async response => {
          await response.json().then((data) => {
@@ -85,6 +84,11 @@ function fillTiles() {
             );
          resolveCategory(gameData.categories[categoryId[potentialTitle]], els, false);
       }
+   }
+
+   // TODO: if endless mode gets implemented, change the 4 to some global
+   if(gameData.mistakes >= 4){
+      replaceButtons();
    }
 
 
