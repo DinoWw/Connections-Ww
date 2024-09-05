@@ -35,8 +35,8 @@ function loadMenu() {
    const gameHome = document.getElementById("game-menu");
 
    // TODO: metaData
-   for (const gameName in metaData.visibleGames) {
-      const btn = newGameButton(gameName, metaData.visibleGames[gameName]);
+   for (const gameNameAndJson of Object.entries(metaData.visibleGames).reverse()) {
+      const btn = newGameButton(gameNameAndJson[0], gameNameAndJson[1]);
       gameHome.appendChild(btn);
    }
 
